@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Play Anywhere</string>
+    <string name="games">Jogos</string>
+    <string name="quests">Quests</string>
+    <string name="mygames">Meus Jogos</string>
+    <string name="community">Comunidade</string>
+    <string name="profile">Meu Perfil</string>
+    <string name="newgame">Novo Jogo</string>
+    <string name="masters">Área do Mestre</string>
+    <string name="config">Configurações</string>
+
+</resources>

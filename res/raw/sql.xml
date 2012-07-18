@@ -1,0 +1,21 @@
+<sql>
+<statement>
+CREATE TABLE IF NOT EXISTS tbchars (
+	idchar INTEGER,
+	name VARCHAR(50),
+	story VARCHAR(50)
+	)
+</statement>
+<statement>INSERT INTO tbchars VALUES(1,'Char1','Story1')</statement>
+<statement>INSERT INTO tbchars VALUES(2,'Char2','Story2')</statement>
+<statement>INSERT INTO tbchars VALUES(3,'Char3','Story3')</statement>
+<statement>
+CREATE TABLE IF NOT EXISTS tbquests (
+	idquest INTEGER,
+	quest VARCHAR(50),
+	idchar INTEGER
+	)
+</statement>
+<statement>INSERT INTO tbquests VALUES(1,'Quest1',1)</statement>
+<statement>INSERT INTO tbquests VALUES(2,'Quest2',1)</statement>
+</sql>

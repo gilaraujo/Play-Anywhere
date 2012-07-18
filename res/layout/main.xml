@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/char_9patch"
+    android:columnCount="2"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="40dp"
+    android:rowCount="6" >
+
+<TableRow
+    android:layout_width="match_parent"
+    android:gravity="center" >
+
+	<ImageButton
+	    android:id="@+id/myGamesButton"
+	    android:layout_gravity="center"
+	    android:src="@drawable/ic_games" />
+
+	<ImageButton
+        android:id="@+id/communityButton"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_community" />
+    
+	
+</TableRow>
+
+<TableRow
+    android:layout_width="match_parent"
+    android:gravity="center" >
+
+    <TextView
+	    android:id="@+id/myGamesText"
+	    android:layout_gravity="center"
+	    android:text="@string/mygames" />
+	
+	<TextView
+	    android:id="@+id/communityText"
+	    android:layout_gravity="center"
+	    android:text="@string/community" />
+	
+	
+</TableRow>
+
+<TableRow
+    android:layout_width="match_parent"
+    android:gravity="center" >
+
+	<ImageButton
+	    android:id="@+id/profileButton"
+	    android:layout_gravity="center"
+	    android:src="@drawable/ic_profile" />
+	<ImageButton
+        android:id="@+id/newGameButton"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_launcher" />
+
+</TableRow>
+
+<TableRow
+    android:layout_width="match_parent"
+    android:gravity="center" >
+
+	<TextView
+	    android:id="@+id/profileText"
+	    android:layout_gravity="center"
+	    android:text="@string/profile" />
+	
+	<TextView
+	    android:id="@+id/newGameText"
+	    android:layout_gravity="center"
+	    android:text="@string/newgame" />
+	
+</TableRow>
+
+<TableRow
+    android:layout_width="match_parent"
+    android:gravity="center" >
+	
+	<ImageButton
+	    android:id="@+id/masterButton"
+	    android:layout_gravity="center"
+	    android:src="@drawable/ic_launcher" />
+	
+	<ImageButton
+	    android:id="@+id/configButton"
+	    android:layout_gravity="center"
+	    android:src="@drawable/ic_config" />
+
+</TableRow>
+
+<TableRow
+    android:layout_width="match_parent"
+    android:gravity="center" >
+    
+	<TextView
+	    android:id="@+id/mastersText"
+	    android:layout_gravity="center"
+	    android:text="@string/masters" />
+	
+	<TextView
+	    android:id="@+id/configText"
+	    android:layout_gravity="center"
+	    android:text="@string/config" />
+
+</TableRow>
+</TableLayout>
