@@ -1,0 +1,18 @@
+getchildview errado
+
+RelativeLayout relative = new RelativeLayout(context);
+  
+        View row = inflater.inflate(R.layout.game_list_item, null);
+        TextView story = (TextView)row.findViewById(R.id.char_story);
+        TextView name = (TextView)row.findViewById(R.id.char_name);
+        // Indent
+  
+        relative = new RelativeLayout(context);
+        
+        story.setText("\t\t\tstorooyar"+Math.floor(Math.random()*10));
+
+        name.setText("\t\t\tsNEAMMAE"+Math.floor(Math.random()*10));
+        
+        relative.addView(row);
+  
+        return relative;

@@ -1,21 +1,33 @@
 <sql>
 <statement>
-CREATE TABLE IF NOT EXISTS tbchars (
-	idchar INTEGER,
-	name VARCHAR(50),
-	story VARCHAR(50)
+CREATE TABLE IF NOT EXISTS tbcampaign (
+	idcampaign INTEGER,
+	charname VARCHAR(50),
+	campaign VARCHAR(50)
 	)
 </statement>
-<statement>INSERT INTO tbchars VALUES(1,'Char1','Story1')</statement>
-<statement>INSERT INTO tbchars VALUES(2,'Char2','Story2')</statement>
-<statement>INSERT INTO tbchars VALUES(3,'Char3','Story3')</statement>
+<statement>INSERT INTO tbcampaign VALUES(3,'Char1','Campaign3')</statement>
+<statement>INSERT INTO tbcampaign VALUES(4,'Char2','Campaign4')</statement>
+<statement>INSERT INTO tbcampaign VALUES(5,'Char3','Campaign5')</statement>
+<statement>INSERT INTO tbcampaign VALUES(6,'Char4','Campaign6')</statement>
+<statement>INSERT INTO tbcampaign VALUES(7,'Char5','Campaign7')</statement>
+<statement>INSERT INTO tbcampaign VALUES(8,'Char6','Campaign8')</statement>
 <statement>
 CREATE TABLE IF NOT EXISTS tbquests (
-	idquest INTEGER,
-	quest VARCHAR(50),
-	idchar INTEGER
+	idcampaign INTEGER,
+	questname VARCHAR(50)
 	)
 </statement>
-<statement>INSERT INTO tbquests VALUES(1,'Quest1',1)</statement>
-<statement>INSERT INTO tbquests VALUES(2,'Quest2',1)</statement>
+<statement>INSERT INTO tbquests VALUES(3,'Quest1')</statement>
+<statement>INSERT INTO tbquests VALUES(3,'Quest2')</statement>
+<statement>INSERT INTO tbquests VALUES(4,'Quest3')</statement>
+<statement>INSERT INTO tbquests VALUES(4,'Quest4')</statement>
+<statement>INSERT INTO tbquests VALUES(4,'Quest5')</statement>
+<statement>INSERT INTO tbquests VALUES(5,'Quest6')</statement>
+<statement>INSERT INTO tbquests VALUES(5,'Quest7')</statement>
+<statement>INSERT INTO tbquests VALUES(5,'Quest8')</statement>
+<statement>INSERT INTO tbquests VALUES(6,'Quest9')</statement>
+<statement>INSERT INTO tbquests VALUES(6,'Quest10')</statement>
+<statement>INSERT INTO tbquests VALUES(7,'Quest11')</statement>
+<statement>INSERT INTO tbquests VALUES(8,'Quest12')</statement>
 </sql>

@@ -14,7 +14,7 @@
     android:gravity="center" >
 
 	<ImageButton
-	    android:id="@+id/myGamesButton"
+	    android:id="@+id/campaignButton"
 	    android:layout_gravity="center"
 	    android:src="@drawable/ic_games" />
 
@@ -31,9 +31,9 @@
     android:gravity="center" >
 
     <TextView
-	    android:id="@+id/myGamesText"
+	    android:id="@+id/campaignText"
 	    android:layout_gravity="center"
-	    android:text="@string/mygames" />
+	    android:text="@string/campaign" />
 	
 	<TextView
 	    android:id="@+id/communityText"

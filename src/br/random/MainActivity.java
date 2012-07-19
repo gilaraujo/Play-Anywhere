@@ -14,7 +14,7 @@ public class MainActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        ImageButton gamesButton = (ImageButton)findViewById(R.id.myGamesButton);
+        ImageButton gamesButton = (ImageButton)findViewById(R.id.campaignButton);
         gamesButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				gamesButtonClick();
@@ -22,6 +22,6 @@ public class MainActivity extends SherlockActivity {
 		});
     }
     private void gamesButtonClick() {
-			startActivity(new Intent(this,Testt.class));
+			startActivity(new Intent(this,CampaignList.class));
 	};
 }

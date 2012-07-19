@@ -22,14 +22,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GamesList"
-            android:label="@string/games"
+            android:name=".CampaignList"
+            android:label="@string/campaign"
             android:configChanges="orientation"
     		android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".Testt"
-            android:label="@string/games"
+            android:name=".QuestView"
+            android:label="@string/quest"
             android:configChanges="orientation"
     		android:screenOrientation="portrait" >
         </activity>

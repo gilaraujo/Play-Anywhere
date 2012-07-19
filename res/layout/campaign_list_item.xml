@@ -28,11 +28,5 @@
 	    android:textSize="15dp" 
 	    android:gravity="right"
 		android:layout_below="@id/char_pic"/>
-
-	<ListView
-	    android:id="@+id/listView1"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" >
-	</ListView>
 	
 </RelativeLayout>
