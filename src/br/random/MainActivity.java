@@ -20,8 +20,17 @@ public class MainActivity extends SherlockActivity {
 				gamesButtonClick();
 			}
 		});
+        ImageButton profileButton = (ImageButton)findViewById(R.id.profileButton);
+        profileButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				profileButtonClick();
+			}
+		});
     }
     private void gamesButtonClick() {
 			startActivity(new Intent(this,CampaignList.class));
+	};
+    private void profileButtonClick() {
+			startActivity(new Intent(this,ProfileView.class));
 	};
 }

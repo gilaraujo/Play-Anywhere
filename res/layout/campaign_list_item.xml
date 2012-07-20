@@ -3,30 +3,31 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-	<TextView
-	    android:id="@+id/char_id"
-	    android:layout_width="0dp"
-	    android:layout_height="0dp" />
 
 	<TextView
-	    android:id="@+id/char_story"
+	    android:id="@+id/campaign_id"
+	    android:layout_width="0dp"
+	    android:layout_height="0dp" />
+
+	<TextView
+	    android:id="@+id/campaign_name"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:textSize="30dp" />
-	
+	
 	<ImageView
 	    android:id="@+id/char_pic"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentRight="true"
 	    android:src="@drawable/ic_launcher" />
-	
+	
 	<TextView
 	    android:id="@+id/char_name"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:textSize="15dp" 
+	    android:layout_below="@id/char_pic"
 	    android:gravity="right"
-		android:layout_below="@id/char_pic"/>
+	    android:textSize="15dp" />
 	
 </RelativeLayout>

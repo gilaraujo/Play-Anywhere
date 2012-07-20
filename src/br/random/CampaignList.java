@@ -24,7 +24,7 @@ public class CampaignList extends SherlockExpandableListActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
         db = (new DatabaseHelper(this)).getWritableDatabase();
-        cursor = db.rawQuery("SELECT idcampaign, charname, campaign FROM tbcampaign", new String[]{ });
+        cursor = db.rawQuery("SELECT idcampaign, campaign, charname FROM tbcampaign", new String[]{ });
         
         CampaignExpAdapter gea = new CampaignExpAdapter(this);
         ArrayList<String> quests;

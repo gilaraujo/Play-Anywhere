@@ -9,5 +9,10 @@
     <string name="masters">Área do Mestre</string>
     <string name="config">Configurações</string>
     <string name="quest">Quest</string>
+    <string name="nickname">Nickname</string>
+    <string name="systems">Sistemas de Jogo</string>
+    <string name="recentcampaigns">Campanhas Atuais</string>
+    <string name="experience">Nível de Experiência</string>
+    <string name="evaluation">Avaliação do Jogador</string>
 
 </resources>

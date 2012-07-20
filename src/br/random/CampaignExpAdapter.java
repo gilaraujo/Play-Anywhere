@@ -8,15 +8,15 @@ import android.widget.*;
 import android.widget.LinearLayout.*;
 
 class GroupInfo {
-	public GroupInfo(String id, String story, String name) {
-		this.id = id; this.story = story; this.name = name;
+	public GroupInfo(String id, String campaign, String charName) {
+		this.id = id; this.campaign = campaign; this.charName = charName;
 	}
 	private String id;
 	public String getId() { return this.id; }
-	private String story;
-	public String getStory() { return this.story; }
-	private String name;
-	public String getName() { return this.name; }
+	private String campaign;
+	public String getCampaign() { return this.campaign; }
+	private String charName;
+	public String getCharName() { return this.charName; }
 }
 
 public class CampaignExpAdapter extends BaseExpandableListAdapter
@@ -121,14 +121,16 @@ public class CampaignExpAdapter extends BaseExpandableListAdapter
     	RelativeLayout relative = new RelativeLayout(context);
   	  
         View row = inflater.inflate(R.layout.campaign_list_item, null);
-        TextView story = (TextView)row.findViewById(R.id.char_story);
-        TextView name = (TextView)row.findViewById(R.id.char_name);
+        TextView campaignId = (TextView)row.findViewById(R.id.campaign_id);
+        TextView campaignName = (TextView)row.findViewById(R.id.campaign_name);
+        TextView charName = (TextView)row.findViewById(R.id.char_name);
         // Indent
   
         relative = new RelativeLayout(context);
         
-        story.setText("\t\t\t" + groups.get(groupPos).getStory());
-        name.setText(groups.get(groupPos).getName());
+        campaignId.setText(groups.get(groupPos).getId());
+        campaignName.setText("\t\t\t" + groups.get(groupPos).getCampaign());
+        charName.setText(groups.get(groupPos).getCharName());
 
         relative.addView(row);
   
