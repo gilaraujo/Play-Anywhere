@@ -45,14 +45,12 @@ public class CampaignList extends SherlockExpandableListActivity {
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
 				
-				Intent intent = new Intent(getApplicationContext(),QuestView.class);
-				Bundle bundle = new Bundle();
 				String group = (String)parent.getExpandableListAdapter().getGroup(groupPosition);
-				bundle.putString("group", group);
 				String quest = (String)parent.getExpandableListAdapter().getChild(groupPosition,childPosition);
+				Bundle bundle = new Bundle();
+				bundle.putString("group", group);
 				bundle.putString("quest",quest);
-				intent.putExtras(bundle);
-				startActivity(intent);
+				startActivity(new Intent(getApplicationContext(), QuestView.class).putExtras(bundle));
 				return false;
 			}
 		});

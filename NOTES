@@ -1,18 +1,30 @@
-getchildview errado
+Adapter pra SimpleExpandableListAdapter
 
-RelativeLayout relative = new RelativeLayout(context);
-  
-        View row = inflater.inflate(R.layout.game_list_item, null);
-        TextView story = (TextView)row.findViewById(R.id.char_story);
-        TextView name = (TextView)row.findViewById(R.id.char_name);
-        // Indent
-  
-        relative = new RelativeLayout(context);
+List<Map<String, String>> groupData = new ArrayList<Map<String, String>>();
+        List<List<Map<String, String>>> childData = new ArrayList<List<Map<String, String>>>();
+        while (cursor.moveToNext()) {
+        	Map<String, String> curGroupMap = new HashMap<String, String>();
+        	curGroupMap.put("id",cursor.getString(0));
+        	curGroupMap.put("name",cursor.getString(1));
+        	groupData.add(curGroupMap);
+        	List<Map<String, String>> children = new ArrayList<Map<String, String>>();
+        	Map<String, String> curChildMap = new HashMap<String, String>();
+        	curGroupMap.put("id",cursor.getString(0));
+        	curChildMap.put("description", cursor.getString(2));
+        	children.add(curChildMap);
+        	childData.add(children);
+        }
         
-        story.setText("\t\t\tstorooyar"+Math.floor(Math.random()*10));
-
-        name.setText("\t\t\tsNEAMMAE"+Math.floor(Math.random()*10));
+        SimpleExpandableListAdapter scenariosAdapter = new SimpleExpandableListAdapter(
+        		this,
+        		groupData,
+        		R.layout.campaign_list_item_simple,
+        		new String[] { "id", "name" },
+        		new int[] { R.id.campaign_id, R.id.campaign_name },
+        		childData,
+        		R.layout.campaign_list_subitem_simple,
+        		new String[] { "description" },
+        		new int[] { R.id.description });
+        scenarios.setAdapter(scenariosAdapter);
         
-        relative.addView(row);
-  
-        return relative;
+        

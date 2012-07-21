@@ -12,9 +12,7 @@
         android:theme="@style/Theme.Sherlock" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:configChanges="orientation"
-    		android:screenOrientation="portrait" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,22 +21,24 @@
         </activity>
         <activity
             android:name=".CampaignList"
-            android:label="@string/campaign"
-            android:configChanges="orientation"
-    		android:screenOrientation="portrait" >
+            android:label="@string/campaigns" >
         </activity>
         <activity
             android:name=".QuestView"
-            android:label="@string/quest"
-            android:configChanges="orientation"
-    		android:screenOrientation="portrait" >
+            android:label="@string/quest" >
         </activity>
         <activity
             android:name=".ProfileView"
-            android:label="@string/profile"
-            android:configChanges="orientation"
-    		android:screenOrientation="portrait" >
+            android:label="@string/profile" >
         </activity>
-    </application>
+        <activity
+            android:name=".CampaignView"
+            android:label="@string/campaign" >
+        </activity>
+        <activity
+            android:name=".MessageView"
+            android:label="@string/message" >
+        </activity>
+        </application>
 
 </manifest>

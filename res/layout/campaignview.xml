@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    android:orientation="horizontal" >
+
+<ScrollView
+        android:id="@+id/ScrlView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        > 
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/campaignLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name" />
+
+
+    <TextView
+        android:id="@+id/campaign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/campaignLabel"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+
+    <TextView
+        android:id="@+id/masterLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/campaign"
+        android:text="@string/master" />
+
+
+    <TextView
+        android:id="@+id/master"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/masterLabel"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+
+    <TextView
+        android:id="@+id/scenarioLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/master"
+        android:text="@string/scenario" />
+
+
+    <ListView
+        android:id="@+id/scenarios"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/scenarioLabel" >
+
+    </ListView>
+
+
+
+
+
+    <TextView
+        android:id="@+id/actsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scenarios"
+        android:text="@string/acts" />
+
+    <ListView
+        android:id="@+id/acts"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/actsLabel" >
+    </ListView>
+    </RelativeLayout>
+	</ScrollView>
+</RelativeLayout>

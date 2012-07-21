@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Play Anywhere</string>
-    <string name="campaign">Campanhas</string>
+    <string name="campaign">Campanha</string>
     <string name="quests">Quests</string>
     <string name="community">Comunidade</string>
     <string name="profile">Meu Perfil</string>
@@ -14,5 +14,11 @@
     <string name="recentcampaigns">Campanhas Atuais</string>
     <string name="experience">Nível de Experiência</string>
     <string name="evaluation">Avaliação do Jogador</string>
+    <string name="campaigns">Campanhas</string>
+    <string name="name">Nome</string>
+    <string name="master">Mestre:</string>
+    <string name="scenario">Cenário</string>
+    <string name="acts">Atos</string>
+    <string name="message">Mensagem</string>
 
 </resources>

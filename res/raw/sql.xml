@@ -1,17 +1,63 @@
 <sql>
 <statement>
+CREATE TABLE IF NOT EXISTS tbprofile (
+	iduser INTEGER,
+	nickname VARCHAR(50),
+	experience INTEGER,
+	evaluation FLOAT
+	)
+</statement>
+<statement>INSERT INTO tbprofile VALUES(1,'Nick1',1000,3.5)</statement>
+<statement>INSERT INTO tbprofile VALUES(2,'Nick2',100,1.5)</statement>
+<statement>
 CREATE TABLE IF NOT EXISTS tbcampaign (
 	idcampaign INTEGER,
+	master VARCHAR(50),
 	charname VARCHAR(50),
 	campaign VARCHAR(50)
 	)
 </statement>
-<statement>INSERT INTO tbcampaign VALUES(3,'Char1','Campaign3')</statement>
-<statement>INSERT INTO tbcampaign VALUES(4,'Char2','Campaign4')</statement>
-<statement>INSERT INTO tbcampaign VALUES(5,'Char3','Campaign5')</statement>
-<statement>INSERT INTO tbcampaign VALUES(6,'Char4','Campaign6')</statement>
-<statement>INSERT INTO tbcampaign VALUES(7,'Char5','Campaign7')</statement>
-<statement>INSERT INTO tbcampaign VALUES(8,'Char6','Campaign8')</statement>
+<statement>INSERT INTO tbcampaign VALUES(3,'Master1','Char1','Campaign3')</statement>
+<statement>INSERT INTO tbcampaign VALUES(4,'Master2','Char2','Campaign4')</statement>
+<statement>INSERT INTO tbcampaign VALUES(5,'Master3','Char3','Campaign5')</statement>
+<statement>INSERT INTO tbcampaign VALUES(6,'Master4','Char4','Campaign6')</statement>
+<statement>INSERT INTO tbcampaign VALUES(7,'Master5','Char5','Campaign7')</statement>
+<statement>INSERT INTO tbcampaign VALUES(8,'Master6','Char6','Campaign8')</statement>
+<statement>
+CREATE TABLE IF NOT EXISTS tbprofile_campaign (
+	iduser INTEGER,
+	idcampaign INTEGER
+	)
+</statement>
+<statement>INSERT INTO tbprofile_campaign VALUES(1,3)</statement>
+<statement>INSERT INTO tbprofile_campaign VALUES(1,4)</statement>
+<statement>INSERT INTO tbprofile_campaign VALUES(1,5)</statement>
+<statement>INSERT INTO tbprofile_campaign VALUES(2,4)</statement>
+<statement>INSERT INTO tbprofile_campaign VALUES(2,7)</statement>
+<statement>INSERT INTO tbprofile_campaign VALUES(2,8)</statement>
+<statement>
+CREATE TABLE IF NOT EXISTS tbscenario (
+	idcampaign INTEGER,
+	scenarioname VARCHAR(50),
+	description TEXT
+	)
+</statement>
+<statement>INSERT INTO tbscenario VALUES(3,'Prologo3','DescPro3')</statement>
+<statement>INSERT INTO tbscenario VALUES(3,'Ambiente3','DescAmb3')</statement>
+<statement>INSERT INTO tbscenario VALUES(3,'Pessoas3','DescPes3')</statement>
+<statement>INSERT INTO tbscenario VALUES(3,'Pessoas31','DescPes31')</statement>
+<statement>INSERT INTO tbscenario VALUES(3,'Pessoas32','DescPes32')</statement>
+<statement>INSERT INTO tbscenario VALUES(3,'Pessoas33','DescPes33')</statement>
+<statement>INSERT INTO tbscenario VALUES(3,'Pessoas34','DescPes34')</statement>
+<statement>INSERT INTO tbscenario VALUES(3,'Pessoas35','DescPes35')</statement>
+<statement>INSERT INTO tbscenario VALUES(3,'Pessoas36','DescPes36')</statement>
+<statement>INSERT INTO tbscenario VALUES(4,'Prologo4','DescPro4')</statement>
+<statement>INSERT INTO tbscenario VALUES(4,'Ambiente4','DescAmb4')</statement>
+<statement>INSERT INTO tbscenario VALUES(5,'Prologo5','DescPro5')</statement>
+<statement>INSERT INTO tbscenario VALUES(5,'Scenario5','DescSce5')</statement>
+<statement>INSERT INTO tbscenario VALUES(6,'Scenario6','DescSce6')</statement>
+<statement>INSERT INTO tbscenario VALUES(7,'Scenario7','DescSce7')</statement>
+<statement>INSERT INTO tbscenario VALUES(8,'Scenario8','DesSce8')</statement>
 <statement>
 CREATE TABLE IF NOT EXISTS tbquests (
 	idcampaign INTEGER,
@@ -20,6 +66,10 @@ CREATE TABLE IF NOT EXISTS tbquests (
 </statement>
 <statement>INSERT INTO tbquests VALUES(3,'Quest1')</statement>
 <statement>INSERT INTO tbquests VALUES(3,'Quest2')</statement>
+<statement>INSERT INTO tbquests VALUES(3,'Quest21')</statement>
+<statement>INSERT INTO tbquests VALUES(3,'Quest22')</statement>
+<statement>INSERT INTO tbquests VALUES(3,'Quest23')</statement>
+<statement>INSERT INTO tbquests VALUES(3,'Quest24')</statement>
 <statement>INSERT INTO tbquests VALUES(4,'Quest3')</statement>
 <statement>INSERT INTO tbquests VALUES(4,'Quest4')</statement>
 <statement>INSERT INTO tbquests VALUES(4,'Quest5')</statement>

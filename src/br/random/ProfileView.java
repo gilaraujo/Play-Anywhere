@@ -14,10 +14,12 @@ import android.graphics.drawable.*;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.View.*;
 import android.widget.*;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 
 class ContactInfo {
@@ -46,7 +48,7 @@ public class ProfileView extends SherlockActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView nick = (TextView)findViewById(R.id.nick);
         nick.setText("nick name");
-        TextView experience = (TextView)findViewById(R.id.experience);
+        TextView experience = (TextView)findViewById(R.id.xperience);
         experience.setText("1000");
         RatingBar evaluation = (RatingBar)findViewById(R.id.evaluation);
         evaluation.setEnabled(false);
@@ -69,12 +71,17 @@ public class ProfileView extends SherlockActivity {
         		new String[] {"_id", "campaign"}, 
         		new int[] {R.id.campaign_id, R.id.campaign_name});
         ListView campaigns = (ListView)findViewById(R.id.campaignList);
+        
         campaigns.setAdapter(adapter);
+        setListViewScrollable(campaigns);
+        		
         campaigns.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				String id = ((TextView)arg1.findViewById(R.id.campaign_id)).getText().toString();
-				startActivity(new Intent(Intent.ACTION_VIEW , Uri.parse("http://www.nossosite.com/campaign/" + id + ".html")));
+				Bundle bundle = new Bundle();
+				bundle.putString("campaignId",id);
+				startActivity(new Intent(getApplicationContext(), CampaignView.class).putExtras(bundle));
 			}
 		});
 
@@ -122,5 +129,17 @@ public class ProfileView extends SherlockActivity {
         	}
         }
     	if (trcount % 3 != 0) contacts.addView(tr);
+    }
+    private void setListViewScrollable(final ListView list) {
+    	list.setOnTouchListener(new OnTouchListener() {
+			public boolean onTouch(View v, MotionEvent event) {
+			     int listViewTouchAction = event.getAction();
+	                if (listViewTouchAction == MotionEvent.ACTION_DOWN)
+	                {
+	                    list.scrollBy(0, 1);
+	                }
+	                return false;
+	           }
+        });
     }
 }

@@ -1,103 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back"
     android:orientation="horizontal" >
-
-    <TextView
-        android:id="@+id/nickLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nickname" />
-
-    <TextView
-        android:id="@+id/nick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/nickLabel"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/systemsLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nick"
-        android:layout_alignParentLeft="true"
-        android:text="@string/systems"
-        
-/>
-
-    <LinearLayout
-        android:id="@+id/systems"
-        android:layout_width="wrap_content"
-        android:layout_height="90dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/systemsLabel" >
-        
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/campaignLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/systems"
-        android:text="@string/recentcampaigns" />
+    <ScrollView
+        android:id="@+id/ScrlView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-	<ListView
-	    android:id="@+id/campaignList"
-	    android:layout_width="match_parent"
-	    android:layout_below="@+id/campaignLabel"
-	    android:layout_height="100dp" >
-	    
-	</ListView>
-
-	<TextView
-	    android:id="@+id/experienceLabel"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@+id/campaignList"
-        android:text="@string/experience" />
-
-	<TextView
-	    android:id="@+id/experience"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@+id/experienceLabel"
-	    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-	<TextView
-	    android:id="@+id/evaluationLabel"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@+id/experience"
-        android:text="@string/evaluation" />
-
-	<RatingBar
-	    android:id="@+id/evaluation"
-		android:layout_below="@+id/evaluationLabel"
-        android:layout_width="wrap_content"
-	    android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-	<ImageView
-	    android:id="@+id/imageView1"
-	    android:layout_width="100dp"
-	    android:layout_height="100dp"
-	    android:layout_alignParentRight="true"
-	    android:layout_alignParentTop="true"
-	    android:src="@drawable/ic_launcher" />
-
-	<TableLayout
-	    android:id="@+id/contactTable"
-	    android:layout_width="100dp"
-	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/imageView1"
-	    android:layout_marginLeft="10dp"
-	    android:layout_below="@+id/imageView1" >
+			<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal" >
 
-	</TableLayout>
-	
-</RelativeLayout>
+				<TextView
+					android:id="@+id/nickLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/nickname" />
+
+				<TextView
+					android:id="@+id/nick"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentLeft="true"
+					android:layout_below="@+id/nickLabel"
+					android:textAppearance="?android:attr/textAppearanceLarge" />
+
+				<TextView
+					android:id="@+id/systemsLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_below="@+id/nick"
+					android:layout_alignParentLeft="true"
+					android:text="@string/systems" />
+
+
+				<LinearLayout
+					android:id="@+id/systems"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:layout_alignParentLeft="true"
+					android:layout_below="@+id/systemsLabel" >
+					
+				</LinearLayout>
+
+				<ImageView
+					android:id="@+id/imageView1"
+					android:layout_width="100dp"
+					android:layout_height="100dp"
+					android:layout_alignParentRight="true"
+					android:layout_alignParentTop="true"
+					android:src="@drawable/ic_launcher" />
+
+				<TableLayout
+					android:id="@+id/contactTable"
+					android:layout_width="100dp"
+					android:layout_height="wrap_content"
+					android:layout_alignLeft="@+id/imageView1"
+					android:layout_marginLeft="10dp"
+					android:layout_below="@+id/imageView1" >
+				</TableLayout>
+			</RelativeLayout>
+			
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"  >
+
+				<TextView
+					android:id="@+id/campaignLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentLeft="true"
+					android:layout_below="@+id/systems"
+					android:text="@string/recentcampaigns" />
+
+				<ListView
+					android:id="@+id/campaignList"
+					android:layout_width="match_parent"
+					android:layout_below="@+id/campaignLabel"
+					android:layout_height="100dp" >
+				</ListView>
+
+				<TextView
+					android:id="@+id/experienceLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_below="@+id/campaignList"
+					android:text="@string/experience" />
+
+				<TextView
+					android:id="@+id/xperience"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_below="@+id/experienceLabel"
+					android:textAppearance="?android:attr/textAppearanceLarge" />
+
+				<TextView
+					android:id="@+id/evaluationLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_below="@+id/xperience"
+					android:text="@string/evaluation" />
+
+				<RatingBar
+					android:id="@+id/evaluation"
+					android:layout_below="@+id/evaluationLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />	
+			</RelativeLayout>
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>
