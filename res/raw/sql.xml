@@ -10,19 +10,32 @@ CREATE TABLE IF NOT EXISTS tbprofile (
 <statement>INSERT INTO tbprofile VALUES(1,'Nick1',1000,3.5)</statement>
 <statement>INSERT INTO tbprofile VALUES(2,'Nick2',100,1.5)</statement>
 <statement>
+CREATE TABLE IF NOT EXISTS tbcontact (
+	iduser INTEGER,
+	type INTEGER,
+	contact VARCHAR(50)
+	)
+</statement>
+<statement>INSERT INTO tbcontact VALUES(1,0,'http://www.facebook.com/gilson.araujo')</statement>
+<statement>INSERT INTO tbcontact VALUES(1,1,'www.twitter.com/bladaum')</statement>
+<statement>INSERT INTO tbcontact VALUES(1,2,'http://www.linkedin.com/gilson.araujo')</statement>
+<statement>INSERT INTO tbcontact VALUES(1,3,'bladaum')</statement>
+<statement>INSERT INTO tbcontact VALUES(2,1,'www.twitter.com/bladaum')</statement>
+<statement>
 CREATE TABLE IF NOT EXISTS tbcampaign (
 	idcampaign INTEGER,
 	master VARCHAR(50),
 	charname VARCHAR(50),
-	campaign VARCHAR(50)
+	campaign VARCHAR(50),
+	system VARCHAR(50)
 	)
 </statement>
-<statement>INSERT INTO tbcampaign VALUES(3,'Master1','Char1','Campaign3')</statement>
-<statement>INSERT INTO tbcampaign VALUES(4,'Master2','Char2','Campaign4')</statement>
-<statement>INSERT INTO tbcampaign VALUES(5,'Master3','Char3','Campaign5')</statement>
-<statement>INSERT INTO tbcampaign VALUES(6,'Master4','Char4','Campaign6')</statement>
-<statement>INSERT INTO tbcampaign VALUES(7,'Master5','Char5','Campaign7')</statement>
-<statement>INSERT INTO tbcampaign VALUES(8,'Master6','Char6','Campaign8')</statement>
+<statement>INSERT INTO tbcampaign VALUES(3,'Master1','Char1','Campaign3','DnD')</statement>
+<statement>INSERT INTO tbcampaign VALUES(4,'Master2','Char2','Campaign4','DnD')</statement>
+<statement>INSERT INTO tbcampaign VALUES(5,'Master3','Char3','Campaign5','Vampire')</statement>
+<statement>INSERT INTO tbcampaign VALUES(6,'Master4','Char4','Campaign6','Vampire')</statement>
+<statement>INSERT INTO tbcampaign VALUES(7,'Master5','Char5','Campaign7','DnD')</statement>
+<statement>INSERT INTO tbcampaign VALUES(8,'Master6','Char6','Campaign8','DnD')</statement>
 <statement>
 CREATE TABLE IF NOT EXISTS tbprofile_campaign (
 	iduser INTEGER,

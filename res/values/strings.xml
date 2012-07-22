@@ -20,5 +20,6 @@
     <string name="scenario">Cenário</string>
     <string name="acts">Atos</string>
     <string name="message">Mensagem</string>
+    <string name="system">Sistema</string>
 
 </resources>
