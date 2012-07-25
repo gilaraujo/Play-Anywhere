@@ -1,5 +1,9 @@
 package br.random;
 
+
+import br.random.util.*;
+import br.random.bean.Profile;
+import br.random.dao.*;
 import java.util.*;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -10,64 +14,51 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.*;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.view.View.*;
 import android.widget.*;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 
-class ContactInfo {
-	private Contacts key;
-	private String value;
-	public ContactInfo(int key, String value) {
-		this.key = Contacts.values()[key];; this.value = value;
-	}
-	public Contacts getKey() { return this.key; }
-	public String getValue() { return this.value; }
-}
-
-enum Contacts {
-	facebook,
-	twitter,
-	linkedin,
-	skype
-}
 
 public class ProfileView extends SherlockActivity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profileview);
+        setContentView(R.layout.profile_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
-        SQLiteDatabase db = (new DatabaseHelper(this)).getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT nickname, experience, evaluation FROM tbprofile WHERE iduser = ?", new String[]{ Singleton.getInstance().getUserId() });
+        TextView nick = (TextView)findViewById(R.id.tv_nick);
+        TextView experience = (TextView)findViewById(R.id.tv_xperience);
+        RatingBar evaluation = (RatingBar)findViewById(R.id.rb_evaluation);
+        ImageView img = (ImageView)findViewById(R.id.iv_player);
         
-        TextView nick = (TextView)findViewById(R.id.nick);
-        TextView experience = (TextView)findViewById(R.id.xperience);
-        RatingBar evaluation = (RatingBar)findViewById(R.id.evaluation);
+        img.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				
+			}
+		});
         evaluation.setEnabled(false);
-    	if (cursor.moveToNext()) {
-        	nick.setText(cursor.getString(0));
-        	experience.setText("" + cursor.getInt(1));
-        	evaluation.setRating(cursor.getFloat(2));
+        Profile user = Singleton.getInstance(getApplicationContext()).getUser();
+    	if (user.getUserId() != 0) {
+        	nick.setText(user.getNickname());
+        	experience.setText(""+user.getExperience());
+        	evaluation.setRating(user.getEvaluation());
     	}
         
-    	LinearLayout systems = (LinearLayout)findViewById(R.id.systems);
-    	cursor = db.rawQuery("SELECT DISTINCT c.system FROM tbprofile_campaign pc, tbcampaign c WHERE pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[]{ Singleton.getInstance().getUserId() });
-        while (cursor.moveToNext()) {
+    	LinearLayout systems = (LinearLayout)findViewById(R.id.ll_systems);
+    	SQLiteDatabase db = (new DatabaseHelper(getApplicationContext())).getWritableDatabase();
+        List<String> userSystems = user.getSystems();
+        for (int i=0; i<userSystems.size(); i++){
         	ImageView image = new ImageView(getApplicationContext());
-        	final String system = cursor.getString(0);
+        	final String system = userSystems.get(i);
         	if (system.equals("DnD")) image.setImageResource(R.drawable.dnd_logo);
         	else if (system.equals("Vampire")) image.setImageResource(R.drawable.vampire_logo);
+        	else if (system.equals("Mage")) image.setImageResource(R.drawable.mage_logo);
         	int width = (int) (120 * getApplicationContext().getResources().getDisplayMetrics().density + 0.5f);
         	int height = (int) (70 * getApplicationContext().getResources().getDisplayMetrics().density + 0.5f);
         	image.setOnClickListener(new OnClickListener() {
@@ -80,15 +71,15 @@ public class ProfileView extends SherlockActivity {
         	systems.addView(image,width,height);
         }
     	
-    	cursor = db.rawQuery("SELECT c.idcampaign _id, c.campaign, c.system FROM tbprofile_campaign pc, tbcampaign c WHERE pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[]{ Singleton.getInstance().getUserId() });
+    	Cursor cursor = db.rawQuery("SELECT c.idcampaign _id, c.campaign, c.system FROM tbprofile_campaign pc, tbcampaign c WHERE pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[]{ ""+Singleton.getInstance(getApplicationContext()).getUser().getUserId() });
         SimpleCursorAdapter adapter;
         adapter = new SimpleCursorAdapter(
         		this, 
         		R.layout.profile_campaign_item, 
             		cursor, 
         		new String[] {"_id", "campaign", "system"}, 
-        		new int[] {R.id.campaign_id, R.id.campaign_name, R.id.btn_system});
-        ListView campaigns = (ListView)findViewById(R.id.campaignList);
+        		new int[] {R.id.tv_campaign_id, R.id.tv_campaign_name, R.id.btn_system});
+        ListView campaigns = (ListView)findViewById(R.id.lv_campaign);
         
         campaigns.setAdapter(adapter);
         setListViewScrollable(campaigns);
@@ -96,25 +87,22 @@ public class ProfileView extends SherlockActivity {
         campaigns.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				String id = ((TextView)arg1.findViewById(R.id.campaign_id)).getText().toString();
+				String id = ((TextView)arg1.findViewById(R.id.tv_campaign_id)).getText().toString();
 				Bundle bundle = new Bundle();
 				bundle.putString("campaignId",id);
 				startActivity(new Intent(getApplicationContext(), CampaignView.class).putExtras(bundle));
 			}
 		});
 
-        ArrayList<ContactInfo> contatos = new ArrayList<ContactInfo>();
-        cursor = db.rawQuery("SELECT type, contact FROM tbcontact where iduser = ?", new String[]{ Singleton.getInstance().getUserId() });
-        while (cursor.moveToNext()) {
-        	contatos.add(new ContactInfo(cursor.getInt(0),cursor.getString(1)));
-        }
-        TableLayout contacts = (TableLayout)findViewById(R.id.contactTable);
+        List<ContactInfo> userContacts = user.getContacts();
+        
+        TableLayout contacts = (TableLayout)findViewById(R.id.tl_contact);
         TableRow tr = new TableRow(this);
         int trcount = 0;
-    	for (int i=0; i<contatos.size(); i++) {
+    	for (int i=0; i<userContacts.size(); i++) {
         	ImageView contact = new ImageView(this);
         	Bitmap bmp;
-        	switch (contatos.get(i).getKey()) {
+        	switch (userContacts.get(i).getKey()) {
         		case facebook: bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_fb); break;
         		case twitter: bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_tw); break;
         		case linkedin: bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_in); break;
@@ -123,8 +111,8 @@ public class ProfileView extends SherlockActivity {
         	}
         	contact.setImageBitmap(Bitmap.createScaledBitmap(bmp, (int)(bmp.getWidth() * 0.5), (int)(bmp.getHeight() * 0.5), true));
         	contact.setPadding(2,2,2,2);
-        	final String uri = contatos.get(i).getValue();
-        	final String contactType = contatos.get(i).getKey().name();
+        	final String uri = userContacts.get(i).getValue();
+        	final String contactType = userContacts.get(i).getKey().name();
         	contact.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					if (!uri.startsWith("http://") && !uri.startsWith("https://") && !uri.startsWith("www.")) {

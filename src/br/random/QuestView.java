@@ -13,11 +13,11 @@ public class QuestView extends SherlockActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.questview);
+        setContentView(R.layout.quest_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
-        TextView campaign = (TextView)findViewById(R.id.campaign);
-        TextView quest = (TextView)findViewById(R.id.quest);
+        TextView campaign = (TextView)findViewById(R.id.tv_campaign);
+        TextView quest = (TextView)findViewById(R.id.tv_quest);
         
         Bundle b = getIntent().getExtras();
         

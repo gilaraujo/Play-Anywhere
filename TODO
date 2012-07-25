@@ -1,0 +1,3 @@
+Colocar apenas o ID do mestre na campanha
+
+armazenar o usuário todo no singleton, colocar método de salvar sistemas/contatos na classe Profile

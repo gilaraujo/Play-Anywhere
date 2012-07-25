@@ -13,7 +13,7 @@ public class MessageView extends SherlockActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.messageview);
+        setContentView(R.layout.message_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
         TextView message = (TextView)findViewById(R.id.message);

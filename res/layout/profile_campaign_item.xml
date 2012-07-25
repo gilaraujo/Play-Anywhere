@@ -5,19 +5,19 @@
     android:layout_height="match_parent">
 
 	<TextView
-	    android:id="@+id/campaign_id"
+	    android:id="@+id/tv_campaign_id"
 	    android:layout_width="0dp"
 	    android:layout_height="0dp" />
 	
 	<TextView
-	    android:id="@+id/campaign_name"
+	    android:id="@+id/tv_campaign_name"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_marginLeft="30dp"
 	    android:textSize="20dp" />
 	
 	<TextView
-	    android:id="@+id/description"
+	    android:id="@+id/tv_description"
 	    android:layout_width="0dp"
 	    android:layout_height="0dp" />
 
@@ -33,8 +33,7 @@
 		    android:layout_height="wrap_content"
 		    android:layout_marginRight="5dp"
 		    android:clickable="false"
-		    android:focusable="false"
-		    android:text="Button" />
+		    android:focusable="false" />
 
 	</LinearLayout>
 		

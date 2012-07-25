@@ -14,13 +14,13 @@ public class MainActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        ImageButton gamesButton = (ImageButton)findViewById(R.id.campaignButton);
+        ImageButton gamesButton = (ImageButton)findViewById(R.id.ib_campaign);
         gamesButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				gamesButtonClick();
 			}
 		});
-        ImageButton profileButton = (ImageButton)findViewById(R.id.profileButton);
+        ImageButton profileButton = (ImageButton)findViewById(R.id.ib_profile);
         profileButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				profileButtonClick();

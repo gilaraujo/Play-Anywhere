@@ -14,12 +14,12 @@
     android:gravity="center" >
 
 	<ImageButton
-	    android:id="@+id/campaignButton"
+	    android:id="@+id/ib_campaign"
 	    android:layout_gravity="center"
 	    android:src="@drawable/ic_games" />
 
 	<ImageButton
-        android:id="@+id/communityButton"
+        android:id="@+id/ib_community"
         android:layout_gravity="center"
         android:src="@drawable/ic_community" />
     
@@ -31,12 +31,12 @@
     android:gravity="center" >
 
     <TextView
-	    android:id="@+id/campaignText"
+	    android:id="@+id/lb_campaign"
 	    android:layout_gravity="center"
 	    android:text="@string/campaign" />
 	
 	<TextView
-	    android:id="@+id/communityText"
+	    android:id="@+id/lb_community"
 	    android:layout_gravity="center"
 	    android:text="@string/community" />
 	
@@ -48,11 +48,11 @@
     android:gravity="center" >
 
 	<ImageButton
-	    android:id="@+id/profileButton"
+	    android:id="@+id/ib_profile"
 	    android:layout_gravity="center"
 	    android:src="@drawable/ic_profile" />
 	<ImageButton
-        android:id="@+id/newGameButton"
+        android:id="@+id/ib_newGame"
         android:layout_gravity="center"
         android:src="@drawable/ic_launcher" />
 
@@ -63,12 +63,12 @@
     android:gravity="center" >
 
 	<TextView
-	    android:id="@+id/profileText"
+	    android:id="@+id/lb_profile"
 	    android:layout_gravity="center"
 	    android:text="@string/profile" />
 	
 	<TextView
-	    android:id="@+id/newGameText"
+	    android:id="@+id/lb_newgame"
 	    android:layout_gravity="center"
 	    android:text="@string/newgame" />
 	
@@ -79,12 +79,12 @@
     android:gravity="center" >
 	
 	<ImageButton
-	    android:id="@+id/masterButton"
+	    android:id="@+id/ib_master"
 	    android:layout_gravity="center"
 	    android:src="@drawable/ic_launcher" />
 	
 	<ImageButton
-	    android:id="@+id/configButton"
+	    android:id="@+id/ib_config"
 	    android:layout_gravity="center"
 	    android:src="@drawable/ic_config" />
 
@@ -95,12 +95,12 @@
     android:gravity="center" >
     
 	<TextView
-	    android:id="@+id/mastersText"
+	    android:id="@+id/lb_masters"
 	    android:layout_gravity="center"
 	    android:text="@string/masters" />
 	
 	<TextView
-	    android:id="@+id/configText"
+	    android:id="@+id/lb_config"
 	    android:layout_gravity="center"
 	    android:text="@string/config" />
 

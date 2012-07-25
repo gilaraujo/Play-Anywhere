@@ -1,14 +1,17 @@
 <sql>
 <statement>
 CREATE TABLE IF NOT EXISTS tbprofile (
-	iduser INTEGER,
+	iduser INTEGER PRIMARY KEY AUTOINCREMENT,
+	name VARCHAR(50),
+	birthdate VARCHAR(50),
+	city VARCHAR(50),
 	nickname VARCHAR(50),
+	password VARCHAR(50),
 	experience INTEGER,
-	evaluation FLOAT
+	evaluation FLOAT,
+	fbid INTEGER
 	)
 </statement>
-<statement>INSERT INTO tbprofile VALUES(1,'Nick1',1000,3.5)</statement>
-<statement>INSERT INTO tbprofile VALUES(2,'Nick2',100,1.5)</statement>
 <statement>
 CREATE TABLE IF NOT EXISTS tbcontact (
 	iduser INTEGER,
@@ -16,11 +19,12 @@ CREATE TABLE IF NOT EXISTS tbcontact (
 	contact VARCHAR(50)
 	)
 </statement>
-<statement>INSERT INTO tbcontact VALUES(1,0,'http://www.facebook.com/gilson.araujo')</statement>
-<statement>INSERT INTO tbcontact VALUES(1,1,'www.twitter.com/bladaum')</statement>
-<statement>INSERT INTO tbcontact VALUES(1,2,'http://www.linkedin.com/gilson.araujo')</statement>
-<statement>INSERT INTO tbcontact VALUES(1,3,'bladaum')</statement>
-<statement>INSERT INTO tbcontact VALUES(2,1,'www.twitter.com/bladaum')</statement>
+<statement>
+CREATE TABLE IF NOT EXISTS tbsystem (
+	iduser INTEGER,
+	system VARCHAR(50)
+	)
+</statement>
 <statement>
 CREATE TABLE IF NOT EXISTS tbcampaign (
 	idcampaign INTEGER,

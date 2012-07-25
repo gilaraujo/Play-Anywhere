@@ -13,10 +13,10 @@ public class SystemView extends SherlockActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.systemview);
+        setContentView(R.layout.system_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
-        TextView system = (TextView)findViewById(R.id.system);
+        TextView system = (TextView)findViewById(R.id.tv_system);
         
         Bundle b = getIntent().getExtras();
         

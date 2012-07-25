@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import com.actionbarsherlock.app.SherlockExpandableListActivity;
 
-import br.random.DatabaseHelper;
+import br.random.adapters.*;
+import br.random.dao.DatabaseHelper;
+import br.random.util.*;
 import android.content.Intent;
 import android.database.*;
 import android.database.sqlite.*;
@@ -20,10 +22,10 @@ public class CampaignList extends SherlockExpandableListActivity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.campaignlist);
+        setContentView(R.layout.campaign_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
-        db = (new DatabaseHelper(this)).getWritableDatabase();
+        db = (new DatabaseHelper(getApplicationContext())).getWritableDatabase();
         cursor = db.rawQuery("SELECT idcampaign, campaign, charname FROM tbcampaign", new String[]{ });
         
         CampaignExpAdapter gea = new CampaignExpAdapter(this);

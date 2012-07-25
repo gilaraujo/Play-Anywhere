@@ -21,5 +21,14 @@
     <string name="acts">Atos</string>
     <string name="message">Mensagem</string>
     <string name="system">Sistema</string>
-
+    <string name="city">Cidade</string>
+    <string name="birthdate">Data de Nascimento</string>
+    <string name="password">Senha</string>
+    <string name="contact">Contato</string>
+    <string name="ok">OK</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="register">Registrar</string>
+    <string name="add">Adicionar</string>
+    <string name="wait">Por Favor, Aguarde...</string>
 </resources>

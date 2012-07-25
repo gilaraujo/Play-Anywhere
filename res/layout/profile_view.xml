@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    android:orientation="horizontal" >
+    <ScrollView
+        android:id="@+id/ScrlView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+			<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal" >
+
+				<LinearLayout
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:orientation="vertical" >
+
+					<TextView
+						android:id="@+id/lb_nick"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/nickname" />
+
+					<TextView
+						android:id="@+id/tv_nick"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textAppearance="?android:attr/textAppearanceLarge" />
+
+					<TextView
+						android:id="@+id/lb_systems"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/systems" />
+
+
+					<LinearLayout
+						android:id="@+id/ll_systems"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical" >
+						
+					</LinearLayout>
+				</LinearLayout>
+
+				<LinearLayout
+				    android:layout_width="match_parent"
+				    android:layout_height="wrap_content"
+				    android:gravity="right"
+				    android:orientation="vertical" >
+
+					<ImageView
+					    android:id="@+id/iv_player"
+					    android:layout_width="100dp"
+					    android:layout_height="100dp"
+					    android:src="@drawable/ic_launcher" />
+		
+					<TableLayout
+						android:id="@+id/tl_contact"
+						android:layout_width="100dp"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="10dp" >
+					</TableLayout>
+				</LinearLayout>
+			</LinearLayout>
+			
+			<LinearLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical" >
+
+				<TextView
+					android:id="@+id/lb_campaign"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/recentcampaigns" />
+
+				<ListView
+					android:id="@+id/lv_campaign"
+					android:layout_width="match_parent"
+					android:layout_height="100dp" >
+				</ListView>
+
+				<TextView
+					android:id="@+id/lb_experience"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/experience" />
+
+				<TextView
+					android:id="@+id/tv_xperience"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceLarge" />
+
+				<TextView
+					android:id="@+id/lb_evaluation"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/evaluation" />
+
+				<RatingBar
+					android:id="@+id/rb_evaluation"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />	
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>
