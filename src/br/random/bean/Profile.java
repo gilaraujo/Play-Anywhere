@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import br.random.dao.DatabaseHelper;
 import br.random.util.*;
+
 import java.util.*;
 
 public class Profile {
@@ -19,7 +20,8 @@ public class Profile {
 	private float evaluation;
 	private List<ContactInfo> contacts;
 	private List<String> systems;
-	private int fbid;
+	private List<Campaign> campaigns;
+	private String fbid;
 	
 	public int getUserId() { return userid; }
 	public String getName() { return name; }
@@ -31,7 +33,8 @@ public class Profile {
 	public float getEvaluation() { return evaluation; }
 	public List<ContactInfo> getContacts() { return contacts; }
 	public List<String> getSystems() { return systems; }
-	public int getFbid() { return fbid; }
+	public List<Campaign> getCampaigns() { return campaigns; }
+	public String getFbid() { return fbid; }
 	
 	public void setUserId(int userid) { this.userid = userid; }
 	public void setName(String name) { this.name = name; }
@@ -43,11 +46,13 @@ public class Profile {
 	public void setEvaluation(float evaluation) { this.evaluation = evaluation; }
 	public void setContacts(List<ContactInfo> contacts) { this.contacts = contacts; }
 	public void setSystems(List<String> systems) { this.systems = systems; }
-	public void setFbid(int fbid) { this.fbid = fbid; }
+	public void setCampaigns(List<Campaign> campaigns) { this.campaigns = campaigns; }
+	public void setFbid(String fbid) { this.fbid = fbid; }
 	
 	public Profile() {
 		contacts = new ArrayList<ContactInfo>();
 		systems = new ArrayList<String>();
+		campaigns = new ArrayList<Campaign>();
 	}
 	
 	public int save(Context context) {
@@ -77,8 +82,8 @@ public class Profile {
         		system.put("system", systems.get(i));
         		db.insert("tbsystem", null, system);
         	}
-        	db.close();
         }
+    	db.close();
         return (int)(ret != -1 ? ret : 0);
 	}
 	public static Profile getByNickAndPass(Context context, String nick, String pass) {
@@ -94,7 +99,7 @@ public class Profile {
 			ret.setPassword(pass);
 			ret.setExperience(cursor.getInt(4));
 			ret.setEvaluation(cursor.getFloat(5));
-			ret.setFbid(cursor.getInt(6));
+			ret.setFbid(cursor.getString(6));
 			Cursor contacts = db.rawQuery("SELECT type, contact FROM tbcontact where iduser = ?", new String[] { ""+ret.getUserId() });
 			while (contacts.moveToNext()) {
 				ret.getContacts().add(new ContactInfo(contacts.getInt(0),contacts.getString(1)));
@@ -103,13 +108,17 @@ public class Profile {
 			while (systems.moveToNext()) {
 				ret.getSystems().add(systems.getString(0));
 			}
+			Cursor campaigns = db.rawQuery("SELECT c.idcampaign _id, c.master, c.name, c.system FROM tbprofile_campaign pc, tbcampaign c WHERE pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[] { ""+ret.getUserId() });
+			while (campaigns.moveToNext()) {
+				ret.getCampaigns().add(new Campaign(campaigns.getInt(0),campaigns.getInt(1),campaigns.getString(2),campaigns.getString(3)));
+			}
 		} else {
 			ret = null;
 		}
 		db.close();
 		return ret;
 	}
-	public static Profile getByFbid(Context context, int id) {
+	public static Profile getByFbid(Context context, String id) {
 		SQLiteDatabase db = (new DatabaseHelper(context)).getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT iduser, name, birthdate, city, nickname, password, experience, evaluation FROM tbprofile WHERE fbid = ?", new String[] { ""+id });
         Profile ret = new Profile();
@@ -123,6 +132,18 @@ public class Profile {
 			ret.setExperience(cursor.getInt(6));
 			ret.setEvaluation(cursor.getFloat(7));
 			ret.setFbid(id);
+			Cursor contacts = db.rawQuery("SELECT type, contact FROM tbcontact where iduser = ?", new String[] { ""+ret.getUserId() });
+			while (contacts.moveToNext()) {
+				ret.getContacts().add(new ContactInfo(contacts.getInt(0),contacts.getString(1)));
+			}
+			Cursor systems = db.rawQuery("SELECT system FROM tbsystem WHERE iduser = ?", new String[] { ""+ret.getUserId() });
+			while (systems.moveToNext()) {
+				ret.getSystems().add(systems.getString(0));
+			}
+			Cursor campaigns = db.rawQuery("SELECT c.idcampaign _id, c.master, c.name, c.system FROM tbprofile_campaign pc, tbcampaign c WHERE pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[] { ""+ret.getUserId() });
+			while (campaigns.moveToNext()) {
+				ret.getCampaigns().add(new Campaign(campaigns.getInt(0),campaigns.getInt(1),campaigns.getString(2),campaigns.getString(3)));
+			}
 		} else {
 			ret = null;
 		}

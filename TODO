@@ -1,3 +1,6 @@
-Colocar apenas o ID do mestre na campanha
+Arrumar bug da mudança de orientação em RegisterView.java
 
-armazenar o usuário todo no singleton, colocar método de salvar sistemas/contatos na classe Profile
+
+novo jogo -> tela com opção pra escolher o sistema apenas?
+aí ele seleciona o sistema... abre as campanhas abertas e disponíveis
+é isso ou entendi errado?

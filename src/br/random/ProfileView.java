@@ -2,6 +2,7 @@ package br.random;
 
 
 import br.random.util.*;
+import br.random.bean.Campaign;
 import br.random.bean.Profile;
 import br.random.dao.*;
 import java.util.*;
@@ -71,13 +72,21 @@ public class ProfileView extends SherlockActivity {
         	systems.addView(image,width,height);
         }
     	
-    	Cursor cursor = db.rawQuery("SELECT c.idcampaign _id, c.campaign, c.system FROM tbprofile_campaign pc, tbcampaign c WHERE pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[]{ ""+Singleton.getInstance(getApplicationContext()).getUser().getUserId() });
-        SimpleCursorAdapter adapter;
-        adapter = new SimpleCursorAdapter(
-        		this, 
+    	ArrayList<Map<String,String>> campaignList = new ArrayList<Map<String,String>>();
+        List<Campaign> userCampaigns = user.getCampaigns();
+        for (int i=0; i<userCampaigns.size(); i++) {
+        	Map<String,String> element = new HashMap<String,String>();
+        	element.put("_id", ""+userCampaigns.get(i).getCampaignId());
+        	element.put("name",userCampaigns.get(i).getName());
+        	element.put("system", userCampaigns.get(i).getSystem());
+        	campaignList.add(element);
+        }
+    	SimpleAdapter adapter;
+        adapter = new SimpleAdapter(
+        		this,
+        		campaignList,
         		R.layout.profile_campaign_item, 
-            		cursor, 
-        		new String[] {"_id", "campaign", "system"}, 
+            	new String[] {"_id", "name", "system"}, 
         		new int[] {R.id.tv_campaign_id, R.id.tv_campaign_name, R.id.btn_system});
         ListView campaigns = (ListView)findViewById(R.id.lv_campaign);
         

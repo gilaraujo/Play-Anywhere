@@ -10,6 +10,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 
 import android.app.AlertDialog;
 import android.content.*;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.text.InputType;
@@ -26,6 +27,78 @@ public class RegisterView extends SherlockActivity {
         setContentView(R.layout.register_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
+        final TableLayout contacts = (TableLayout)findViewById(R.id.tl_contacts);
+        final TableLayout systems = (TableLayout)findViewById(R.id.tl_systems);
+        int size;
+        try {
+        	size = savedInstanceState.getInt("contactSize");
+        } catch (Exception e) {
+        	size = 0;
+        }
+        for (int i=0; i<size; i++) {
+        	final TableRow row = new TableRow(getApplicationContext());
+        	row.setId(R.id.tableRow1);
+        	Spinner type = new Spinner(getApplicationContext());
+			List<String> list = new ArrayList<String>();
+			list.add("Facebook");
+			list.add("Twitter");
+			list.add("LinkedIn");
+			list.add("Skype");
+			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, list);
+			dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			type.setAdapter(dataAdapter);
+			type.setId(R.id.sp_type);
+			type.setSelection(savedInstanceState.getInt("ctype"+i));
+			row.addView(type);
+			EditText contact = new EditText(getApplicationContext());
+			contact.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
+			contact.setId(R.id.et_contact);
+			contact.setText(savedInstanceState.getString("ctext"+i));
+			row.addView(contact);
+			Button remove = new Button(getApplicationContext());
+			remove.setText("Remover");
+			remove.setTextSize(10);
+			remove.setPadding(0, 0, 0, 0);
+			remove.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					contacts.removeView(row);
+				}
+			});
+			row.addView(remove);
+			contacts.addView(row);
+        }
+        try {
+        	size = savedInstanceState.getInt("systemSize");
+        } catch (Exception e) {
+        	size = 0;
+        }
+        for (int i=0; i<size; i++) {
+        	final TableRow row = new TableRow(getApplicationContext());
+			
+			Spinner type = new Spinner(getApplicationContext());
+			List<String> list = new ArrayList<String>();
+			list.add("DnD");
+			list.add("Vampire");
+			list.add("Mage");
+			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, list);
+			dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			type.setAdapter(dataAdapter);
+			type.setId(R.id.sp_type);
+			type.setSelection(savedInstanceState.getInt("stype"+i));
+			row.addView(type);
+			
+			Button remove = new Button(getApplicationContext());
+			remove.setText("Remover");
+			remove.setTextSize(10);
+			remove.setPadding(0, 0, 0, 0);
+			remove.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					systems.removeView(row);
+				}
+			});
+			row.addView(remove);
+			systems.addView(row);
+        }
         Button cancel = (Button)findViewById(R.id.btn_cancel);
         Button ok = (Button)findViewById(R.id.btn_ok);
         Button addcontact = (Button)findViewById(R.id.btn_addcontact);
@@ -34,6 +107,7 @@ public class RegisterView extends SherlockActivity {
 			public void onClick(View v) {
 				final TableLayout contacts = (TableLayout)findViewById(R.id.tl_contacts);
 				final TableRow row = new TableRow(getApplicationContext());
+				row.setId(R.id.tableRow1);
 				
 				Spinner type = new Spinner(getApplicationContext());
 				List<String> list = new ArrayList<String>();
@@ -154,5 +228,34 @@ public class RegisterView extends SherlockActivity {
 		        }
 			}
         });
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle icicle) {
+    	List<String> list = new ArrayList<String>();
+    	TableLayout contacts = (TableLayout)findViewById(R.id.tl_contacts);
+    	for (int i=0; i<contacts.getChildCount(); i++) {
+    		TableRow row = (TableRow)contacts.getChildAt(i);
+    		String type = ""+((Spinner)row.findViewById(R.id.sp_type)).getSelectedItemPosition();
+    		String text = ((EditText)row.findViewById(R.id.et_contact)).getText().toString();
+    		list.add(type);
+    		list.add(text);
+    	}
+    	icicle.putInt("contactSize", list.size() / 2);
+    	for (int i=0; i<list.size() / 2; i++) {
+    		icicle.putInt("ctype"+i, Integer.parseInt(list.get(2*i)));
+    		icicle.putString("ctext"+i, list.get(2*i+1));
+    	}
+    	list = new ArrayList<String>();
+    	TableLayout systems = (TableLayout)findViewById(R.id.tl_systems);
+    	for (int i=0; i<systems.getChildCount(); i++) {
+    		TableRow row = (TableRow)systems.getChildAt(i);
+    		String type = ""+((Spinner)row.findViewById(R.id.sp_type)).getSelectedItemPosition();
+    		list.add(type);
+    	}
+    	icicle.putInt("systemSize", list.size());
+    	for (int i=0; i<list.size(); i++) {
+    		icicle.putInt("stype"+i, Integer.parseInt(list.get(i)));
+    	}
+
     }
 }

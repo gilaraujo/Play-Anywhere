@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import br.random.*;
 import br.random.bean.Profile;
+import br.random.util.ContactInfo;
 import br.random.util.Singleton;
 import br.random.util.facebookintegration.*;
 
@@ -17,6 +18,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.Toast;
 
 //*************************************************************
@@ -72,7 +74,7 @@ public class FbLogin extends Activity {
             	Profile ret = new Profile();
 				try {
 					Bundle b = new Bundle();
-					b.putString("fields", "third_party_id,name,birthday,location,id");
+					b.putString("fields", "third_party_id,name,birthday,location,id,link");
 					JSONObject json = Util.parseJson(mFacebook.request("me",b));
 	    			ret.setNickname(json.getString("name"));
 	    			ret.setName(json.getString("name"));
@@ -81,22 +83,32 @@ public class FbLogin extends Activity {
 	    			} catch (Exception ex) {
 	    				ret.setBirthdate("");
 	    			}
-	    			ret.setCity(json.getJSONObject("location").getString("name"));
-	    			ret.setFbid(json.getInt("id"));
-	    			ret.setPassword(json.getString("third_party_id"));
+	    			try {
+	    				ret.setCity((json.getJSONObject("location")).getString("name"));
+	    			} catch (Exception ex) {
+	    				ret.setCity("");
+	    			}
+	    			try {
+	    				ret.setPassword(json.getString("third_party_id"));
+	    			} catch (Exception ex) {
+	    				ret.setPassword("Su00e3oSu00e3o3oSu03So");
+	    			}
+	    			ret.setFbid(json.getString("id"));
 	    			ret.setEvaluation(0f);
 	    			ret.setExperience(0);
+	    			ret.getContacts().add(new ContactInfo(0,json.getString("link")));
 	    			return ret;
 				} catch (Exception e) {
 					e.printStackTrace();
-					ret.setUserId(0);
+					ret.setFbid("0");
 					return ret;
 				}
 		    }
             @Override
             protected void onPostExecute(Profile result) {
-            	if (result.getFbid() == 0) {
-            		Toast.makeText( FbLogin.this, "Não foi possível registrar com o facebook", Toast.LENGTH_SHORT).show();
+            	if (result.getFbid().equals("0")) {
+	            	Toast.makeText( FbLogin.this, "Não foi possível registrar com o facebook", Toast.LENGTH_SHORT).show();
+            		finish();
             	} else {
             		Profile alreadyExists = Profile.getByFbid(getApplicationContext(),result.getFbid());
             		if (alreadyExists == null) {
@@ -128,14 +140,17 @@ public class FbLogin extends Activity {
 		
 		public void onFacebookError(FacebookError error) {
 			Toast.makeText( FbLogin.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+			finish();
 		    }
 		
 		public void onError(DialogError error) {
 			Toast.makeText( FbLogin.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+			finish();
 			}
 		 
         public void onCancel() {
-        	Toast.makeText( FbLogin.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+        	Toast.makeText( FbLogin.this, "Não foi possível realizar o login com o Facebook", Toast.LENGTH_LONG).show();
+        	finish();
 			}
 		}
 	

@@ -1,5 +1,13 @@
 package br.random;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import br.random.bean.Campaign;
+import br.random.bean.Quest;
+import br.random.bean.Scenario;
 import br.random.dao.DatabaseHelper;
 import br.random.util.Singleton;
 
@@ -32,20 +40,26 @@ public class CampaignView extends SherlockActivity {
         setListViewScrollable(scenarios);
         
         Bundle b = getIntent().getExtras();  
-        SQLiteDatabase db = (new DatabaseHelper(getApplicationContext())).getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT master, campaign FROM tbcampaign where idcampaign = ?", new String[]{ b.getString("campaignId") });
-        cursor.moveToNext();
-        master.setText(cursor.getString(0));
-        campaign.setText(cursor.getString(1));
+        Campaign c = Campaign.getById(getApplicationContext(), Integer.parseInt(b.getString("campaignId")));
+        master.setText(c.getMasterName());
+        campaign.setText(c.getName());
         
+        ArrayList<Map<String,String>> scenarioList = new ArrayList<Map<String,String>>();
+        List<Scenario> campScenarios = c.getScenarios();
+        for (int i=0; i<campScenarios.size(); i++) {
+        	Map<String,String> element = new HashMap<String,String>();
+        	element.put("_id", ""+campScenarios.get(i).getCampaignId());
+        	element.put("name",campScenarios.get(i).getName());
+        	element.put("description", campScenarios.get(i).getDescription());
+        	scenarioList.add(element);
+        }
         
-        cursor = db.rawQuery("SELECT idcampaign _id, scenarioname, description FROM tbscenario where idcampaign = ?", new String[]{ b.getString("campaignId") });
-        SimpleCursorAdapter scenariosAdapter;
-        scenariosAdapter = new SimpleCursorAdapter(
+        SimpleAdapter scenariosAdapter;
+        scenariosAdapter = new SimpleAdapter(
         		this, 
+        		scenarioList,
         		R.layout.campaign_list_item_simple, 
-        		cursor, 
-        		new String[] {"_id", "scenarioname", "description"}, 
+        		new String[] {"_id", "name", "description"}, 
         		new int[] {R.id.tv_campaign_id, R.id.tv_campaign_name, R.id.tv_description});
         scenarios.setAdapter(scenariosAdapter);
         
@@ -59,15 +73,23 @@ public class CampaignView extends SherlockActivity {
 			}
 		});
         
-        cursor = db.rawQuery("SELECT idcampaign _id, questname FROM tbquests where idcampaign = ?", new String[]{ b.getString("campaignId") });
-        SimpleCursorAdapter actsAdapter;
-        actsAdapter = new SimpleCursorAdapter(
+        ArrayList<Map<String,String>> questList = new ArrayList<Map<String,String>>();
+        List<Quest> campQuests = c.getQuests();
+        for (int i=0; i<campQuests.size(); i++) {
+        	Map<String,String> element = new HashMap<String,String>();
+        	element.put("_id", ""+campQuests.get(i).getCampaignId());
+        	element.put("name",campQuests.get(i).getName());
+        	element.put("description", campQuests.get(i).getDescription());
+        	questList.add(element);
+        }
+        SimpleAdapter questsAdapter;
+        questsAdapter = new SimpleAdapter(
         		this, 
+        		questList,
         		R.layout.campaign_list_item_simple, 
-        		cursor, 
-        		new String[] {"_id", "questname"}, 
-        		new int[] {R.id.tv_campaign_id, R.id.tv_campaign_name});
-        acts.setAdapter(actsAdapter);
+        		new String[] {"_id", "name", "description"}, 
+        		new int[] {R.id.tv_campaign_id, R.id.tv_campaign_name, R.id.tv_description});
+        acts.setAdapter(questsAdapter);
         
         acts.setOnItemClickListener(new OnItemClickListener() {
 
@@ -81,7 +103,6 @@ public class CampaignView extends SherlockActivity {
 				startActivity(new Intent(getApplicationContext(), QuestView.class).putExtras(bundle));
 			}
 		});
-        db.close();
     }
     private void setListViewScrollable(final ListView list) {
     	list.setOnTouchListener(new OnTouchListener() {
