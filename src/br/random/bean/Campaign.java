@@ -35,13 +35,16 @@ public class Campaign {
 	
 	public Campaign() {
 		scenarios = new ArrayList<Scenario>();
+		quests = new ArrayList<Quest>();
 	}
-	public Campaign(int campaignid, int master, String name, String system) {
+	public Campaign(int campaignid, int master, String name, String system, String mastername) {
 		this.campaignid = campaignid;
 		this.master = master;
 		this.name = name;
 		this.system = system;
+		this.mastername = mastername;
 		scenarios = new ArrayList<Scenario>();
+		quests = new ArrayList<Quest>();
 	}
 	
 	public int save(Context context) {
@@ -73,6 +76,33 @@ public class Campaign {
 			ret = null;
 		}
 		db.close();
+		return ret;
+	}
+	public static List<Campaign> getByCriteria(Context context, String system, String master, String name) {
+		List<Campaign> ret = new ArrayList<Campaign>();
+		
+		List<String> params = new ArrayList<String>();
+		String query = "SELECT c.idcampaign, p.iduser master, p.nickname mastername, c.name, c.system FROM tbcampaign c, tbprofile p WHERE p.iduser = c.master";
+		if (!system.equals("Selecione")) params.add("c.system = \""+system+"\"");
+		if (!master.equals("")) params.add("p.nickname like \"%"+master+"%\"");
+		if (!name.equals("")) params.add("c.name like \"%"+name+"%\"");
+		if (params.size() > 0) {
+			query += " AND (";
+			for (int i=0; i<params.size() - 1; i++) query += params.get(i) + " OR ";
+			query += params.get(params.size() - 1) + ")";
+		}
+		SQLiteDatabase db = (new DatabaseHelper(context)).getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, new String[] { });
+        while (cursor.moveToNext()) {
+        	Campaign c = new Campaign();
+        	c.setCampaignId(cursor.getInt(0));
+        	c.setMaster(cursor.getInt(1));
+        	c.setMasterName(cursor.getString(2));
+        	c.setName(cursor.getString(3));
+        	c.setSystem(cursor.getString(4));
+        	ret.add(c);
+        }
+        db.close();
 		return ret;
 	}
 }

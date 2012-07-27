@@ -1,6 +1,1 @@
-Arrumar bug da mudança de orientação em RegisterView.java
-
-
-novo jogo -> tela com opção pra escolher o sistema apenas?
-aí ele seleciona o sistema... abre as campanhas abertas e disponíveis
-é isso ou entendi errado?
+Opção de "Aberta" na campanha, apenas listar campanhas em aberto

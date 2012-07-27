@@ -3,74 +3,78 @@
     android:layout_width="match_parent"
     android:layout_height="210dip"
     android:layout_marginTop="10dip"
+    android:gravity="center_horizontal"
     android:orientation="vertical" >
-
+
     <TableLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" >
+        android:layout_height="wrap_content" >
 
-    <TableRow>
-        <TextView
-            android:id="@+id/tv_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nickname"
-            android:textSize="10pt" />
+        <TableRow>
 
-    <EditText
-        android:id="@+id/et_username"
-        android:layout_width="150dip"
-        android:layout_height="wrap_content"
-        android:inputType="text"/>
-    </TableRow>
-    <TableRow>
-     <TextView
-        android:id="@+id/tv_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="10pt"
-        android:text="@string/password"/>
-    <EditText
-        android:id="@+id/et_password"
-        android:layout_width="150dip"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"        />
-    </TableRow>
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nickname"
+                android:textSize="10pt" />
+
+            <EditText
+                android:id="@+id/et_username"
+                android:layout_width="150dip"
+                android:layout_height="wrap_content"
+                android:inputType="text" >
+
+                <requestFocus />
+            </EditText>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/tv_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/password"
+                android:textSize="10pt" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="150dip"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:text="@string/register" />
 
-    <TableRow>
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:text="@string/login" />
 
-        <Button
-            android:id="@+id/btn_register"
-            android:layout_width="100dip"
-            android:layout_height="wrap_content"
-            android:text="@string/register" />
+        </TableRow>
 
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="100dip"
-            android:layout_height="wrap_content"
-            android:text="Login" />
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
 
-    </TableRow>
-
-    <TableRow>
-
-        <TextView
-            android:id="@+id/tv_message"
-            android:layout_width="fill_parent"
-            android:layout_height="40dip"
-            android:textSize="7pt" />
-
-        <ImageView
-            android:id="@+id/iv_facebook"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:scaleType="fitEnd"
-            android:src="@drawable/facebook_login" />
-
-    </TableRow>
-
+            <ImageView
+                android:id="@+id/iv_facebook"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:scaleType="fitEnd"
+                android:src="@drawable/facebook_login" />
+        </TableRow>
     </TableLayout>
 
 </LinearLayout>

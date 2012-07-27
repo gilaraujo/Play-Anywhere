@@ -16,7 +16,7 @@
     <string name="evaluation">Avaliação do Jogador</string>
     <string name="campaigns">Campanhas</string>
     <string name="name">Nome</string>
-    <string name="master">Mestre:</string>
+    <string name="master">Mestre</string>
     <string name="scenario">Cenário</string>
     <string name="acts">Atos</string>
     <string name="message">Mensagem</string>
@@ -31,4 +31,9 @@
     <string name="register">Registrar</string>
     <string name="add">Adicionar</string>
     <string name="wait">Por Favor, Aguarde...</string>
+    <string name="newgame">Novo Jogo</string>
+    <string name="choosecriteria">Escolha os critérios da busca</string>
+    <string name="choosecampaign">Escolha a Campanha</string>
+    <string name="search">Buscar</string>
+    <string name="login">Login</string>
 </resources>

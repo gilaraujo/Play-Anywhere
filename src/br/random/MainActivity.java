@@ -14,10 +14,10 @@ public class MainActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        ImageButton gamesButton = (ImageButton)findViewById(R.id.ib_campaign);
-        gamesButton.setOnClickListener(new OnClickListener() {
+        ImageButton campaignButton = (ImageButton)findViewById(R.id.ib_campaign);
+        campaignButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				gamesButtonClick();
+				//campaignButtonClick();
 			}
 		});
         ImageButton profileButton = (ImageButton)findViewById(R.id.ib_profile);
@@ -26,11 +26,20 @@ public class MainActivity extends SherlockActivity {
 				profileButtonClick();
 			}
 		});
+        ImageButton newgameButton = (ImageButton)findViewById(R.id.ib_newGame);
+        newgameButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				newgameButtonClick();
+			}
+		});
     }
-    private void gamesButtonClick() {
+    private void campaignButtonClick() {
 			startActivity(new Intent(this,CampaignList.class));
 	};
     private void profileButtonClick() {
 			startActivity(new Intent(this,ProfileView.class));
 	};
+	private void newgameButtonClick() {
+		startActivity(new Intent(this,NewGameView.class));
+};
 }

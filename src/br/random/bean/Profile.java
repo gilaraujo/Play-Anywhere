@@ -108,9 +108,9 @@ public class Profile {
 			while (systems.moveToNext()) {
 				ret.getSystems().add(systems.getString(0));
 			}
-			Cursor campaigns = db.rawQuery("SELECT c.idcampaign _id, c.master, c.name, c.system FROM tbprofile_campaign pc, tbcampaign c WHERE pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[] { ""+ret.getUserId() });
+			Cursor campaigns = db.rawQuery("SELECT c.idcampaign _id, c.master, c.name, c.system, p.nickname FROM tbprofile_campaign pc, tbcampaign c, tbprofile p WHERE p.iduser = c.master AND pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[] { ""+ret.getUserId() });
 			while (campaigns.moveToNext()) {
-				ret.getCampaigns().add(new Campaign(campaigns.getInt(0),campaigns.getInt(1),campaigns.getString(2),campaigns.getString(3)));
+				ret.getCampaigns().add(new Campaign(campaigns.getInt(0),campaigns.getInt(1),campaigns.getString(2),campaigns.getString(3),campaigns.getString(4)));
 			}
 		} else {
 			ret = null;
@@ -140,9 +140,9 @@ public class Profile {
 			while (systems.moveToNext()) {
 				ret.getSystems().add(systems.getString(0));
 			}
-			Cursor campaigns = db.rawQuery("SELECT c.idcampaign _id, c.master, c.name, c.system FROM tbprofile_campaign pc, tbcampaign c WHERE pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[] { ""+ret.getUserId() });
+			Cursor campaigns = db.rawQuery("SELECT c.idcampaign _id, c.master, c.name, c.system, p.nickname FROM tbprofile_campaign pc, tbcampaign c, tbprofile p WHERE p.iduser = c.master AND pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[] { ""+ret.getUserId() });
 			while (campaigns.moveToNext()) {
-				ret.getCampaigns().add(new Campaign(campaigns.getInt(0),campaigns.getInt(1),campaigns.getString(2),campaigns.getString(3)));
+				ret.getCampaigns().add(new Campaign(campaigns.getInt(0),campaigns.getInt(1),campaigns.getString(2),campaigns.getString(3),campaigns.getString(4)));
 			}
 		} else {
 			ret = null;

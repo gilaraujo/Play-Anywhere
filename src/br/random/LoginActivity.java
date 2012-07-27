@@ -31,7 +31,6 @@ public class LoginActivity extends SherlockActivity {
         username=(EditText)findViewById(R.id.et_username);
         password=(EditText)findViewById(R.id.et_password);
         ok=(Button)findViewById(R.id.btn_login);
-        message=(TextView)findViewById(R.id.tv_message);
         register=(Button)findViewById(R.id.btn_register);
         fbLogin=(ImageView)findViewById(R.id.iv_facebook);
         fbLogin.setOnClickListener(new OnClickListener() {
@@ -64,7 +63,7 @@ public class LoginActivity extends SherlockActivity {
             			Singleton.getInstance(getApplication()).setUser(profile);
             			startActivity(new Intent(getApplicationContext(), MainActivity.class));
             		} else {
-            			message.setText("Sorry!! Incorrect Username or Password");
+            			Toast.makeText(getApplicationContext(), "Nickname ou senha inválidos", Toast.LENGTH_LONG).show();
             		}
             	} catch (Exception e) {
             		username.setText(e.toString());

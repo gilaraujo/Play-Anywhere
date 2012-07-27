@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="systems">
+        <item>Selecione</item>
+        <item>DnD</item>
+        <item>Vampire</item>
+        <item>Mage</item>
+    </string-array>
+    <string-array name="contacts">
+        <item>Selecione</item>
+        <item>Facebook</item>
+        <item>Twitter</item>
+        <item>LinkedIn</item>
+        <item>Skype</item>
+        <item>E-mail</item>
+        </string-array>
+</resources>

@@ -139,12 +139,12 @@ public class FbLogin extends Activity {
 			}
 		
 		public void onFacebookError(FacebookError error) {
-			Toast.makeText( FbLogin.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+			Toast.makeText( FbLogin.this, "Ocorreu um erro no login com o Facebook.", Toast.LENGTH_LONG).show();
 			finish();
 		    }
 		
 		public void onError(DialogError error) {
-			Toast.makeText( FbLogin.this, "Something went wrong. Please try again.", Toast.LENGTH_LONG).show();
+			Toast.makeText( FbLogin.this, "Ocorreu um erro. Por favor, tente novamente", Toast.LENGTH_LONG).show();
 			finish();
 			}
 		 

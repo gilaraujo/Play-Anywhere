@@ -53,6 +53,14 @@
             android:label="@string/register" >
         </activity>
         <activity
+            android:name=".NewGameView"
+            android:label="@string/newgame" >
+        </activity>
+        <activity
+            android:name=".GameList"
+            android:label="@string/newgame" >
+        </activity>
+        <activity
             android:name=".FbLogin"
             android:label="@string/wait" >
         </activity>
