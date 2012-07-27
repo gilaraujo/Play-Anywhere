@@ -39,15 +39,16 @@ CREATE TABLE IF NOT EXISTS tbcampaign (
 	idcampaign INTEGER,
 	master INTEGER,
 	name VARCHAR(50),
-	system VARCHAR(50)
+	system VARCHAR(50),
+	open INTEGER
 	)
 </statement>
-<statement>INSERT INTO tbcampaign VALUES(1,1,'Campaign1','DnD')</statement>
-<statement>INSERT INTO tbcampaign VALUES(2,1,'Campaign2','DnD')</statement>
-<statement>INSERT INTO tbcampaign VALUES(3,1,'Campaign3','Vampire')</statement>
-<statement>INSERT INTO tbcampaign VALUES(4,1,'Campaign4','Vampire')</statement>
-<statement>INSERT INTO tbcampaign VALUES(5,1,'Campaign5','DnD')</statement>
-<statement>INSERT INTO tbcampaign VALUES(6,1,'Campaign6','DnD')</statement>
+<statement>INSERT INTO tbcampaign VALUES(1,1,'Campaign1','DnD',1)</statement>
+<statement>INSERT INTO tbcampaign VALUES(2,1,'Campaign2','DnD',0)</statement>
+<statement>INSERT INTO tbcampaign VALUES(3,1,'Campaign3','Vampire',1)</statement>
+<statement>INSERT INTO tbcampaign VALUES(4,1,'Campaign4','Vampire',0)</statement>
+<statement>INSERT INTO tbcampaign VALUES(5,1,'Campaign5','DnD',1)</statement>
+<statement>INSERT INTO tbcampaign VALUES(6,1,'Campaign6','DnD',0)</statement>
 <statement>
 CREATE TABLE IF NOT EXISTS tbprofile_campaign (
 	iduser INTEGER,

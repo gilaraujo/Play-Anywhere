@@ -29,7 +29,8 @@ public class GameList extends SherlockListActivity {
         String system = b.getString("system");
         String master = b.getString("master");
         String name = b.getString("campaign");
-        List<Campaign> list = Campaign.getByCriteria(getApplicationContext(), system, master, name);
+        boolean onlyOpen = b.getBoolean("onlyOpen");
+        List<Campaign> list = Campaign.getByCriteria(getApplicationContext(), system, master, name, onlyOpen);
         
         ArrayList<Map<String,String>> campaignList = new ArrayList<Map<String,String>>();
         for (int i=0; i<list.size(); i++) {

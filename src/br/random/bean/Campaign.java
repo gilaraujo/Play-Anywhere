@@ -14,6 +14,7 @@ public class Campaign {
 	private String mastername;
 	private String name;
 	private String system;
+	private boolean open;
 	private List<Scenario> scenarios;
 	private List<Quest> quests;
 	
@@ -22,6 +23,7 @@ public class Campaign {
 	public String getMasterName() { return mastername; }
 	public String getName() { return name; }
 	public String getSystem() { return system; }
+	public boolean getOpen() { return open; }
 	public List<Scenario> getScenarios() { return scenarios; }
 	public List<Quest> getQuests() { return quests; }
 	
@@ -30,6 +32,7 @@ public class Campaign {
 	public void setMasterName(String mastername) { this.mastername = mastername; }
 	public void setName(String name) { this.name = name; }
 	public void setSystem(String system) { this.system = system; }
+	public void setOpen(boolean open) { this.open = open; }
 	public void setScenarios(List<Scenario> scenarios) { this.scenarios = scenarios; }
 	public void setQuests(List<Quest> quests) { this.quests = quests; }
 	
@@ -53,18 +56,20 @@ public class Campaign {
 		cv.put("master", master);
 		cv.put("name", name);
 		cv.put("system",system);
+		cv.put("open", open ? 1 : 0);
         long ret = db.insert("tbcampaign","idcampaign",cv);
     	db.close();
         return (int)(ret != -1 ? ret : 0);
 	}
 	public static Campaign getById(Context context, int id) {
 		SQLiteDatabase db = (new DatabaseHelper(context)).getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT master, name, system FROM tbcampaign WHERE idcampaign = ?", new String[] { ""+id });
+        Cursor cursor = db.rawQuery("SELECT master, name, system, open FROM tbcampaign WHERE idcampaign = ?", new String[] { ""+id });
         Campaign ret = new Campaign();
 		if (cursor.moveToNext()) {
 			ret.setMaster(cursor.getInt(0));
 			ret.setName(cursor.getString(1));
 			ret.setSystem(cursor.getString(2));
+			ret.setOpen(cursor.getInt(3) == 1);
 			ret.setCampaignId(id);
 			Cursor cursor2 = db.rawQuery("SELECT nickname FROM tbprofile WHERE iduser = ?", new String[] { ""+ret.getMaster() });
 			if (cursor2.moveToNext()) {
@@ -78,14 +83,16 @@ public class Campaign {
 		db.close();
 		return ret;
 	}
-	public static List<Campaign> getByCriteria(Context context, String system, String master, String name) {
+	public static List<Campaign> getByCriteria(Context context, String system, String master, String name, boolean onlyOpen) {
 		List<Campaign> ret = new ArrayList<Campaign>();
 		
 		List<String> params = new ArrayList<String>();
-		String query = "SELECT c.idcampaign, p.iduser master, p.nickname mastername, c.name, c.system FROM tbcampaign c, tbprofile p WHERE p.iduser = c.master";
 		if (!system.equals("Selecione")) params.add("c.system = \""+system+"\"");
 		if (!master.equals("")) params.add("p.nickname like \"%"+master+"%\"");
 		if (!name.equals("")) params.add("c.name like \"%"+name+"%\"");
+		
+		String query = "SELECT c.idcampaign, p.iduser master, p.nickname mastername, c.name, c.system, c.open FROM tbcampaign c, tbprofile p WHERE p.iduser = c.master";
+		if (onlyOpen) query += " AND c.open = 1";
 		if (params.size() > 0) {
 			query += " AND (";
 			for (int i=0; i<params.size() - 1; i++) query += params.get(i) + " OR ";
@@ -100,6 +107,7 @@ public class Campaign {
         	c.setMasterName(cursor.getString(2));
         	c.setName(cursor.getString(3));
         	c.setSystem(cursor.getString(4));
+        	c.setOpen(cursor.getInt(5) == 1);
         	ret.add(c);
         }
         db.close();

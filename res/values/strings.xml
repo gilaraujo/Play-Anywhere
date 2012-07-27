@@ -36,4 +36,5 @@
     <string name="choosecampaign">Escolha a Campanha</string>
     <string name="search">Buscar</string>
     <string name="login">Login</string>
+    <string name="onlyopen">Apenas disponíveis</string>
 </resources>

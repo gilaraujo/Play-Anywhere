@@ -20,6 +20,7 @@ public class NewGameView extends SherlockActivity {
         final EditText et_master = (EditText)findViewById(R.id.et_master);
         final EditText et_campaign = (EditText)findViewById(R.id.et_campaign);
         final Spinner sp_systems = (Spinner)findViewById(R.id.sp_systems);
+        final CheckBox chk_onlyOpen = (CheckBox)findViewById(R.id.chk_onlyopen);
         String[] systems = getResources().getStringArray(R.array.systems);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(
         		getApplicationContext(),
@@ -35,11 +36,13 @@ public class NewGameView extends SherlockActivity {
 				String system = sp_systems.getSelectedItem().toString();
 				String master = et_master.getText().toString();
 				String campaign = et_campaign.getText().toString();
+				boolean onlyOpen = chk_onlyOpen.isChecked();
 				
 				Bundle bundle = new Bundle();
 				bundle.putString("system",system);
 				bundle.putString("master", master);
 				bundle.putString("campaign", campaign);
+				bundle.putBoolean("onlyOpen", onlyOpen);
 				
 				startActivity(new Intent(getApplicationContext(), GameList.class).putExtras(bundle));
 			}

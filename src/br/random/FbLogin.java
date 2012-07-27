@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import br.random.*;
 import br.random.bean.Profile;
 import br.random.util.ContactInfo;
+import br.random.util.Contacts;
 import br.random.util.Singleton;
 import br.random.util.facebookintegration.*;
 
@@ -96,7 +97,7 @@ public class FbLogin extends Activity {
 	    			ret.setFbid(json.getString("id"));
 	    			ret.setEvaluation(0f);
 	    			ret.setExperience(0);
-	    			ret.getContacts().add(new ContactInfo(0,json.getString("link")));
+	    			ret.getContacts().add(new ContactInfo(Contacts.facebook.ordinal(),json.getString("link")));
 	    			return ret;
 				} catch (Exception e) {
 					e.printStackTrace();
