@@ -12,6 +12,11 @@ public class Convert {
 	public static byte[] ImageViewToByteArray(ImageView image) {
     	return DrawableToByteArray(image.getDrawable());
     }
+	public static byte[] BitmapToByteArray(Bitmap image) {
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        return stream.toByteArray();
+	}
 	
 	public static byte[] DrawableToByteArray(Drawable image) {
 		BitmapDrawable bitDw = ((BitmapDrawable) image);

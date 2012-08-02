@@ -10,6 +10,11 @@ import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class NewGameView extends SherlockActivity {
+	private EditText et_master;
+	private EditText et_campaign;
+	private Spinner sp_systems;
+	private CheckBox chk_onlyOpen;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -17,10 +22,10 @@ public class NewGameView extends SherlockActivity {
         setContentView(R.layout.newgame_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
-        final EditText et_master = (EditText)findViewById(R.id.et_master);
-        final EditText et_campaign = (EditText)findViewById(R.id.et_campaign);
-        final Spinner sp_systems = (Spinner)findViewById(R.id.sp_systems);
-        final CheckBox chk_onlyOpen = (CheckBox)findViewById(R.id.chk_onlyopen);
+        et_master = (EditText)findViewById(R.id.et_master);
+        et_campaign = (EditText)findViewById(R.id.et_campaign);
+        sp_systems = (Spinner)findViewById(R.id.sp_systems);
+        chk_onlyOpen = (CheckBox)findViewById(R.id.chk_onlyopen);
         String[] systems = getResources().getStringArray(R.array.systems);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(
         		getApplicationContext(),

@@ -25,6 +25,15 @@ import android.widget.AdapterView.OnItemClickListener;
 
 
 public class ProfileView extends SherlockActivity {
+	private TextView tv_nick;
+	private TextView tv_experience;
+	private RatingBar rb_evaluation;
+	private ImageView iv_picture;
+	private ListView lv_campaigns;
+	private TableLayout tl_contacts;
+	private LinearLayout ll_systems;
+	
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,27 +41,28 @@ public class ProfileView extends SherlockActivity {
         setContentView(R.layout.profile_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
-        TextView nick = (TextView)findViewById(R.id.tv_nick);
-        TextView experience = (TextView)findViewById(R.id.tv_xperience);
-        RatingBar evaluation = (RatingBar)findViewById(R.id.rb_evaluation);
-        ImageView img = (ImageView)findViewById(R.id.iv_player);
+        tv_nick = (TextView)findViewById(R.id.tv_nick);
+        tv_experience = (TextView)findViewById(R.id.tv_xperience);
+        rb_evaluation = (RatingBar)findViewById(R.id.rb_evaluation);
+        iv_picture = (ImageView)findViewById(R.id.iv_picture);
+        lv_campaigns = (ListView)findViewById(R.id.lv_campaign);
+        tl_contacts = (TableLayout)findViewById(R.id.tl_contact);
         
-        img.setOnClickListener(new OnClickListener() {
-			
+        iv_picture.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				
 			}
 		});
-        evaluation.setEnabled(false);
+        rb_evaluation.setEnabled(false);
         Profile user = Singleton.getInstance(getApplicationContext()).getUser();
     	if (user.getUserId() != 0) {
-        	nick.setText(user.getNickname());
-        	experience.setText(""+user.getExperience());
-        	evaluation.setRating(user.getEvaluation());
-        	img.setImageBitmap(Convert.ByteArrayToBitmap(user.getPicture()));
+        	tv_nick.setText(user.getNickname());
+        	tv_experience.setText(""+user.getExperience());
+        	rb_evaluation.setRating(user.getEvaluation());
+        	if (user.getPicture() != null) iv_picture.setImageBitmap(Convert.ByteArrayToBitmap(user.getPicture()));
     	}
         
-    	LinearLayout systems = (LinearLayout)findViewById(R.id.ll_systems);
+    	ll_systems = (LinearLayout)findViewById(R.id.ll_systems);
     	List<String> userSystems = user.getSystems();
         for (int i=0; i<userSystems.size(); i++){
         	ImageView image = new ImageView(getApplicationContext());
@@ -69,7 +79,7 @@ public class ProfileView extends SherlockActivity {
 					startActivity(new Intent(getApplicationContext(), SystemView.class).putExtras(bundle));
 				}
 			});
-        	systems.addView(image,width,height);
+        	ll_systems.addView(image,width,height);
         }
     	
     	ArrayList<Map<String,String>> campaignList = new ArrayList<Map<String,String>>();
@@ -89,12 +99,11 @@ public class ProfileView extends SherlockActivity {
         		R.layout.campaign_list_item, 
             	new String[] {"_id", "name", "master", "system"}, 
         		new int[] {R.id.tv_campaign_id, R.id.tv_campaign_name, R.id.tv_master_name, R.id.btn_system});
-        ListView campaigns = (ListView)findViewById(R.id.lv_campaign);
         
-        campaigns.setAdapter(adapter);
-        setListViewScrollable(campaigns);
+        lv_campaigns.setAdapter(adapter);
+        setListViewScrollable(lv_campaigns);
         		
-        campaigns.setOnItemClickListener(new OnItemClickListener() {
+        lv_campaigns.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				String id = ((TextView)arg1.findViewById(R.id.tv_campaign_id)).getText().toString();
@@ -106,7 +115,6 @@ public class ProfileView extends SherlockActivity {
 
         List<ContactInfo> userContacts = user.getContacts();
         
-        TableLayout contacts = (TableLayout)findViewById(R.id.tl_contact);
         TableRow tr = new TableRow(this);
         int trcount = 0;
     	for (int i=0; i<userContacts.size(); i++) {
@@ -145,11 +153,11 @@ public class ProfileView extends SherlockActivity {
         	tr.addView(contact);
         	trcount++;
         	if (trcount % 3 == 0) {
-        		contacts.addView(tr);
+        		tl_contacts.addView(tr);
         		tr = new TableRow(this);
         	}
         }
-    	if (trcount % 3 != 0) contacts.addView(tr);
+    	if (trcount % 3 != 0) tl_contacts.addView(tr);
     }
     private void setListViewScrollable(final ListView list) {
     	list.setOnTouchListener(new OnTouchListener() {

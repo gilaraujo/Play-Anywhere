@@ -22,9 +22,9 @@ CREATE TABLE IF NOT EXISTS tbcontact (
 	contact VARCHAR(50)
 	)
 </statement>
-<statement>INSERT INTO tbcontact VALUES(1,0,'www.facebook.com/gilson.araujo')</statement>
-<statement>INSERT INTO tbcontact VALUES(1,1,'www.twitter.com/bladaum')</statement>
-<statement>INSERT INTO tbcontact VALUES(2,0,'www.facebook.com/gilson.araujo')</statement>
+<statement>INSERT INTO tbcontact VALUES(1,1,'www.facebook.com/gilson.araujo')</statement>
+<statement>INSERT INTO tbcontact VALUES(1,2,'www.twitter.com/bladaum')</statement>
+<statement>INSERT INTO tbcontact VALUES(2,1,'www.facebook.com/gilson.araujo')</statement>
 <statement>
 CREATE TABLE IF NOT EXISTS tbsystem (
 	iduser INTEGER,

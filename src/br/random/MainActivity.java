@@ -9,25 +9,29 @@ import android.view.View.*;
 import android.widget.*;
 
 public class MainActivity extends SherlockActivity {
+	private ImageButton ib_profile;
+	private ImageButton ib_campaign;
+	private ImageButton ib_newgame;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        ImageButton campaignButton = (ImageButton)findViewById(R.id.ib_campaign);
-        campaignButton.setOnClickListener(new OnClickListener() {
+        ib_campaign = (ImageButton)findViewById(R.id.ib_campaign);
+        ib_campaign.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				//campaignButtonClick();
 			}
 		});
-        ImageButton profileButton = (ImageButton)findViewById(R.id.ib_profile);
-        profileButton.setOnClickListener(new OnClickListener() {
+        ib_profile = (ImageButton)findViewById(R.id.ib_profile);
+        ib_profile.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				profileButtonClick();
 			}
 		});
-        ImageButton newgameButton = (ImageButton)findViewById(R.id.ib_newGame);
-        newgameButton.setOnClickListener(new OnClickListener() {
+        ib_newgame = (ImageButton)findViewById(R.id.ib_newGame);
+        ib_newgame.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				newgameButtonClick();
 			}

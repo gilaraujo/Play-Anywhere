@@ -24,6 +24,11 @@ import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class CampaignView extends SherlockActivity {
+	private TextView tv_campaign;
+	private TextView tv_master;
+	ListView lv_scenarios;
+	ListView lv_acts;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,18 +36,18 @@ public class CampaignView extends SherlockActivity {
         setContentView(R.layout.campaign_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
-        TextView campaign = (TextView)findViewById(R.id.tv_campaign);
-        TextView master = (TextView)findViewById(R.id.tv_master);
-        ListView scenarios = (ListView)findViewById(R.id.lv_scenarios);
-        ListView acts = (ListView)findViewById(R.id.lv_acts);
+        tv_campaign = (TextView)findViewById(R.id.tv_campaign);
+        tv_master = (TextView)findViewById(R.id.tv_master);
+        lv_scenarios = (ListView)findViewById(R.id.lv_scenarios);
+        lv_acts = (ListView)findViewById(R.id.lv_acts);
         
-        setListViewScrollable(acts);
-        setListViewScrollable(scenarios);
+        setListViewScrollable(lv_acts);
+        setListViewScrollable(lv_scenarios);
         
         Bundle b = getIntent().getExtras();  
         Campaign c = Campaign.getById(getApplicationContext(), Integer.parseInt(b.getString("campaignId")));
-        master.setText(c.getMasterName());
-        campaign.setText(c.getName());
+        tv_master.setText(c.getMasterName());
+        tv_campaign.setText(c.getName());
         
         ArrayList<Map<String,String>> scenarioList = new ArrayList<Map<String,String>>();
         List<Scenario> campScenarios = c.getScenarios();
@@ -61,10 +66,9 @@ public class CampaignView extends SherlockActivity {
         		R.layout.campaign_list_item_simple, 
         		new String[] {"_id", "name", "description"}, 
         		new int[] {R.id.tv_campaign_id, R.id.tv_campaign_name, R.id.tv_description});
-        scenarios.setAdapter(scenariosAdapter);
+        lv_scenarios.setAdapter(scenariosAdapter);
         
-        scenarios.setOnItemClickListener(new OnItemClickListener() {
-
+        lv_scenarios.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				Bundle bundle = new Bundle();
@@ -89,10 +93,9 @@ public class CampaignView extends SherlockActivity {
         		R.layout.campaign_list_item_simple, 
         		new String[] {"_id", "name", "description"}, 
         		new int[] {R.id.tv_campaign_id, R.id.tv_campaign_name, R.id.tv_description});
-        acts.setAdapter(questsAdapter);
+        lv_acts.setAdapter(questsAdapter);
         
-        acts.setOnItemClickListener(new OnItemClickListener() {
-
+        lv_acts.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				String group = (((TextView)arg1.findViewById(R.id.tv_campaign_id)).getText().toString());

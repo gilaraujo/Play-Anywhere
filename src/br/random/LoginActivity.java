@@ -10,41 +10,40 @@ import br.random.util.Singleton;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
 public class LoginActivity extends SherlockActivity {
-    EditText username,password;
-	TextView message;
-    Button ok, register;
-    ImageView fbLogin;
+    private EditText et_username;
+    private EditText et_password;
+    private Button btn_ok;
+    private Button btn_register;
+    private ImageView iv_fbLogin;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        username=(EditText)findViewById(R.id.et_username);
-        password=(EditText)findViewById(R.id.et_password);
-        ok=(Button)findViewById(R.id.btn_login);
-        register=(Button)findViewById(R.id.btn_register);
-        fbLogin=(ImageView)findViewById(R.id.iv_facebook);
-        fbLogin.setOnClickListener(new OnClickListener() {
+        et_username = (EditText)findViewById(R.id.et_username);
+        et_password = (EditText)findViewById(R.id.et_password);
+        btn_ok = (Button)findViewById(R.id.btn_login);
+        btn_register=(Button)findViewById(R.id.btn_register);
+        iv_fbLogin=(ImageView)findViewById(R.id.iv_facebook);
+        iv_fbLogin.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				startActivity(new Intent(getApplicationContext(), FbLogin.class));
 			}
 		});
 
-        ok.setOnClickListener(new OnClickListener() {
+        btn_ok.setOnClickListener(new OnClickListener() {
         	public void onClick(View v) {
                     
             	ArrayList<NameValuePair> postParameters = new ArrayList<NameValuePair>();
-            	postParameters.add(new BasicNameValuePair("username", username.getText().toString()));
-            	postParameters.add(new BasicNameValuePair("password", password.getText().toString()));
+            	postParameters.add(new BasicNameValuePair("username", et_username.getText().toString()));
+            	postParameters.add(new BasicNameValuePair("password", et_password.getText().toString()));
 
             	String response = null;
             	try {
@@ -58,7 +57,7 @@ public class LoginActivity extends SherlockActivity {
             	    //}
             	    //else
             	    //	message.setText("Sorry!! Incorrect Username or Password");
-            		Profile profile = Profile.getByNickAndPass(getApplicationContext(), username.getText().toString(), password.getText().toString());
+            		Profile profile = Profile.getByNickAndPass(getApplicationContext(), et_username.getText().toString(), et_password.getText().toString());
             		if (profile != null) {
             			Singleton.getInstance(getApplication()).setUser(profile);
             			startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -66,13 +65,11 @@ public class LoginActivity extends SherlockActivity {
             			Toast.makeText(getApplicationContext(), "Nickname ou senha inválidos", Toast.LENGTH_LONG).show();
             		}
             	} catch (Exception e) {
-            		username.setText(e.toString());
+            		Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
             	}
-
             }
         });
-        register.setOnClickListener(new OnClickListener() {
-			
+        btn_register.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				startActivity(new Intent(getApplicationContext(), RegisterView.class));
 			}

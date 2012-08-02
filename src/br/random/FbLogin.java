@@ -1,11 +1,14 @@
 package br.random;
 
+import java.net.URL;
+
 import org.json.JSONObject;
 
 import br.random.*;
 import br.random.bean.Profile;
 import br.random.util.ContactInfo;
 import br.random.util.Contacts;
+import br.random.util.Convert;
 import br.random.util.Singleton;
 import br.random.util.facebookintegration.*;
 
@@ -17,6 +20,8 @@ import com.facebook.android.Facebook.DialogListener;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -95,6 +100,13 @@ public class FbLogin extends Activity {
 	    				ret.setPassword("Su00e3oSu00e3o3oSu03So");
 	    			}
 	    			ret.setFbid(json.getString("id"));
+	    			try {
+	    				URL img_value = new URL("http://graph.facebook.com/"+ret.getFbid()+"/picture?type=normal");
+	    				 Bitmap picture = BitmapFactory.decodeStream(img_value.openConnection().getInputStream());
+	    				ret.setPicture(Convert.BitmapToByteArray(picture));
+	    			} catch (Exception ex) {
+	    				ret.setPicture(null);
+	    			}
 	    			ret.setEvaluation(0f);
 	    			ret.setExperience(0);
 	    			ret.getContacts().add(new ContactInfo(Contacts.facebook.ordinal(),json.getString("link")));

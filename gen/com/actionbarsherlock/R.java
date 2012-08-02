@@ -1084,7 +1084,7 @@ containing a value of this type.
         public static final int iv_facebook=0x7f050058;
         public static final int iv_fullimage=0x7f05004e;
         public static final int iv_icon=0x7f05004b;
-        public static final int iv_player=0x7f050074;
+        public static final int iv_picture=0x7f050074;
         public static final int iv_profile=0x7f05007e;
         public static final int lb_acts=0x7f050049;
         public static final int lb_birthdate=0x7f050081;
