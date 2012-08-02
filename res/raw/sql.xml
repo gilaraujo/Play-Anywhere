@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS tbprofile (
 	password VARCHAR(50),
 	experience INTEGER,
 	evaluation FLOAT,
-	fbid INTEGER
+	fbid INTEGER,
+	picture BLOB
 	)
 </statement>
 <statement>INSERT INTO tbprofile (name,birthdate,city,nickname,password,experience,evaluation) VALUES('name1','01/01/2000','City1','nick1','password',10,1)</statement>

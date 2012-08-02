@@ -49,11 +49,11 @@ public class ProfileView extends SherlockActivity {
         	nick.setText(user.getNickname());
         	experience.setText(""+user.getExperience());
         	evaluation.setRating(user.getEvaluation());
+        	img.setImageBitmap(Convert.ByteArrayToBitmap(user.getPicture()));
     	}
         
     	LinearLayout systems = (LinearLayout)findViewById(R.id.ll_systems);
-    	SQLiteDatabase db = (new DatabaseHelper(getApplicationContext())).getWritableDatabase();
-        List<String> userSystems = user.getSystems();
+    	List<String> userSystems = user.getSystems();
         for (int i=0; i<userSystems.size(); i++){
         	ImageView image = new ImageView(getApplicationContext());
         	final String system = userSystems.get(i);
@@ -150,7 +150,6 @@ public class ProfileView extends SherlockActivity {
         	}
         }
     	if (trcount % 3 != 0) contacts.addView(tr);
-    	db.close();
     }
     private void setListViewScrollable(final ListView list) {
     	list.setOnTouchListener(new OnTouchListener() {

@@ -37,4 +37,5 @@
     <string name="search">Buscar</string>
     <string name="login">Login</string>
     <string name="onlyopen">Apenas disponíveis</string>
+    <string name="choosepicture">Escolher Foto</string>
 </resources>

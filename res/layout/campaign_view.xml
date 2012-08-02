@@ -10,77 +10,85 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         > 
-	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal" >
+		<LinearLayout
+		    xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/lb_campaign"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name" />
+			<LinearLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content" >
+
+				<LinearLayout
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:orientation="vertical" >
 
+				    <TextView
+				        android:id="@+id/lb_campaign"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:text="@string/name" />
 
-    <TextView
-        android:id="@+id/tv_campaign"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lb_campaign"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+				    <TextView
+				        android:id="@+id/tv_campaign"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:textAppearance="?android:attr/textAppearanceLarge" />
 
+				    <TextView
+				        android:id="@+id/lb_master"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:text="@string/master" />
 
+				    <TextView
+				        android:id="@+id/tv_master"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:textAppearance="?android:attr/textAppearanceLarge" />
+				</LinearLayout>
 
-    <TextView
-        android:id="@+id/lb_master"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_campaign"
-        android:text="@string/master" />
+				<LinearLayout
+				    android:layout_width="wrap_content"
+				    android:layout_height="match_parent"
+				    android:orientation="vertical" >
+				</LinearLayout>
 
-
-    <TextView
-        android:id="@+id/tv_master"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lb_master"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-
-
-    <TextView
-        android:id="@+id/lb_scenario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_master"
-        android:text="@string/scenario" />
-
-
-    <ListView
-        android:id="@+id/lv_scenarios"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@+id/lb_scenario" >
-
-    </ListView>
-
-
-
-
-
-    <TextView
-        android:id="@+id/lb_acts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lv_scenarios"
-        android:text="@string/acts" />
-
-    <ListView
-        android:id="@+id/lv_acts"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@+id/lb_acts" >
-    </ListView>
-    </RelativeLayout>
+			</LinearLayout>
+		
+		
+		
+		    <TextView
+		        android:id="@+id/lb_scenario"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/scenario" />
+		
+		
+		    <ListView
+		        android:id="@+id/lv_scenarios"
+		        android:layout_width="match_parent"
+		        android:layout_height="100dp" >
+		
+		    </ListView>
+		
+		
+		
+		
+		
+		    <TextView
+		        android:id="@+id/lb_acts"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/acts" />
+		
+		    <ListView
+		        android:id="@+id/lv_acts"
+		        android:layout_width="match_parent"
+		        android:layout_height="100dp" >
+		    </ListView>
+	    </LinearLayout>
 	</ScrollView>
 </RelativeLayout>

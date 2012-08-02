@@ -22,6 +22,7 @@ public class Profile {
 	private List<String> systems;
 	private List<Campaign> campaigns;
 	private String fbid;
+	private byte[] picture;
 	
 	public int getUserId() { return userid; }
 	public String getName() { return name; }
@@ -35,6 +36,7 @@ public class Profile {
 	public List<String> getSystems() { return systems; }
 	public List<Campaign> getCampaigns() { return campaigns; }
 	public String getFbid() { return fbid; }
+	public byte[] getPicture() { return picture; }
 	
 	public void setUserId(int userid) { this.userid = userid; }
 	public void setName(String name) { this.name = name; }
@@ -48,6 +50,7 @@ public class Profile {
 	public void setSystems(List<String> systems) { this.systems = systems; }
 	public void setCampaigns(List<Campaign> campaigns) { this.campaigns = campaigns; }
 	public void setFbid(String fbid) { this.fbid = fbid; }
+	public void setPicture(byte[] picture) { this.picture = picture; }
 	
 	public Profile() {
 		contacts = new ArrayList<ContactInfo>();
@@ -66,6 +69,7 @@ public class Profile {
 		cv.put("experience",0);
 		cv.put("evaluation",0);
 		cv.put("fbid", fbid);
+		cv.put("picture",picture);
         long ret = db.insert("tbprofile","iduser",cv);
         if (ret != -1) {
         	userid = (int)ret;
@@ -88,7 +92,7 @@ public class Profile {
 	}
 	public static Profile getByNickAndPass(Context context, String nick, String pass) {
 		SQLiteDatabase db = (new DatabaseHelper(context)).getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT iduser, name, birthdate, city, experience, evaluation, fbid FROM tbprofile WHERE nickname = ? AND password = ?", new String[] { nick, pass });
+        Cursor cursor = db.rawQuery("SELECT iduser, name, birthdate, city, experience, evaluation, fbid, picture FROM tbprofile WHERE nickname = ? AND password = ?", new String[] { nick, pass });
         Profile ret = new Profile();
 		if (cursor.moveToNext()) {
 			ret.setUserId(cursor.getInt(0));
@@ -100,6 +104,7 @@ public class Profile {
 			ret.setExperience(cursor.getInt(4));
 			ret.setEvaluation(cursor.getFloat(5));
 			ret.setFbid(cursor.getString(6));
+			ret.setPicture(cursor.getBlob(7));
 			Cursor contacts = db.rawQuery("SELECT type, contact FROM tbcontact where iduser = ?", new String[] { ""+ret.getUserId() });
 			while (contacts.moveToNext()) {
 				ret.getContacts().add(new ContactInfo(contacts.getInt(0),contacts.getString(1)));
@@ -120,7 +125,7 @@ public class Profile {
 	}
 	public static Profile getByFbid(Context context, String id) {
 		SQLiteDatabase db = (new DatabaseHelper(context)).getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT iduser, name, birthdate, city, nickname, password, experience, evaluation FROM tbprofile WHERE fbid = ?", new String[] { ""+id });
+        Cursor cursor = db.rawQuery("SELECT iduser, name, birthdate, city, nickname, password, experience, evaluation, picture FROM tbprofile WHERE fbid = ?", new String[] { ""+id });
         Profile ret = new Profile();
 		if (cursor.moveToNext()) {
 			ret.setUserId(cursor.getInt(0));
@@ -131,6 +136,7 @@ public class Profile {
 			ret.setPassword(cursor.getString(5));
 			ret.setExperience(cursor.getInt(6));
 			ret.setEvaluation(cursor.getFloat(7));
+			ret.setPicture(cursor.getBlob(8));
 			ret.setFbid(id);
 			Cursor contacts = db.rawQuery("SELECT type, contact FROM tbcontact where iduser = ?", new String[] { ""+ret.getUserId() });
 			while (contacts.moveToNext()) {
