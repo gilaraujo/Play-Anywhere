@@ -1,5 +1,8 @@
 package br.random;
 
+import br.random.bean.Profile;
+import br.random.util.Singleton;
+
 import com.actionbarsherlock.app.SherlockActivity;
 
 import android.content.*;
@@ -23,8 +26,12 @@ public class QuestView extends SherlockActivity {
         tv_quest = (TextView)findViewById(R.id.tv_quest);
         
         Bundle b = getIntent().getExtras();
-        
-        tv_campaign.setText(b.getString("group"));
-        tv_quest.setText(b.getString("quest"));
+        Profile user = Singleton.getInstance(getApplicationContext()).getUser();
+        if (user.isInQuest(getApplicationContext(), b.getString("group"), b.getString("quest"))) {
+        	tv_campaign.setText(b.getString("group"));
+            tv_quest.setText(b.getString("quest"));
+        } else {
+        	tv_campaign.setText("Você não tem permissão para visualizar este conteúdo");
+        }
     }
 }

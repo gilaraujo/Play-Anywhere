@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import br.random.bean.Campaign;
+import br.random.bean.Profile;
 import br.random.bean.Quest;
 import br.random.bean.Scenario;
 import br.random.dao.DatabaseHelper;
@@ -26,8 +27,9 @@ import android.widget.AdapterView.OnItemClickListener;
 public class CampaignView extends SherlockActivity {
 	private TextView tv_campaign;
 	private TextView tv_master;
-	ListView lv_scenarios;
-	ListView lv_acts;
+	private ListView lv_scenarios;
+	private ListView lv_acts;
+	private ImageView iv_campaignstatus;
 	
     /** Called when the activity is first created. */
     @Override
@@ -40,6 +42,7 @@ public class CampaignView extends SherlockActivity {
         tv_master = (TextView)findViewById(R.id.tv_master);
         lv_scenarios = (ListView)findViewById(R.id.lv_scenarios);
         lv_acts = (ListView)findViewById(R.id.lv_acts);
+        iv_campaignstatus = (ImageView)findViewById(R.id.iv_campaignstatus);
         
         setListViewScrollable(lv_acts);
         setListViewScrollable(lv_scenarios);
@@ -48,6 +51,28 @@ public class CampaignView extends SherlockActivity {
         Campaign c = Campaign.getById(getApplicationContext(), Integer.parseInt(b.getString("campaignId")));
         tv_master.setText(c.getMasterName());
         tv_campaign.setText(c.getName());
+        
+        final Profile user = Singleton.getInstance(getApplicationContext()).getUser();
+        if (user.isInCampaign(b.getString("campaignId"))) {
+        	iv_campaignstatus.setImageResource(R.drawable.btn_participating);
+        } else {
+        	if (!c.isOpen()) {
+        		iv_campaignstatus.setImageResource(R.drawable.btn_closed);
+        	} else {
+        		if (user.isPendingInCampaign(b.getString("campaignId"))) {
+        			iv_campaignstatus.setImageResource(R.drawable.btn_pending);
+        		}
+        		else {
+        			iv_campaignstatus.setOnClickListener(new OnClickListener() {
+						public void onClick(View v) {
+							// Criar ou escolher char
+							// Campaign.participate(user.getUserId());
+							// user.getPendings().add(Integer.parseInt(b.getString("campaignId")));
+						}
+        			});
+        		}
+        	}
+        }
         
         ArrayList<Map<String,String>> scenarioList = new ArrayList<Map<String,String>>();
         List<Scenario> campScenarios = c.getScenarios();

@@ -23,7 +23,7 @@ public class Campaign {
 	public String getMasterName() { return mastername; }
 	public String getName() { return name; }
 	public String getSystem() { return system; }
-	public boolean getOpen() { return open; }
+	public boolean isOpen() { return open; }
 	public List<Scenario> getScenarios() { return scenarios; }
 	public List<Quest> getQuests() { return quests; }
 	

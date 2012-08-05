@@ -21,6 +21,7 @@ public class Profile {
 	private List<ContactInfo> contacts;
 	private List<String> systems;
 	private List<Campaign> campaigns;
+	private List<Integer> pendings;
 	private String fbid;
 	private byte[] picture;
 	
@@ -35,6 +36,7 @@ public class Profile {
 	public List<ContactInfo> getContacts() { return contacts; }
 	public List<String> getSystems() { return systems; }
 	public List<Campaign> getCampaigns() { return campaigns; }
+	public List<Integer> getPendings() { return pendings; }
 	public String getFbid() { return fbid; }
 	public byte[] getPicture() { return picture; }
 	
@@ -48,6 +50,7 @@ public class Profile {
 	public void setEvaluation(float evaluation) { this.evaluation = evaluation; }
 	public void setContacts(List<ContactInfo> contacts) { this.contacts = contacts; }
 	public void setSystems(List<String> systems) { this.systems = systems; }
+	public void setPendings(List<Integer> pendings) { this.pendings = pendings; }
 	public void setCampaigns(List<Campaign> campaigns) { this.campaigns = campaigns; }
 	public void setFbid(String fbid) { this.fbid = fbid; }
 	public void setPicture(byte[] picture) { this.picture = picture; }
@@ -56,6 +59,7 @@ public class Profile {
 		contacts = new ArrayList<ContactInfo>();
 		systems = new ArrayList<String>();
 		campaigns = new ArrayList<Campaign>();
+		pendings = new ArrayList<Integer>();
 	}
 	
 	public int save(Context context) {
@@ -113,9 +117,13 @@ public class Profile {
 			while (systems.moveToNext()) {
 				ret.getSystems().add(systems.getString(0));
 			}
-			Cursor campaigns = db.rawQuery("SELECT c.idcampaign _id, c.master, c.name, c.system, p.nickname FROM tbprofile_campaign pc, tbcampaign c, tbprofile p WHERE p.iduser = c.master AND pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[] { ""+ret.getUserId() });
+			Cursor campaigns = db.rawQuery("SELECT c.idcampaign _id, c.master, c.name, c.system, p.nickname, pc.pending FROM tbprofile_campaign pc, tbcampaign c, tbprofile p WHERE p.iduser = c.master AND pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[] { ""+ret.getUserId() });
 			while (campaigns.moveToNext()) {
-				ret.getCampaigns().add(new Campaign(campaigns.getInt(0),campaigns.getInt(1),campaigns.getString(2),campaigns.getString(3),campaigns.getString(4)));
+				if (campaigns.getInt(5) == 1) {
+					ret.getCampaigns().add(new Campaign(campaigns.getInt(0),campaigns.getInt(1),campaigns.getString(2),campaigns.getString(3),campaigns.getString(4)));
+				} else {
+					ret.getPendings().add(campaigns.getInt(0));
+				}
 			}
 		} else {
 			ret = null;
@@ -146,14 +154,37 @@ public class Profile {
 			while (systems.moveToNext()) {
 				ret.getSystems().add(systems.getString(0));
 			}
-			Cursor campaigns = db.rawQuery("SELECT c.idcampaign _id, c.master, c.name, c.system, p.nickname FROM tbprofile_campaign pc, tbcampaign c, tbprofile p WHERE p.iduser = c.master AND pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[] { ""+ret.getUserId() });
+			Cursor campaigns = db.rawQuery("SELECT c.idcampaign _id, c.master, c.name, c.system, p.nickname, pc.pending FROM tbprofile_campaign pc, tbcampaign c, tbprofile p WHERE p.iduser = c.master AND pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[] { ""+ret.getUserId() });
 			while (campaigns.moveToNext()) {
-				ret.getCampaigns().add(new Campaign(campaigns.getInt(0),campaigns.getInt(1),campaigns.getString(2),campaigns.getString(3),campaigns.getString(4)));
+				if (campaigns.getInt(5) == 1) {
+					ret.getCampaigns().add(new Campaign(campaigns.getInt(0),campaigns.getInt(1),campaigns.getString(2),campaigns.getString(3),campaigns.getString(4)));
+				} else {
+					ret.getPendings().add(campaigns.getInt(0));
+				}
 			}
 		} else {
 			ret = null;
 		}
 		db.close();
 		return ret;
+	}
+	public boolean isInCampaign(String campaign) {
+		for (int i=0; i<campaigns.size(); i++) {
+			if (campaign.equals(""+campaigns.get(i).getCampaignId())) return true;
+		}
+		return false;
+	}
+	public boolean isPendingInCampaign(String campaign) {
+		for (int i=0; i<pendings.size(); i++) {
+			if (campaign.equals(""+pendings.get(i))) return true;
+		}
+		return false;
+	}
+	public boolean isInQuest(Context context, String campaign, String name) {
+		SQLiteDatabase db = (new DatabaseHelper(context)).getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT iduser FROM tbprofile_quest WHERE iduser = ? AND idcampaign = ? AND name = ?", new String[] { ""+userid, campaign, name });
+        boolean ret = cursor.getCount() != 0;
+        db.close();
+        return ret;
 	}
 }

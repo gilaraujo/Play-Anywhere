@@ -54,15 +54,12 @@ CREATE TABLE IF NOT EXISTS tbcampaign (
 CREATE TABLE IF NOT EXISTS tbprofile_campaign (
 	iduser INTEGER,
 	idcampaign INTEGER,
-	charname VARCHAR(50)
+	charname VARCHAR(50),
+	pending INTEGER
 	)
 </statement>
-<statement>INSERT INTO tbprofile_campaign VALUES(2,1,'Char1')</statement>
-<statement>INSERT INTO tbprofile_campaign VALUES(2,2,'Char2')</statement>
-<statement>INSERT INTO tbprofile_campaign VALUES(2,3,'Char3')</statement>
-<statement>INSERT INTO tbprofile_campaign VALUES(2,4,'Char4')</statement>
-<statement>INSERT INTO tbprofile_campaign VALUES(2,5,'Char5')</statement>
-<statement>INSERT INTO tbprofile_campaign VALUES(2,6,'Char6')</statement>
+<statement>INSERT INTO tbprofile_campaign VALUES(2,1,'Char1',1)</statement>
+<statement>INSERT INTO tbprofile_campaign VALUES(2,6,'Char6',0)</statement>
 <statement>
 CREATE TABLE IF NOT EXISTS tbscenario (
 	idcampaign INTEGER,
@@ -109,4 +106,15 @@ CREATE TABLE IF NOT EXISTS tbquest (
 <statement>INSERT INTO tbquest VALUES(4,'Quest10','Desc14')</statement>
 <statement>INSERT INTO tbquest VALUES(5,'Quest11','Desc15')</statement>
 <statement>INSERT INTO tbquest VALUES(6,'Quest12','Desc16')</statement>
+<statement>
+CREATE TABLE IF NOT EXISTS tbprofile_quest (
+	iduser INTEGER,
+	idcampaign INTEGER,
+	name VARCHAR(50)
+	)
+</statement>
+<statement>INSERT INTO tbprofile_quest VALUES(2, 1,'Quest1')</statement>
+<statement>INSERT INTO tbprofile_quest VALUES(2, 1,'Quest2')</statement>
+<statement>INSERT INTO tbprofile_quest VALUES(2, 1,'Quest21')</statement>
+<statement>INSERT INTO tbprofile_quest VALUES(2, 1,'Quest22')</statement>
 </sql>
