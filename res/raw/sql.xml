@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS tbcampaign (
 <statement>INSERT INTO tbcampaign VALUES(4,1,'Campaign4','Vampire',0)</statement>
 <statement>INSERT INTO tbcampaign VALUES(5,1,'Campaign5','DnD',1)</statement>
 <statement>INSERT INTO tbcampaign VALUES(6,1,'Campaign6','DnD',0)</statement>
+<statement>INSERT INTO tbcampaign VALUES(7,1,'Campaign7','Mage',1)</statement>
 <statement>
 CREATE TABLE IF NOT EXISTS tbprofile_campaign (
 	iduser INTEGER,
@@ -58,8 +59,8 @@ CREATE TABLE IF NOT EXISTS tbprofile_campaign (
 	pending INTEGER
 	)
 </statement>
-<statement>INSERT INTO tbprofile_campaign VALUES(2,1,'Char1',1)</statement>
-<statement>INSERT INTO tbprofile_campaign VALUES(2,6,'Char6',0)</statement>
+<statement>INSERT INTO tbprofile_campaign VALUES(2,1,'Char1',0)</statement>
+<statement>INSERT INTO tbprofile_campaign VALUES(2,6,'Char6',1)</statement>
 <statement>
 CREATE TABLE IF NOT EXISTS tbscenario (
 	idcampaign INTEGER,

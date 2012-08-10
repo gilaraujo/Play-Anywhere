@@ -64,5 +64,13 @@
             android:name=".FbLogin"
             android:label="@string/wait" >
         </activity>
+        <activity
+            android:name=".CreateCharView"
+            android:label="@string/createchar" >
+        </activity>
+        <activity
+            android:name=".createchar.VampireView"
+            android:label="@string/vampire" >
+        </activity>
         </application>
 </manifest>

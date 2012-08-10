@@ -1,108 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="2"
     android:background="@drawable/back"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="40dp"
-    android:rowCount="6" >
+    android:orientation="vertical" >
 
-<TableRow
-    android:layout_width="match_parent"
-    android:gravity="center" >
-
-	<ImageButton
-	    android:id="@+id/ib_campaign"
-	    android:layout_gravity="center"
-	    android:src="@drawable/ic_games" />
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-	<ImageButton
-        android:id="@+id/ib_community"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_community" />
-    
-	
-</TableRow>
-
-<TableRow
-    android:layout_width="match_parent"
-    android:gravity="center" >
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="2"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="40dp"
+            android:rowCount="6" >
 
-    <TextView
-	    android:id="@+id/lb_campaign"
-	    android:layout_gravity="center"
-	    android:text="@string/campaign" />
-	
-	<TextView
-	    android:id="@+id/lb_community"
-	    android:layout_gravity="center"
-	    android:text="@string/community" />
-	
-	
-</TableRow>
-
-<TableRow
-    android:layout_width="match_parent"
-    android:gravity="center" >
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center" >
 
-	<ImageButton
-	    android:id="@+id/ib_profile"
-	    android:layout_gravity="center"
-	    android:src="@drawable/ic_profile" />
-	<ImageButton
-        android:id="@+id/ib_newGame"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_launcher" />
+                <ImageButton
+                    android:id="@+id/ib_campaign"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_games" />
 
-</TableRow>
-
-<TableRow
-    android:layout_width="match_parent"
-    android:gravity="center" >
+                <ImageButton
+                    android:id="@+id/ib_community"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_community" />
+            </TableRow>
 
-	<TextView
-	    android:id="@+id/lb_profile"
-	    android:layout_gravity="center"
-	    android:text="@string/profile" />
-	
-	<TextView
-	    android:id="@+id/lb_newgame"
-	    android:layout_gravity="center"
-	    android:text="@string/newgame" />
-	
-</TableRow>
-
-<TableRow
-    android:layout_width="match_parent"
-    android:gravity="center" >
-	
-	<ImageButton
-	    android:id="@+id/ib_master"
-	    android:layout_gravity="center"
-	    android:src="@drawable/ic_launcher" />
-	
-	<ImageButton
-	    android:id="@+id/ib_config"
-	    android:layout_gravity="center"
-	    android:src="@drawable/ic_config" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center" >
 
-</TableRow>
-
-<TableRow
-    android:layout_width="match_parent"
-    android:gravity="center" >
-    
-	<TextView
-	    android:id="@+id/lb_masters"
-	    android:layout_gravity="center"
-	    android:text="@string/masters" />
-	
-	<TextView
-	    android:id="@+id/lb_config"
-	    android:layout_gravity="center"
-	    android:text="@string/config" />
+                <TextView
+                    android:id="@+id/lb_campaign"
+                    android:layout_gravity="center"
+                    android:text="@string/campaign" />
 
-</TableRow>
-</TableLayout>
+                <TextView
+                    android:id="@+id/lb_community"
+                    android:layout_gravity="center"
+                    android:text="@string/community" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center" >
+
+                <ImageButton
+                    android:id="@+id/ib_profile"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_profile" />
+
+                <ImageButton
+                    android:id="@+id/ib_newgame"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_launcher" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center" >
+
+                <TextView
+                    android:id="@+id/lb_profile"
+                    android:layout_gravity="center"
+                    android:text="@string/profile" />
+
+                <TextView
+                    android:id="@+id/lb_newgame"
+                    android:layout_gravity="center"
+                    android:text="@string/newgame" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center" >
+
+                <ImageButton
+                    android:id="@+id/ib_master"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_launcher" />
+
+                <ImageButton
+                    android:id="@+id/ib_config"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_config" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center" >
+
+                <TextView
+                    android:id="@+id/lb_masters"
+                    android:layout_gravity="center"
+                    android:text="@string/masters" />
+
+                <TextView
+                    android:id="@+id/lb_config"
+                    android:layout_gravity="center"
+                    android:text="@string/config" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center" >
+
+                <ImageButton
+                    android:id="@+id/ib_createchar"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_launcher" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center" >
+
+                <TextView
+                    android:id="@+id/lb_createchar"
+                    android:layout_gravity="center"
+                    android:text="@string/createchar" />
+            </TableRow>
+        </TableLayout>
+
+    </ScrollView>
+</LinearLayout>

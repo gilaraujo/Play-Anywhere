@@ -56,11 +56,11 @@ public class CampaignView extends SherlockActivity {
         if (user.isInCampaign(b.getString("campaignId"))) {
         	iv_campaignstatus.setImageResource(R.drawable.btn_participating);
         } else {
-        	if (!c.isOpen()) {
-        		iv_campaignstatus.setImageResource(R.drawable.btn_closed);
+        	if (user.isPendingInCampaign(b.getString("campaignId"))) {
+        		iv_campaignstatus.setImageResource(R.drawable.btn_pending);
         	} else {
-        		if (user.isPendingInCampaign(b.getString("campaignId"))) {
-        			iv_campaignstatus.setImageResource(R.drawable.btn_pending);
+        		if (!c.isOpen()) {
+        			iv_campaignstatus.setImageResource(R.drawable.btn_closed);
         		}
         		else {
         			iv_campaignstatus.setOnClickListener(new OnClickListener() {

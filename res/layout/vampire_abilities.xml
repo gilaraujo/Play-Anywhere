@@ -1,0 +1,1198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+
+
+
+
+            <TextView
+                android:id="@+id/lb_talent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/talents"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+
+
+
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1" >
+
+                <TableRow
+                    android:id="@+id/TableRow01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_acting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/acting" />
+
+                    <SeekBar
+                        android:id="@+id/sb_acting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_acting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_alertness"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/alertness" />
+
+                    <SeekBar
+                        android:id="@+id/sb_alertness"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_alertness"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:longClickable="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_athletics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/athletics" />
+
+                    <SeekBar
+                        android:id="@+id/sb_athletics"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_athletics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_brawl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/brawl" />
+
+                    <SeekBar
+                        android:id="@+id/sb_brawl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_brawl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:longClickable="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow05"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_dodge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/dodge" />
+
+                    <SeekBar
+                        android:id="@+id/sb_dodge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_dodge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider05"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow06"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_empathy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/empathy" />
+
+                    <SeekBar
+                        android:id="@+id/sb_empathy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_empathy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider06"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow07"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_intimidation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/intimidation" />
+
+                    <SeekBar
+                        android:id="@+id/sb_intimidation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_intimidation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider07"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow08"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_leadership"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/leadership" />
+
+                    <SeekBar
+                        android:id="@+id/sb_leadership"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_leadership"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider08"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow09"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_streetwise"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/streetwise" />
+
+                    <SeekBar
+                        android:id="@+id/sb_streetwise"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_streetwise"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+
+                <TableRow
+                    android:id="@+id/TableDivider09"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+
+                </TableRow>
+
+
+
+                <TableRow
+                    android:id="@+id/TableRow10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+
+
+                    <TextView
+                        android:id="@+id/lb_subterfuge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/subterfuge" />
+
+
+
+                    <SeekBar
+                        android:id="@+id/sb_subterfuge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+
+                    <TextView
+                        android:id="@+id/tv_subterfuge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </TableRow>
+            </TableLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right" >
+
+
+
+
+
+
+
+                <TextView
+                    android:id="@+id/lb_talentleft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:text="@string/left" />
+
+
+
+
+                <TextView
+                    android:id="@+id/tv_talentleft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+
+
+            <TextView
+                android:id="@+id/lb_skills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/skills"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1" >
+
+                <TableRow
+                    android:id="@+id/TableRow11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_animalken"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/animalken" />
+
+                    <SeekBar
+                        android:id="@+id/sb_animalken"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_animalken"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_drive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/drive" />
+
+                    <SeekBar
+                        android:id="@+id/sb_drive"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_drive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:longClickable="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_etiquette"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/etiquette" />
+
+                    <SeekBar
+                        android:id="@+id/sb_etiquette"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_etiquette"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_firearms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/firearms" />
+
+                    <SeekBar
+                        android:id="@+id/sb_firearms"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_firearms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:longClickable="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_melee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/melee" />
+
+                    <SeekBar
+                        android:id="@+id/sb_melee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_melee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_music"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/music" />
+
+                    <SeekBar
+                        android:id="@+id/sb_music"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_music"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_repair"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/repair" />
+
+                    <SeekBar
+                        android:id="@+id/sb_repair"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_repair"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_security"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/security" />
+
+                    <SeekBar
+                        android:id="@+id/sb_security"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_security"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_stealth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/stealth" />
+
+                    <SeekBar
+                        android:id="@+id/sb_stealth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_stealth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+
+                <TableRow
+                    android:id="@+id/TableDivider19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+
+                </TableRow>
+
+
+
+                <TableRow
+                    android:id="@+id/TableRow20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+
+                    <TextView
+                        android:id="@+id/lb_survival"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/survival" />
+
+
+                    <SeekBar
+                        android:id="@+id/sb_survival"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+
+                    <TextView
+                        android:id="@+id/tv_survival"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right" >
+
+
+
+
+
+                <TextView
+                    android:id="@+id/lb_skillleft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:text="@string/left" />
+
+
+
+
+                <TextView
+                    android:id="@+id/tv_skillleft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/lb_knowledges"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/knowledges"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1" >
+
+                <TableRow
+                    android:id="@+id/TableRow21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_bureaucracy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/bureaucracy" />
+
+                    <SeekBar
+                        android:id="@+id/sb_bureaucracy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_bureaucracy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_computer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/computer" />
+
+                    <SeekBar
+                        android:id="@+id/sb_computer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_computer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:longClickable="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_finance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/finance" />
+
+                    <SeekBar
+                        android:id="@+id/sb_finance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_finance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_investigation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/investigation" />
+
+                    <SeekBar
+                        android:id="@+id/sb_investigation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_investigation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:longClickable="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_law"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/law" />
+
+                    <SeekBar
+                        android:id="@+id/sb_law"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_law"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_linguistics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/linguistics" />
+
+                    <SeekBar
+                        android:id="@+id/sb_linguistics"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_linguistics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_medicine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/medicine" />
+
+                    <SeekBar
+                        android:id="@+id/sb_medicine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_medicine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_occult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/occult" />
+
+                    <SeekBar
+                        android:id="@+id/sb_occult"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_occult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableDivider28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lb_politics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/politics" />
+
+                    <SeekBar
+                        android:id="@+id/sb_politics"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+                    <TextView
+                        android:id="@+id/tv_politics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+
+                <TableRow
+                    android:id="@+id/TableDivider29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:duplicateParentState="true"
+                    android:minHeight="1dp" >
+
+                </TableRow>
+
+
+
+                <TableRow
+                    android:id="@+id/TableRow30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+
+                    <TextView
+                        android:id="@+id/lb_science"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/science" />
+
+
+                    <SeekBar
+                        android:id="@+id/sb_science"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="5"
+                        android:progress="0" />
+
+
+                    <TextView
+                        android:id="@+id/tv_science"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right" >
+
+
+
+
+
+
+
+                <TextView
+                    android:id="@+id/lb_knowledgeleft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:text="@string/left" />
+
+
+
+
+                <TextView
+                    android:id="@+id/tv_knowledgeleft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

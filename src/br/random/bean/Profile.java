@@ -21,7 +21,7 @@ public class Profile {
 	private List<ContactInfo> contacts;
 	private List<String> systems;
 	private List<Campaign> campaigns;
-	private List<Integer> pendings;
+	private List<Campaign> pendings;
 	private String fbid;
 	private byte[] picture;
 	
@@ -36,7 +36,7 @@ public class Profile {
 	public List<ContactInfo> getContacts() { return contacts; }
 	public List<String> getSystems() { return systems; }
 	public List<Campaign> getCampaigns() { return campaigns; }
-	public List<Integer> getPendings() { return pendings; }
+	public List<Campaign> getPendings() { return pendings; }
 	public String getFbid() { return fbid; }
 	public byte[] getPicture() { return picture; }
 	
@@ -50,7 +50,7 @@ public class Profile {
 	public void setEvaluation(float evaluation) { this.evaluation = evaluation; }
 	public void setContacts(List<ContactInfo> contacts) { this.contacts = contacts; }
 	public void setSystems(List<String> systems) { this.systems = systems; }
-	public void setPendings(List<Integer> pendings) { this.pendings = pendings; }
+	public void setPendings(List<Campaign> pendings) { this.pendings = pendings; }
 	public void setCampaigns(List<Campaign> campaigns) { this.campaigns = campaigns; }
 	public void setFbid(String fbid) { this.fbid = fbid; }
 	public void setPicture(byte[] picture) { this.picture = picture; }
@@ -59,7 +59,7 @@ public class Profile {
 		contacts = new ArrayList<ContactInfo>();
 		systems = new ArrayList<String>();
 		campaigns = new ArrayList<Campaign>();
-		pendings = new ArrayList<Integer>();
+		pendings = new ArrayList<Campaign>();
 	}
 	
 	public int save(Context context) {
@@ -119,10 +119,11 @@ public class Profile {
 			}
 			Cursor campaigns = db.rawQuery("SELECT c.idcampaign _id, c.master, c.name, c.system, p.nickname, pc.pending FROM tbprofile_campaign pc, tbcampaign c, tbprofile p WHERE p.iduser = c.master AND pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[] { ""+ret.getUserId() });
 			while (campaigns.moveToNext()) {
+				Campaign c = new Campaign(campaigns.getInt(0),campaigns.getInt(1),campaigns.getString(2),campaigns.getString(3),campaigns.getString(4));
 				if (campaigns.getInt(5) == 1) {
-					ret.getCampaigns().add(new Campaign(campaigns.getInt(0),campaigns.getInt(1),campaigns.getString(2),campaigns.getString(3),campaigns.getString(4)));
+					ret.getPendings().add(c);
 				} else {
-					ret.getPendings().add(campaigns.getInt(0));
+					ret.getCampaigns().add(c);
 				}
 			}
 		} else {
@@ -156,10 +157,11 @@ public class Profile {
 			}
 			Cursor campaigns = db.rawQuery("SELECT c.idcampaign _id, c.master, c.name, c.system, p.nickname, pc.pending FROM tbprofile_campaign pc, tbcampaign c, tbprofile p WHERE p.iduser = c.master AND pc.iduser = ? AND pc.idcampaign = c.idcampaign", new String[] { ""+ret.getUserId() });
 			while (campaigns.moveToNext()) {
+				Campaign c = new Campaign(campaigns.getInt(0),campaigns.getInt(1),campaigns.getString(2),campaigns.getString(3),campaigns.getString(4));
 				if (campaigns.getInt(5) == 1) {
-					ret.getCampaigns().add(new Campaign(campaigns.getInt(0),campaigns.getInt(1),campaigns.getString(2),campaigns.getString(3),campaigns.getString(4)));
+					ret.getPendings().add(c);
 				} else {
-					ret.getPendings().add(campaigns.getInt(0));
+					ret.getCampaigns().add(c);
 				}
 			}
 		} else {
@@ -176,7 +178,7 @@ public class Profile {
 	}
 	public boolean isPendingInCampaign(String campaign) {
 		for (int i=0; i<pendings.size(); i++) {
-			if (campaign.equals(""+pendings.get(i))) return true;
+			if (campaign.equals(""+pendings.get(i).getCampaignId())) return true;
 		}
 		return false;
 	}

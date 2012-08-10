@@ -83,7 +83,9 @@ public class ProfileView extends SherlockActivity {
         }
     	
     	ArrayList<Map<String,String>> campaignList = new ArrayList<Map<String,String>>();
-        List<Campaign> userCampaigns = user.getCampaigns();
+        List<Campaign> userCampaigns = new ArrayList<Campaign>();
+        userCampaigns.addAll(user.getCampaigns());
+        userCampaigns.addAll(user.getPendings());
         for (int i=0; i<userCampaigns.size(); i++) {
         	Map<String,String> element = new HashMap<String,String>();
         	element.put("_id", ""+userCampaigns.get(i).getCampaignId());

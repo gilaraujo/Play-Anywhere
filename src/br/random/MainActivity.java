@@ -12,6 +12,7 @@ public class MainActivity extends SherlockActivity {
 	private ImageButton ib_profile;
 	private ImageButton ib_campaign;
 	private ImageButton ib_newgame;
+	private ImageButton ib_createchar;
 	
     /** Called when the activity is first created. */
     @Override
@@ -30,10 +31,16 @@ public class MainActivity extends SherlockActivity {
 				profileButtonClick();
 			}
 		});
-        ib_newgame = (ImageButton)findViewById(R.id.ib_newGame);
+        ib_newgame = (ImageButton)findViewById(R.id.ib_newgame);
         ib_newgame.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				newgameButtonClick();
+			}
+		});
+        ib_createchar = (ImageButton)findViewById(R.id.ib_createchar);
+        ib_createchar.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				createcharButtonClick();
 			}
 		});
     }
@@ -45,5 +52,8 @@ public class MainActivity extends SherlockActivity {
 	};
 	private void newgameButtonClick() {
 		startActivity(new Intent(this,NewGameView.class));
-};
+	};
+	private void createcharButtonClick() {
+		startActivity(new Intent(this,CreateCharView.class));
+	};
 }

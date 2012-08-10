@@ -13,5 +13,15 @@
         <item>LinkedIn</item>
         <item>Skype</item>
         <item>E-mail</item>
-        </string-array>
+    </string-array>
+    <string-array name="vampire_clans">
+        <item>Selecione</item>
+        <item>Brujah</item>
+		<item>Gangrel</item>
+		<item>Malkavian</item>
+		<item>Nosferatu</item>
+		<item>Toreador</item>
+		<item>Tremere</item>
+		<item>Ventrue</item>
+    </string-array>
 </resources>
