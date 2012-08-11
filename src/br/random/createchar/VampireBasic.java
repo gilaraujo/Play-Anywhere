@@ -2,6 +2,8 @@ package br.random.createchar;
 
 import br.random.*;
 import br.random.adapters.*;
+import br.random.bean.VampireChar;
+import br.random.util.Singleton;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -18,6 +20,8 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 public class VampireBasic extends SherlockFragment {
+	
+	private VampireChar currentchar;
 	
 	private EditText et_name;
 	private EditText et_nature;
@@ -37,6 +41,9 @@ public class VampireBasic extends SherlockFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View result=inflater.inflate(R.layout.vampire_basic, container, false);
+		
+		currentchar = (VampireChar)Singleton.getInstance(getActivity().getApplicationContext()).getChar();
+		
 		et_name = (EditText)result.findViewById(R.id.et_name);
 		et_nature = (EditText)result.findViewById(R.id.et_nature);
 		et_demeanor = (EditText)result.findViewById(R.id.et_demeanor);

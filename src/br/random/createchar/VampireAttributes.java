@@ -1,6 +1,8 @@
 package br.random.createchar;
 
 import br.random.*;
+import br.random.bean.VampireChar;
+import br.random.util.Singleton;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,6 +17,9 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockFragment;
 
 public class VampireAttributes extends SherlockFragment {
+	
+	private VampireChar currentchar;
+	
 	private int MIN_STRENGTH = 1;
 	private int MAX_STRENGTH = 5;
 	private int MIN_DEXTERITY = 1;
@@ -33,9 +38,10 @@ public class VampireAttributes extends SherlockFragment {
 	private int MAX_INTELLIGENCE = 5;
 	private int MIN_WITS = 1;
 	private int MAX_WITS = 5;
-	private int PHYSIC_LEFT = 7;
-	private int SOCIAL_LEFT = 5;
-	private int MENTAL_LEFT = 3;
+	
+	private int PHYSIC_LEFT;
+	private int SOCIAL_LEFT;
+	private int MENTAL_LEFT;
 
 	private SeekBar sb_strength;
 	private SeekBar sb_dexterity;
@@ -70,82 +76,47 @@ public class VampireAttributes extends SherlockFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View result=inflater.inflate(R.layout.vampire_attributes, container, false);
 		
+		Singleton singleton = Singleton.getInstance(getActivity().getApplicationContext());
+		currentchar = (VampireChar)singleton.getChar();
+		PHYSIC_LEFT = currentchar.getPhysicLeft();
+		SOCIAL_LEFT = currentchar.getSocialLeft();
+		MENTAL_LEFT = currentchar.getMentalLeft();
+		
 		findViews(result);
 		setEvents();
-		initializeFromBundle(savedInstanceState);
-		initializeTextFields();
+		initializeFields(savedInstanceState);
 
 	    return(result);
 	}
 	private void initializeTextFields() {
-		tv_strength.setText(""+sb_strength.getProgress());
-		tv_dexterity.setText(""+sb_dexterity.getProgress());
-		tv_stamina.setText(""+sb_stamina.getProgress());
-		tv_charisma.setText(""+sb_charisma.getProgress());
-		tv_manipulation.setText(""+sb_manipulation.getProgress());
-		tv_appearance.setText(""+sb_appearance.getProgress());
-		tv_perception.setText(""+sb_perception.getProgress());
-		tv_intelligence.setText(""+sb_intelligence.getProgress());
-		tv_wits.setText(""+sb_wits.getProgress());
+		tv_strength.setText(""+currentchar.getStrength());
+		tv_dexterity.setText(""+currentchar.getDexterity());
+		tv_stamina.setText(""+currentchar.getStamina());
+		tv_charisma.setText(""+currentchar.getCharisma());
+		tv_manipulation.setText(""+currentchar.getManipulation());
+		tv_appearance.setText(""+currentchar.getAppearance());
+		tv_perception.setText(""+currentchar.getPerception());
+		tv_intelligence.setText(""+currentchar.getIntelligence());
+		tv_wits.setText(""+currentchar.getWits());
 		tv_physicleft.setText(""+PHYSIC_LEFT);
 		tv_socialleft.setText(""+SOCIAL_LEFT);
 		tv_mentalleft.setText(""+MENTAL_LEFT);
 	}
-	private void initializeFromBundle(Bundle savedInstanceState) {
-		try {
-			sb_strength.setProgress(savedInstanceState.getInt("str"));
-		} catch (Exception e) {
-			sb_strength.setProgress(MIN_STRENGTH);
-		}
-		try {
-			sb_dexterity.setProgress(savedInstanceState.getInt("dex"));
-		} catch (Exception e) {
-			sb_strength.setProgress(MIN_DEXTERITY);
-		}
-		try {
-			sb_stamina.setProgress(savedInstanceState.getInt("sta"));
-		} catch (Exception e) {
-			sb_strength.setProgress(MIN_STAMINA);
-		}
-		try {
-			sb_charisma.setProgress(savedInstanceState.getInt("cha"));
-		} catch (Exception e) {
-			sb_strength.setProgress(MIN_CHARISMA);
-		}
-		try {
-			sb_manipulation.setProgress(savedInstanceState.getInt("man"));
-		} catch (Exception e) {
-			sb_strength.setProgress(MIN_MANIPULATION);
-		}
-		try {
-			sb_appearance.setProgress(savedInstanceState.getInt("app"));
-		} catch (Exception e) {
-			sb_strength.setProgress(MIN_APPEARANCE);
-		}
-		try {
-			sb_perception.setProgress(savedInstanceState.getInt("per"));
-		} catch (Exception e) {
-			sb_strength.setProgress(MIN_PERCEPTION);
-		}
-		try {
-			sb_intelligence.setProgress(savedInstanceState.getInt("itl"));
-		} catch (Exception e) {
-			sb_strength.setProgress(MIN_INTELLIGENCE);
-		}
-		try {
-			sb_wits.setProgress(savedInstanceState.getInt("wit"));
-		} catch (Exception e) {
-			sb_strength.setProgress(MIN_WITS);
-		}
-		try {
-			PHYSIC_LEFT = savedInstanceState.getInt("phy");
-		} catch (Exception e) { }
-		try {
-			SOCIAL_LEFT = savedInstanceState.getInt("soc");
-		} catch (Exception e) { }
-		try {
-			MENTAL_LEFT = savedInstanceState.getInt("men");
-		} catch (Exception e) { }
+	private void initializeFields(Bundle savedInstanceState) {
+		sb_strength.setProgress(currentchar.getStrength());
+		sb_dexterity.setProgress(currentchar.getDexterity());
+		sb_stamina.setProgress(currentchar.getStamina());
+		sb_charisma.setProgress(currentchar.getCharisma());
+		sb_manipulation.setProgress(currentchar.getManipulation());
+		sb_appearance.setProgress(currentchar.getAppearance());
+		sb_perception.setProgress(currentchar.getPerception());
+		sb_intelligence.setProgress(currentchar.getIntelligence());
+		sb_wits.setProgress(currentchar.getWits());
+		PHYSIC_LEFT = currentchar.getPhysicLeft();
+		SOCIAL_LEFT = currentchar.getSocialLeft();
+		MENTAL_LEFT = currentchar.getMentalLeft();
+		
+		initializeTextFields();
 	}
 	private void setEvents() {
 		sb_strength.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -480,19 +451,19 @@ public class VampireAttributes extends SherlockFragment {
 	}
 	@Override
 	public void onSaveInstanceState(Bundle icicle) {
-		try {
-	    	icicle.putInt("str", sb_strength.getProgress());
-	    	icicle.putInt("dex", sb_dexterity.getProgress());
-	    	icicle.putInt("sta", sb_stamina.getProgress());
-	    	icicle.putInt("cha", sb_charisma.getProgress());
-	    	icicle.putInt("man", sb_manipulation.getProgress());
-	    	icicle.putInt("app", sb_appearance.getProgress());
-	    	icicle.putInt("per", sb_perception.getProgress());
-	    	icicle.putInt("itl", sb_intelligence.getProgress());
-	    	icicle.putInt("wit", sb_wits.getProgress());
-	    	icicle.putInt("phy", PHYSIC_LEFT);
-	    	icicle.putInt("soc", SOCIAL_LEFT);
-	    	icicle.putInt("men", MENTAL_LEFT);
+			try {
+			currentchar.setStrength(sb_strength.getProgress());
+			currentchar.setDexterity(sb_dexterity.getProgress());
+			currentchar.setStamina(sb_stamina.getProgress());
+			currentchar.setCharisma(sb_charisma.getProgress());
+			currentchar.setManipulation(sb_manipulation.getProgress());
+			currentchar.setAppearance(sb_appearance.getProgress());
+			currentchar.setPerception(sb_perception.getProgress());
+			currentchar.setIntelligence(sb_intelligence.getProgress());
+			currentchar.setWits(sb_wits.getProgress());
+			currentchar.setPhysicLeft(PHYSIC_LEFT);
+			currentchar.setSocialLeft(SOCIAL_LEFT);
+			currentchar.setMentalLeft(MENTAL_LEFT);
 		} catch (Exception e) {
 			
 		}

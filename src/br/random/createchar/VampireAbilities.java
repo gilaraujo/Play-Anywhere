@@ -1,6 +1,8 @@
 package br.random.createchar;
 
 import br.random.*;
+import br.random.bean.VampireChar;
+import br.random.util.Singleton;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,8 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import com.actionbarsherlock.app.SherlockFragment;
 
 public class VampireAbilities extends SherlockFragment {
+	
+	private VampireChar currentchar;
 	
 	private int MIN_ACTING = 0;
 	private int MAX_ACTING = 5;
@@ -73,9 +77,10 @@ public class VampireAbilities extends SherlockFragment {
 	private int MAX_POLITICS = 5;
 	private int MIN_SCIENCE= 0;
 	private int MAX_SCIENCE = 5;
-	private int TALENT_LEFT = 13;
-	private int SKILL_LEFT = 9;
-	private int KNOWLEDGE_LEFT = 5;
+	
+	private int TALENT_LEFT;
+	private int SKILL_LEFT;
+	private int KNOWLEDGE_LEFT;
 
 	private SeekBar sb_acting;
 	private SeekBar sb_alertness;
@@ -152,208 +157,91 @@ public class VampireAbilities extends SherlockFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View result=inflater.inflate(R.layout.vampire_abilities, container, false);
 		
+		currentchar = (VampireChar)Singleton.getInstance(getActivity().getApplicationContext()).getChar();
+		
+		Singleton singleton = Singleton.getInstance(getActivity().getApplicationContext());
+		currentchar = (VampireChar)singleton.getChar();
+		TALENT_LEFT = currentchar.getTalentLeft();
+		SKILL_LEFT = currentchar.getSkillLeft();
+		KNOWLEDGE_LEFT = currentchar.getKnowledgeLeft();
+		
 		findViews(result);
 		setEvents();
-		initializeFromBundle(savedInstanceState);
-		initializeTextFields();
+		initializeFields(savedInstanceState);
 		
 	    return(result);
 	}
 	private void initializeTextFields() {
-		tv_acting.setText(""+sb_acting.getProgress());
-		tv_alertness.setText(""+sb_alertness.getProgress());
-		tv_athletics.setText(""+sb_athletics.getProgress());
-		tv_brawl.setText(""+sb_brawl.getProgress());
-		tv_dodge.setText(""+sb_dodge.getProgress());
-		tv_empathy.setText(""+sb_empathy.getProgress());
-		tv_intimidation.setText(""+sb_intimidation.getProgress());
-		tv_leadership.setText(""+sb_leadership.getProgress());
-		tv_streetwise.setText(""+sb_streetwise.getProgress());
-		tv_subterfuge.setText(""+sb_subterfuge.getProgress());
-		tv_animalken.setText(""+sb_animalken.getProgress());
-		tv_drive.setText(""+sb_drive.getProgress());
-		tv_etiquette.setText(""+sb_etiquette.getProgress());
-		tv_firearms.setText(""+sb_firearms.getProgress());
-		tv_melee.setText(""+sb_melee.getProgress());
-		tv_music.setText(""+sb_music.getProgress());
-		tv_repair.setText(""+sb_repair.getProgress());
-		tv_security.setText(""+sb_security.getProgress());
-		tv_stealth.setText(""+sb_stealth.getProgress());
-		tv_survival.setText(""+sb_survival.getProgress());
-		tv_bureaucracy.setText(""+sb_bureaucracy.getProgress());
-		tv_computer.setText(""+sb_computer.getProgress());
-		tv_finance.setText(""+sb_finance.getProgress());
-		tv_investigation.setText(""+sb_investigation.getProgress());
-		tv_law.setText(""+sb_law.getProgress());
-		tv_linguistics.setText(""+sb_linguistics.getProgress());
-		tv_medicine.setText(""+sb_medicine.getProgress());
-		tv_occult.setText(""+sb_occult.getProgress());
-		tv_politics.setText(""+sb_politics.getProgress());
-		tv_science.setText(""+sb_science.getProgress());
+		tv_acting.setText(""+currentchar.getActing());
+		tv_alertness.setText(""+currentchar.getAlertness());
+		tv_athletics.setText(""+currentchar.getAthletics());
+		tv_brawl.setText(""+currentchar.getBrawl());
+		tv_dodge.setText(""+currentchar.getDodge());
+		tv_empathy.setText(""+currentchar.getEmpathy());
+		tv_intimidation.setText(""+currentchar.getIntimidation());
+		tv_leadership.setText(""+currentchar.getLeadership());
+		tv_streetwise.setText(""+currentchar.getStreetwise());
+		tv_subterfuge.setText(""+currentchar.getSubterfuge());
+		tv_animalken.setText(""+currentchar.getAnimalken());
+		tv_drive.setText(""+currentchar.getDrive());
+		tv_etiquette.setText(""+currentchar.getEtiquette());
+		tv_firearms.setText(""+currentchar.getFirearms());
+		tv_melee.setText(""+currentchar.getMelee());
+		tv_music.setText(""+currentchar.getMusic());
+		tv_repair.setText(""+currentchar.getRepair());
+		tv_security.setText(""+currentchar.getSecurity());
+		tv_stealth.setText(""+currentchar.getStealth());
+		tv_survival.setText(""+currentchar.getSurvival());
+		tv_bureaucracy.setText(""+currentchar.getBureaucracy());
+		tv_computer.setText(""+currentchar.getComputer());
+		tv_finance.setText(""+currentchar.getFinance());
+		tv_investigation.setText(""+currentchar.getInvestigation());
+		tv_law.setText(""+currentchar.getLaw());
+		tv_linguistics.setText(""+currentchar.getLinguistics());
+		tv_medicine.setText(""+currentchar.getMedicine());
+		tv_occult.setText(""+currentchar.getOccult());
+		tv_politics.setText(""+currentchar.getPolitics());
+		tv_science.setText(""+currentchar.getScience());
 		tv_talentleft.setText(""+TALENT_LEFT);
 		tv_skillleft.setText(""+SKILL_LEFT);
 		tv_knowledgeleft.setText(""+KNOWLEDGE_LEFT);
 	}
-	private void initializeFromBundle(Bundle savedInstanceState) {
-		try {
-			sb_acting.setProgress(savedInstanceState.getInt("act"));
-		} catch (Exception e) {
-			sb_acting.setProgress(MIN_ACTING);
-		}
-		try {
-			sb_alertness.setProgress(savedInstanceState.getInt("ale"));
-		} catch (Exception e) {
-			sb_alertness.setProgress(MIN_ALERTNESS);
-		}
-		try {
-			sb_athletics.setProgress(savedInstanceState.getInt("ath"));
-		} catch (Exception e) {
-			sb_athletics.setProgress(MIN_ATHLETICS);
-		}
-		try {
-			sb_brawl.setProgress(savedInstanceState.getInt("bra"));
-		} catch (Exception e) {
-			sb_brawl.setProgress(MIN_BRAWL);
-		}
-		try {
-			sb_dodge.setProgress(savedInstanceState.getInt("dod"));
-		} catch (Exception e) {
-			sb_dodge.setProgress(MIN_DODGE);
-		}
-		try {
-			sb_empathy.setProgress(savedInstanceState.getInt("emp"));
-		} catch (Exception e) {
-			sb_empathy.setProgress(MIN_EMPATHY);
-		}
-		try {
-			sb_intimidation.setProgress(savedInstanceState.getInt("itm"));
-		} catch (Exception e) {
-			sb_intimidation.setProgress(MIN_INTIMIDATION);
-		}
-		try {
-			sb_leadership.setProgress(savedInstanceState.getInt("lea"));
-		} catch (Exception e) {
-			sb_leadership.setProgress(MIN_LEADERSHIP);
-		}
-		try {
-			sb_streetwise.setProgress(savedInstanceState.getInt("str"));
-		} catch (Exception e) {
-			sb_streetwise.setProgress(MIN_STREETWISE);
-		}
-		try {
-			sb_subterfuge.setProgress(savedInstanceState.getInt("sub"));
-		} catch (Exception e) {
-			sb_subterfuge.setProgress(MIN_SUBTERFUGE);
-		}
-		try {
-			sb_animalken.setProgress(savedInstanceState.getInt("ani"));
-		} catch (Exception e) {
-			sb_animalken.setProgress(MIN_ANIMALKEN);
-		}
-		try {
-			sb_drive.setProgress(savedInstanceState.getInt("dri"));
-		} catch (Exception e) {
-			sb_drive.setProgress(MIN_DRIVE);
-		}
-		try {
-			sb_etiquette.setProgress(savedInstanceState.getInt("eti"));
-		} catch (Exception e) {
-			sb_etiquette.setProgress(MIN_ETIQUETTE);
-		}
-		try {
-			sb_firearms.setProgress(savedInstanceState.getInt("fir"));
-		} catch (Exception e) {
-			sb_firearms.setProgress(MIN_FIREARMS);
-		}
-		try {
-			sb_melee.setProgress(savedInstanceState.getInt("mel"));
-		} catch (Exception e) {
-			sb_melee.setProgress(MIN_MELEE);
-		}
-		try {
-			sb_music.setProgress(savedInstanceState.getInt("mus"));
-		} catch (Exception e) {
-			sb_music.setProgress(MIN_MUSIC);
-		}
-		try {
-			sb_repair.setProgress(savedInstanceState.getInt("rep"));
-		} catch (Exception e) {
-			sb_repair.setProgress(MIN_REPAIR);
-		}
-		try {
-			sb_security.setProgress(savedInstanceState.getInt("sec"));
-		} catch (Exception e) {
-			sb_security.setProgress(MIN_SECURITY);
-		}
-		try {
-			sb_stealth.setProgress(savedInstanceState.getInt("ste"));
-		} catch (Exception e) {
-			sb_stealth.setProgress(MIN_STEALTH);
-		}
-		try {
-			sb_survival.setProgress(savedInstanceState.getInt("sur"));
-		} catch (Exception e) {
-			sb_survival.setProgress(MIN_SURVIVAL);
-		}
-		try {
-			sb_bureaucracy.setProgress(savedInstanceState.getInt("bur"));
-		} catch (Exception e) {
-			sb_bureaucracy.setProgress(MIN_BUREAUCRACY);
-		}
-		try {
-			sb_computer.setProgress(savedInstanceState.getInt("com"));
-		} catch (Exception e) {
-			sb_computer.setProgress(MIN_COMPUTER);
-		}
-		try {
-			sb_finance.setProgress(savedInstanceState.getInt("fin"));
-		} catch (Exception e) {
-			sb_finance.setProgress(MIN_FINANCE);
-		}
-		try {
-			sb_investigation.setProgress(savedInstanceState.getInt("inv"));
-		} catch (Exception e) {
-			sb_investigation.setProgress(MIN_INVESTIGATION);
-		}
-		try {
-			sb_law.setProgress(savedInstanceState.getInt("law"));
-		} catch (Exception e) {
-			sb_law.setProgress(MIN_LAW);
-		}
-		try {
-			sb_linguistics.setProgress(savedInstanceState.getInt("lin"));
-		} catch (Exception e) {
-			sb_linguistics.setProgress(MIN_LINGUISTICS);
-		}
-		try {
-			sb_medicine.setProgress(savedInstanceState.getInt("med"));
-		} catch (Exception e) {
-			sb_medicine.setProgress(MIN_MEDICINE);
-		}
-		try {
-			sb_occult.setProgress(savedInstanceState.getInt("occ"));
-		} catch (Exception e) {
-			sb_occult.setProgress(MIN_OCCULT);
-		}
-		try {
-			sb_politics.setProgress(savedInstanceState.getInt("pol"));
-		} catch (Exception e) {
-			sb_politics.setProgress(MIN_POLITICS);
-		}
-		try {
-			sb_science.setProgress(savedInstanceState.getInt("sci"));
-		} catch (Exception e) {
-			sb_science.setProgress(MIN_SCIENCE);
-		}
-		try {
-			TALENT_LEFT = savedInstanceState.getInt("tal");
-		} catch (Exception e) { }
-		try {
-			SKILL_LEFT = savedInstanceState.getInt("ski");
-		} catch (Exception e) { }
-		try {
-			KNOWLEDGE_LEFT = savedInstanceState.getInt("kno");
-		} catch (Exception e) { }
+	private void initializeFields(Bundle savedInstanceState) {
+		sb_acting.setProgress(currentchar.getActing());
+		sb_alertness.setProgress(currentchar.getAlertness());
+		sb_athletics.setProgress(currentchar.getAthletics());
+		sb_brawl.setProgress(currentchar.getBrawl());
+		sb_dodge.setProgress(currentchar.getDodge());
+		sb_empathy.setProgress(currentchar.getEmpathy());
+		sb_intimidation.setProgress(currentchar.getIntimidation());
+		sb_leadership.setProgress(currentchar.getLeadership());
+		sb_streetwise.setProgress(currentchar.getStreetwise());
+		sb_subterfuge.setProgress(currentchar.getSubterfuge());
+		sb_animalken.setProgress(currentchar.getAnimalken());
+		sb_drive.setProgress(currentchar.getDrive());
+		sb_etiquette.setProgress(currentchar.getEtiquette());
+		sb_firearms.setProgress(currentchar.getFirearms());
+		sb_melee.setProgress(currentchar.getMelee());
+		sb_music.setProgress(currentchar.getMusic());
+		sb_repair.setProgress(currentchar.getRepair());
+		sb_security.setProgress(currentchar.getSecurity());
+		sb_stealth.setProgress(currentchar.getStealth());
+		sb_survival.setProgress(currentchar.getSurvival());
+		sb_bureaucracy.setProgress(currentchar.getBureaucracy());
+		sb_computer.setProgress(currentchar.getComputer());
+		sb_finance.setProgress(currentchar.getFinance());
+		sb_investigation.setProgress(currentchar.getInvestigation());
+		sb_law.setProgress(currentchar.getLaw());
+		sb_linguistics.setProgress(currentchar.getLinguistics());
+		sb_medicine.setProgress(currentchar.getMedicine());
+		sb_occult.setProgress(currentchar.getOccult());
+		sb_politics.setProgress(currentchar.getPolitics());
+		sb_science.setProgress(currentchar.getScience());
+		TALENT_LEFT = currentchar.getTalentLeft();
+		SKILL_LEFT = currentchar.getSkillLeft();
+		KNOWLEDGE_LEFT = currentchar.getKnowledgeLeft();
+		
+		initializeTextFields();
 	}
 	private void findViews(View result) {
 		sb_acting = (SeekBar)result.findViewById(R.id.sb_acting);
@@ -1445,39 +1333,39 @@ public class VampireAbilities extends SherlockFragment {
 	@Override
 	public void onSaveInstanceState(Bundle icicle) {
 		try {
-	    	icicle.putInt("act", sb_acting.getProgress());
-	    	icicle.putInt("ale", sb_alertness.getProgress());
-	    	icicle.putInt("ath", sb_athletics.getProgress());
-	    	icicle.putInt("bra", sb_brawl.getProgress());
-	    	icicle.putInt("dod", sb_dodge.getProgress());
-	    	icicle.putInt("emp", sb_empathy.getProgress());
-	    	icicle.putInt("itm", sb_intimidation.getProgress());
-	    	icicle.putInt("lea", sb_leadership.getProgress());
-	    	icicle.putInt("str", sb_streetwise.getProgress());
-	    	icicle.putInt("sub", sb_subterfuge.getProgress());
-	    	icicle.putInt("ani", sb_animalken.getProgress());
-	    	icicle.putInt("dri", sb_drive.getProgress());
-	    	icicle.putInt("eti", sb_etiquette.getProgress());
-	    	icicle.putInt("fir", sb_firearms.getProgress());
-	    	icicle.putInt("mel", sb_melee.getProgress());
-	    	icicle.putInt("mus", sb_music.getProgress());
-	    	icicle.putInt("rep", sb_repair.getProgress());
-	    	icicle.putInt("sec", sb_security.getProgress());
-	    	icicle.putInt("ste", sb_stealth.getProgress());
-	    	icicle.putInt("sur", sb_survival.getProgress());
-	    	icicle.putInt("bur", sb_bureaucracy.getProgress());
-	    	icicle.putInt("com", sb_computer.getProgress());
-	    	icicle.putInt("fin", sb_finance.getProgress());
-	    	icicle.putInt("inv", sb_investigation.getProgress());
-	    	icicle.putInt("law", sb_law.getProgress());
-	    	icicle.putInt("lin", sb_linguistics.getProgress());
-	    	icicle.putInt("med", sb_medicine.getProgress());
-	    	icicle.putInt("occ", sb_occult.getProgress());
-	    	icicle.putInt("pol", sb_politics.getProgress());
-	    	icicle.putInt("sci", sb_science.getProgress());
-	    	icicle.putInt("tal", TALENT_LEFT);
-	    	icicle.putInt("ski", SKILL_LEFT);
-	    	icicle.putInt("kno", KNOWLEDGE_LEFT);
+			currentchar.setActing(sb_acting.getProgress());
+			currentchar.setAlertness(sb_alertness.getProgress());
+			currentchar.setAthletics(sb_athletics.getProgress());
+			currentchar.setBrawl(sb_brawl.getProgress());
+			currentchar.setDodge(sb_dodge.getProgress());
+			currentchar.setEmpathy(sb_empathy.getProgress());
+			currentchar.setIntimidation(sb_intimidation.getProgress());
+			currentchar.setLeadership(sb_leadership.getProgress());
+			currentchar.setStreetwise(sb_streetwise.getProgress());
+			currentchar.setSubterfuge(sb_subterfuge.getProgress());
+			currentchar.setAnimalken(sb_animalken.getProgress());
+			currentchar.setDrive(sb_drive.getProgress());
+			currentchar.setEtiquette(sb_etiquette.getProgress());
+			currentchar.setFirearms(sb_firearms.getProgress());
+			currentchar.setMelee(sb_melee.getProgress());
+			currentchar.setMusic(sb_music.getProgress());
+			currentchar.setRepair(sb_repair.getProgress());
+			currentchar.setSecurity(sb_security.getProgress());
+			currentchar.setStealth(sb_stealth.getProgress());
+			currentchar.setSurvival(sb_survival.getProgress());
+			currentchar.setBureaucracy(sb_bureaucracy.getProgress());
+			currentchar.setComputer(sb_computer.getProgress());
+			currentchar.setFinance(sb_finance.getProgress());
+			currentchar.setInvestigation(sb_investigation.getProgress());
+			currentchar.setLaw(sb_law.getProgress());
+			currentchar.setLinguistics(sb_linguistics.getProgress());
+			currentchar.setMedicine(sb_medicine.getProgress());
+			currentchar.setOccult(sb_occult.getProgress());
+			currentchar.setPolitics(sb_politics.getProgress());
+			currentchar.setScience(sb_science.getProgress());
+			currentchar.setTalentLeft(TALENT_LEFT);
+			currentchar.setSkillLeft(SKILL_LEFT);
+			currentchar.setKnowledgeLeft(KNOWLEDGE_LEFT);
 		} catch (Exception e) {
 			
 		}

@@ -1,12 +1,15 @@
 package br.random.createchar;
 
 import br.random.*;
+import br.random.bean.VampireChar;
+import br.random.util.Singleton;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -15,6 +18,9 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockFragment;
 
 public class VampireAdvantages extends SherlockFragment {
+	
+	private VampireChar currentchar;
+	
 	private int MIN_DISCIPLINE01 = 0;
 	private int MAX_DISCIPLINE01 = 5;
 	private int MIN_DISCIPLINE02 = 0;
@@ -68,6 +74,16 @@ public class VampireAdvantages extends SherlockFragment {
 	private TextView tv_background03;
 	private TextView tv_background04;
 	private TextView tv_background05;
+	private EditText et_discipline01;
+	private EditText et_discipline02;
+	private EditText et_discipline03;
+	private EditText et_discipline04;
+	private EditText et_discipline05;
+	private EditText et_background01;
+	private EditText et_background02;
+	private EditText et_background03;
+	private EditText et_background04;
+	private EditText et_background05;
 	private TextView tv_conscience;
 	private TextView tv_selfcontrol;
 	private TextView tv_courage;
@@ -86,107 +102,65 @@ public class VampireAdvantages extends SherlockFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View result=inflater.inflate(R.layout.vampire_advantages, container, false);
 		
+		Singleton singleton = Singleton.getInstance(getActivity().getApplicationContext());
+		currentchar = (VampireChar)singleton.getChar();
+		DISCIPLINE_LEFT = currentchar.getDisciplineLeft();
+		BACKGROUND_LEFT = currentchar.getBackgroundLeft();
+		VIRTUE_LEFT = currentchar.getVirtueLeft();
+		
 		findViews(result);
 		setEvents();
-		initializeFromBundle(savedInstanceState);
-		initializeTextFields();
-
+		initializeFields(savedInstanceState);
+		
 	    return(result);
 	}
 	private void initializeTextFields() {
-		tv_discipline01.setText(""+sb_discipline01.getProgress());
-		tv_discipline02.setText(""+sb_discipline02.getProgress());
-		tv_discipline03.setText(""+sb_discipline03.getProgress());
-		tv_discipline04.setText(""+sb_discipline04.getProgress());
-		tv_discipline05.setText(""+sb_discipline05.getProgress());
-		tv_background01.setText(""+sb_background01.getProgress());
-		tv_background02.setText(""+sb_background02.getProgress());
-		tv_background03.setText(""+sb_background03.getProgress());
-		tv_background04.setText(""+sb_background04.getProgress());
-		tv_background05.setText(""+sb_background05.getProgress());
-		tv_conscience.setText(""+sb_conscience.getProgress());
-		tv_selfcontrol.setText(""+sb_selfcontrol.getProgress());
-		tv_courage.setText(""+sb_courage.getProgress());
+		tv_discipline01.setText(""+currentchar.getDiscipline1val());
+		tv_discipline02.setText(""+currentchar.getDiscipline2val());
+		tv_discipline03.setText(""+currentchar.getDiscipline3val());
+		tv_discipline04.setText(""+currentchar.getDiscipline4val());
+		tv_discipline05.setText(""+currentchar.getDiscipline5val());
+		tv_background01.setText(""+currentchar.getBackground1val());
+		tv_background02.setText(""+currentchar.getBackground2val());
+		tv_background03.setText(""+currentchar.getBackground3val());
+		tv_background04.setText(""+currentchar.getBackground4val());
+		tv_background05.setText(""+currentchar.getBackground5val());
+		et_discipline01.setText(currentchar.getDiscipline1());
+		et_discipline02.setText(currentchar.getDiscipline2());
+		et_discipline03.setText(currentchar.getDiscipline3());
+		et_discipline04.setText(currentchar.getDiscipline4());
+		et_discipline05.setText(currentchar.getDiscipline5());
+		et_background01.setText(currentchar.getBackground1());
+		et_background02.setText(currentchar.getBackground2());
+		et_background03.setText(currentchar.getBackground3());
+		et_background04.setText(currentchar.getBackground4());
+		et_background05.setText(currentchar.getBackground5());
+		tv_conscience.setText(""+currentchar.getConscience());
+		tv_selfcontrol.setText(""+currentchar.getSelfcontrol());
+		tv_courage.setText(""+currentchar.getCourage());
 		tv_disciplineleft.setText(""+DISCIPLINE_LEFT);
 		tv_backgroundleft.setText(""+BACKGROUND_LEFT);
 		tv_virtueleft.setText(""+VIRTUE_LEFT);
 	}
-	private void initializeFromBundle(Bundle savedInstanceState) {
-		try {
-			sb_discipline01.setProgress(savedInstanceState.getInt("d01"));
-		} catch (Exception e) {
-			sb_discipline01.setProgress(MIN_DISCIPLINE01);
-		}
-		try {
-			sb_discipline02.setProgress(savedInstanceState.getInt("d02"));
-		} catch (Exception e) {
-			sb_discipline02.setProgress(MIN_DISCIPLINE02);
-		}
-		try {
-			sb_discipline03.setProgress(savedInstanceState.getInt("d03"));
-		} catch (Exception e) {
-			sb_discipline03.setProgress(MIN_DISCIPLINE03);
-		}
-		try {
-			sb_discipline04.setProgress(savedInstanceState.getInt("d04"));
-		} catch (Exception e) {
-			sb_discipline04.setProgress(MIN_DISCIPLINE04);
-		}
-		try {
-			sb_discipline05.setProgress(savedInstanceState.getInt("d05"));
-		} catch (Exception e) {
-			sb_discipline05.setProgress(MIN_DISCIPLINE05);
-		}
-		try {
-			sb_background01.setProgress(savedInstanceState.getInt("b01"));
-		} catch (Exception e) {
-			sb_background01.setProgress(MIN_BACKGROUND01);
-		}
-		try {
-			sb_background02.setProgress(savedInstanceState.getInt("b02"));
-		} catch (Exception e) {
-			sb_background02.setProgress(MIN_BACKGROUND02);
-		}
-		try {
-			sb_background03.setProgress(savedInstanceState.getInt("b03"));
-		} catch (Exception e) {
-			sb_background03.setProgress(MIN_BACKGROUND03);
-		}
-		try {
-			sb_background04.setProgress(savedInstanceState.getInt("b04"));
-		} catch (Exception e) {
-			sb_background04.setProgress(MIN_BACKGROUND04);
-		}
-		try {
-			sb_background05.setProgress(savedInstanceState.getInt("b05"));
-		} catch (Exception e) {
-			sb_background05.setProgress(MIN_BACKGROUND05);
-		}
-		try {
-			sb_conscience.setProgress(savedInstanceState.getInt("con"));
-		} catch (Exception e) {
-			sb_conscience.setProgress(MIN_CONSCIENCE);
-		}
-		try {
-			sb_selfcontrol.setProgress(savedInstanceState.getInt("sel"));
-		} catch (Exception e) {
-			sb_selfcontrol.setProgress(MIN_SELFCONTROL);
-		}
-		try {
-			sb_courage.setProgress(savedInstanceState.getInt("cou"));
-		} catch (Exception e) {
-			sb_courage.setProgress(MIN_COURAGE);
-		}
-
-		try {
-			DISCIPLINE_LEFT = savedInstanceState.getInt("dis");
-		} catch (Exception e) { }
-		try {
-			BACKGROUND_LEFT = savedInstanceState.getInt("bac");
-		} catch (Exception e) { }
-		try {
-			VIRTUE_LEFT = savedInstanceState.getInt("vir");
-		} catch (Exception e) { }
+	private void initializeFields(Bundle savedInstanceState) {
+		sb_discipline01.setProgress(currentchar.getDiscipline1val());
+		sb_discipline02.setProgress(currentchar.getDiscipline2val());
+		sb_discipline03.setProgress(currentchar.getDiscipline3val());
+		sb_discipline04.setProgress(currentchar.getDiscipline4val());
+		sb_discipline05.setProgress(currentchar.getDiscipline5val());
+		sb_background01.setProgress(currentchar.getBackground1val());
+		sb_background02.setProgress(currentchar.getBackground2val());
+		sb_background03.setProgress(currentchar.getBackground3val());
+		sb_background04.setProgress(currentchar.getBackground4val());
+		sb_background05.setProgress(currentchar.getBackground5val());
+		sb_conscience.setProgress(currentchar.getConscience());
+		sb_selfcontrol.setProgress(currentchar.getSelfcontrol());
+		sb_courage.setProgress(currentchar.getCourage());
+		DISCIPLINE_LEFT = currentchar.getDisciplineLeft();
+		BACKGROUND_LEFT = currentchar.getBackgroundLeft();
+		VIRTUE_LEFT = currentchar.getVirtueLeft();
+	
+		initializeTextFields();
 	}
 	private void setEvents() {
 		sb_discipline01.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -646,6 +620,16 @@ public class VampireAdvantages extends SherlockFragment {
 		sb_conscience = (SeekBar)result.findViewById(R.id.sb_conscience);
 		sb_selfcontrol = (SeekBar)result.findViewById(R.id.sb_selfcontrol);
 		sb_courage = (SeekBar)result.findViewById(R.id.sb_courage);
+		et_discipline01 = (EditText)result.findViewById(R.id.et_discipline01);
+		et_discipline02 = (EditText)result.findViewById(R.id.et_discipline02);
+		et_discipline03 = (EditText)result.findViewById(R.id.et_discipline03);
+		et_discipline04 = (EditText)result.findViewById(R.id.et_discipline04);
+		et_discipline05 = (EditText)result.findViewById(R.id.et_discipline05);
+		et_background01 = (EditText)result.findViewById(R.id.et_background01);
+		et_background02 = (EditText)result.findViewById(R.id.et_background02);
+		et_background03 = (EditText)result.findViewById(R.id.et_background03);
+		et_background04 = (EditText)result.findViewById(R.id.et_background04);
+		et_background05 = (EditText)result.findViewById(R.id.et_background05);
 		tv_discipline01 = (TextView)result.findViewById(R.id.tv_discipline01);
 		tv_discipline02 = (TextView)result.findViewById(R.id.tv_discipline02);
 		tv_discipline03 = (TextView)result.findViewById(R.id.tv_discipline03);
@@ -666,22 +650,32 @@ public class VampireAdvantages extends SherlockFragment {
 	@Override
 	public void onSaveInstanceState(Bundle icicle) {
 		try {
-	    	icicle.putInt("d01", sb_discipline01.getProgress());
-	    	icicle.putInt("d02", sb_discipline02.getProgress());
-	    	icicle.putInt("d03", sb_discipline03.getProgress());
-	    	icicle.putInt("d04", sb_discipline04.getProgress());
-	    	icicle.putInt("d05", sb_discipline05.getProgress());
-	    	icicle.putInt("b01", sb_background01.getProgress());
-	    	icicle.putInt("b02", sb_background02.getProgress());
-	    	icicle.putInt("b03", sb_background03.getProgress());
-	    	icicle.putInt("b04", sb_background04.getProgress());
-	    	icicle.putInt("b05", sb_background05.getProgress());
-	    	icicle.putInt("con", sb_conscience.getProgress());
-	    	icicle.putInt("sel", sb_selfcontrol.getProgress());
-	    	icicle.putInt("cou", sb_courage.getProgress());
-	    	icicle.putInt("dis", DISCIPLINE_LEFT);
-	    	icicle.putInt("bac", BACKGROUND_LEFT);
-	    	icicle.putInt("vir", VIRTUE_LEFT);
+			currentchar.setDiscipline1val(sb_discipline01.getProgress());
+			currentchar.setDiscipline2val(sb_discipline02.getProgress());
+			currentchar.setDiscipline3val(sb_discipline03.getProgress());
+			currentchar.setDiscipline4val(sb_discipline04.getProgress());
+			currentchar.setDiscipline5val(sb_discipline05.getProgress());
+			currentchar.setBackground1val(sb_background01.getProgress());
+			currentchar.setBackground2val(sb_background02.getProgress());
+			currentchar.setBackground3val(sb_background03.getProgress());
+			currentchar.setBackground4val(sb_background04.getProgress());
+			currentchar.setBackground5val(sb_background05.getProgress());
+			currentchar.setDiscipline1(et_discipline01.getText().toString());
+			currentchar.setDiscipline2(et_discipline02.getText().toString());
+			currentchar.setDiscipline3(et_discipline03.getText().toString());
+			currentchar.setDiscipline4(et_discipline04.getText().toString());
+			currentchar.setDiscipline5(et_discipline05.getText().toString());
+			currentchar.setBackground1(et_background01.getText().toString());
+			currentchar.setBackground2(et_background02.getText().toString());
+			currentchar.setBackground3(et_background03.getText().toString());
+			currentchar.setBackground4(et_background04.getText().toString());
+			currentchar.setBackground5(et_background05.getText().toString());
+			currentchar.setConscience(sb_conscience.getProgress());
+			currentchar.setSelfcontrol(sb_selfcontrol.getProgress());
+			currentchar.setCourage(sb_courage.getProgress());
+			currentchar.setDisciplineLeft(DISCIPLINE_LEFT);
+			currentchar.setBackgroundLeft(BACKGROUND_LEFT);
+			currentchar.setVirtueLeft(VIRTUE_LEFT);
 		} catch (Exception e) {
 			
 		}
