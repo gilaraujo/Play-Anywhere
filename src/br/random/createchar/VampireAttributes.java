@@ -11,6 +11,7 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 public class VampireAttributes extends SherlockFragment {
 	
 	private VampireChar currentchar;
+	private View old;
 	
 	private int MIN_STRENGTH = 1;
 	private int MAX_STRENGTH = 5;
@@ -74,8 +76,15 @@ public class VampireAttributes extends SherlockFragment {
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View result=inflater.inflate(R.layout.vampire_attributes, container, false);
-		
+		if (container == null) return null;
+		View result;
+		if (old != null) {
+			((FrameLayout)old.getParent()).removeView(old);
+			result = old;
+		} else {
+			result=inflater.inflate(R.layout.vampire_attributes, container, false);
+			old = result;
+		}
 		Singleton singleton = Singleton.getInstance(getActivity().getApplicationContext());
 		currentchar = (VampireChar)singleton.getChar();
 		PHYSIC_LEFT = currentchar.getPhysicLeft();

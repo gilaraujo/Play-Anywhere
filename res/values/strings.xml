@@ -100,4 +100,12 @@
     <string name="conscience">Consciência</string>
     <string name="selfcontrol">Auto-Controle</string>
     <string name="courage">Coragem</string>
+    <string name="traits">Outras Características</string>
+    <string name="humanity">Humanidade</string>
+    <string name="willpower">Força de Vontade</string>
+    <string name="bloodpool">Pontos de Sangue</string>
+    <string name="combat">Combate</string>
+    <string name="weapon">Arma</string>
+    <string name="difficulty">Dificuldade</string>
+    <string name="damage">Dano</string>
 </resources>

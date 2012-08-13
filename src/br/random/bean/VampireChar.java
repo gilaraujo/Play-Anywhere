@@ -83,7 +83,7 @@ public class VampireChar extends Char {
 	private int weapon1diff;
 	private int weapon1dam;
 	private String weapon2;
-	private int weapon2idff;
+	private int weapon2diff;
 	private int weapon2dam;
 	private String weapon3;
 	private int weapon3diff;
@@ -108,6 +108,8 @@ public class VampireChar extends Char {
 	public VampireChar() {
 		strength = dexterity = stamina = charisma = manipulation = appearance = perception = intelligence = wits = 1;
 		background1 = background2 = background3 = background4 = background5 = discipline1 = discipline2 = discipline3 = discipline4 = discipline5 = "";
+		clan = "";
+		generation = 13;
 		PHYSIC_LEFT = 7;
 		SOCIAL_LEFT = 5;
 		MENTAL_LEFT = 3;
@@ -211,7 +213,7 @@ public class VampireChar extends Char {
 	public int getWeapon1diff() { return weapon1diff; }
 	public int getWeapon1dam() { return weapon1dam; }
 	public String getWeapon2() { return weapon2; }
-	public int getWeapon2idff() { return weapon2idff; }
+	public int getWeapon2diff() { return weapon2diff; }
 	public int getWeapon2dam() { return weapon2dam; }
 	public String getWeapon3() { return weapon3; }
 	public int getWeapon3diff() { return weapon3diff; }
@@ -305,7 +307,7 @@ public class VampireChar extends Char {
 	public void setWeapon1diff(int weapon1diff) { this.weapon1diff = weapon1diff; }
 	public void setWeapon1dam(int weapon1dam) { this.weapon1dam = weapon1dam; }
 	public void setWeapon2(String weapon2) { this.weapon2 = weapon2; }
-	public void setWeapon2idff(int weapon2idff) { this.weapon2idff = weapon2idff; }
+	public void setWeapon2diff(int weapon2diff) { this.weapon2diff = weapon2diff; }
 	public void setWeapon2dam(int weapon2dam) { this.weapon2dam = weapon2dam; }
 	public void setWeapon3(String weapon3) { this.weapon3 = weapon3; }
 	public void setWeapon3diff(int weapon3diff) { this.weapon3diff = weapon3diff; }

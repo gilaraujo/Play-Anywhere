@@ -1,14 +1,14 @@
 package br.random.adapters;
 
-import br.random.createchar.VampireAdvantages;
-import br.random.createchar.VampireAttributes;
-import br.random.createchar.VampireBasic;
-import br.random.createchar.VampireAbilities;
-
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import br.random.createchar.VampireAbilities;
+import br.random.createchar.VampireAdvantages;
+import br.random.createchar.VampireAttributes;
+import br.random.createchar.VampireBasic;
+import br.random.createchar.VampireOther;
 
 public class VampireAdapter extends FragmentPagerAdapter {
 Context ctxt=null;
@@ -20,7 +20,7 @@ public VampireAdapter(Context ctxt, FragmentManager mgr) {
 
 @Override
 public int getCount() {
-  return(4);
+  return(5);
 }
 
 @Override
@@ -30,6 +30,7 @@ public Fragment getItem(int position) {
 		case 1: return VampireAttributes.newInstance();
 		case 2: return VampireAbilities.newInstance();
 		case 3: return VampireAdvantages.newInstance();
+		case 4: return VampireOther.newInstance();
 		default: return VampireBasic.newInstance();
 	}
 }
@@ -41,6 +42,7 @@ public String getPageTitle(int position) {
 		case 1: return VampireAttributes.getTitle();
 		case 2: return VampireAbilities.getTitle();
 		case 3: return VampireAdvantages.getTitle();
+		case 4: return VampireOther.getTitle();
 		default: return "Error";
 	}
 }

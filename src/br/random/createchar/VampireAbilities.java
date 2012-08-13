@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -16,6 +17,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 public class VampireAbilities extends SherlockFragment {
 	
 	private VampireChar currentchar;
+	private View old;
 	
 	private int MIN_ACTING = 0;
 	private int MAX_ACTING = 5;
@@ -155,10 +157,15 @@ public class VampireAbilities extends SherlockFragment {
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View result=inflater.inflate(R.layout.vampire_abilities, container, false);
-		
-		currentchar = (VampireChar)Singleton.getInstance(getActivity().getApplicationContext()).getChar();
-		
+		if (container == null) return null;
+		View result;
+		if (old != null) {
+			((FrameLayout)old.getParent()).removeView(old);
+			result = old;
+		} else {
+			result=inflater.inflate(R.layout.vampire_abilities, container, false);
+			old = result;
+		}
 		Singleton singleton = Singleton.getInstance(getActivity().getApplicationContext());
 		currentchar = (VampireChar)singleton.getChar();
 		TALENT_LEFT = currentchar.getTalentLeft();

@@ -1,25 +1,24 @@
 package br.random.createchar;
 
-import br.random.*;
-import br.random.bean.VampireChar;
-import br.random.util.Singleton;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
+import br.random.R;
+import br.random.bean.VampireChar;
+import br.random.util.Singleton;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
 public class VampireAdvantages extends SherlockFragment {
 	
 	private VampireChar currentchar;
+	private View old;
 	
 	private int MIN_DISCIPLINE01 = 0;
 	private int MAX_DISCIPLINE01 = 5;
@@ -93,6 +92,7 @@ public class VampireAdvantages extends SherlockFragment {
 	
 	public static VampireAdvantages newInstance() {
 		VampireAdvantages frag=new VampireAdvantages();
+		frag.old = null;
 		return(frag);
 	}
 	public static String getTitle() {
@@ -100,8 +100,15 @@ public class VampireAdvantages extends SherlockFragment {
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View result=inflater.inflate(R.layout.vampire_advantages, container, false);
-		
+		if (container == null) return null;
+		View result;
+		if (old != null) {
+			((FrameLayout)old.getParent()).removeView(old);
+			result = old;
+		} else {
+			result=inflater.inflate(R.layout.vampire_advantages, container, false);
+			old = result;
+		}
 		Singleton singleton = Singleton.getInstance(getActivity().getApplicationContext());
 		currentchar = (VampireChar)singleton.getChar();
 		DISCIPLINE_LEFT = currentchar.getDisciplineLeft();
@@ -112,7 +119,7 @@ public class VampireAdvantages extends SherlockFragment {
 		setEvents();
 		initializeFields(savedInstanceState);
 		
-	    return(result);
+		return(result);
 	}
 	private void initializeTextFields() {
 		tv_discipline01.setText(""+currentchar.getDiscipline1val());
@@ -646,6 +653,18 @@ public class VampireAdvantages extends SherlockFragment {
 		tv_disciplineleft = (TextView)result.findViewById(R.id.tv_disciplineleft);
 		tv_backgroundleft = (TextView)result.findViewById(R.id.tv_backgroundleft);
 		tv_virtueleft = (TextView)result.findViewById(R.id.tv_virtueleft);
+	}
+	@Override
+	public void onResume() {
+		super.onResume();
+		et_discipline01.setText(currentchar.getDiscipline1());
+		et_discipline02.setText(currentchar.getDiscipline2());
+		et_discipline03.setText(currentchar.getDiscipline3());
+	}
+	@Override
+	public void onPause() {
+		super.onPause();
+		onSaveInstanceState(new Bundle());
 	}
 	@Override
 	public void onSaveInstanceState(Bundle icicle) {

@@ -1,27 +1,25 @@
 package br.random.createchar;
 
-import br.random.*;
-import br.random.adapters.*;
-import br.random.bean.VampireChar;
-import br.random.util.Singleton;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
+import br.random.R;
+import br.random.bean.VampireChar;
+import br.random.util.Clans;
+import br.random.util.Singleton;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 public class VampireBasic extends SherlockFragment {
 	
 	private VampireChar currentchar;
+	private View old;
 	
 	private EditText et_name;
 	private EditText et_nature;
@@ -40,10 +38,25 @@ public class VampireBasic extends SherlockFragment {
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View result=inflater.inflate(R.layout.vampire_basic, container, false);
+		if (container == null) return null;
+		View result;
+		if (old != null) {
+			((FrameLayout)old.getParent()).removeView(old);
+			result = old;
+		} else {
+			result=inflater.inflate(R.layout.vampire_basic, container, false);
+			old = result;
+		}
+		Singleton singleton = Singleton.getInstance(getActivity().getApplicationContext());
+		currentchar = (VampireChar)singleton.getChar();
 		
-		currentchar = (VampireChar)Singleton.getInstance(getActivity().getApplicationContext()).getChar();
+		findViews(result);
+		setEvents();
+		initializeFields(savedInstanceState);
 		
+	    return(result);
+	}
+	private void findViews(View result) {
 		et_name = (EditText)result.findViewById(R.id.et_name);
 		et_nature = (EditText)result.findViewById(R.id.et_nature);
 		et_demeanor = (EditText)result.findViewById(R.id.et_demeanor);
@@ -51,17 +64,65 @@ public class VampireBasic extends SherlockFragment {
 		et_generation = (EditText)result.findViewById(R.id.et_generation);
 		et_haven = (EditText)result.findViewById(R.id.et_haven);
 		et_concept = (EditText)result.findViewById(R.id.et_concept);
-		
+	}
+	private void setEvents() {
 		sp_clan.setOnItemSelectedListener(new OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				// TODO: tentar fazer.... ao trocar de clã, setar disciplinas
-				//Toast.makeText(getActivity().getApplicationContext(), ""+arg2, Toast.LENGTH_SHORT).show();
+				String discipline1 = "";
+				String discipline2 = "";
+				String discipline3 = "";
+				switch (Clans.values()[arg2]) {
+					case nenhum: 	break;
+					case Brujah: 	discipline1 = "Rapidez";
+								 	discipline2 = "Potência";
+								 	discipline3 = "Presença";
+								 	break;
+					case Gangrel:	discipline1 = "Animalismo";
+									discipline2 = "Fortitude";
+									discipline3 = "Potência";
+									break;
+					case Malkavian:	discipline1 = "Auspício";
+									discipline2 = "Dominação";
+									discipline3 = "Ofuscação";
+									break;
+					case Nosferatu:	discipline1 = "Animalismo";
+									discipline2 = "Ofuscação";
+									discipline3 = "Potência";
+									//int appearance = currentchar.getAppearance();
+									//currentchar.setSocialLeft(currentchar.getSocialLeft()+appearance-1);
+									//currentchar.setAppearance(0);
+									break;
+					case Toreador:	discipline1 = "Auspício";
+									discipline2 = "Rapidez";
+									discipline3 = "Potência";
+									break;
+					case Tremere:	discipline1 = "Auspício";
+									discipline2 = "Dominação";
+									discipline3 = "Taumaturgia";
+									break;
+					case Ventrue:	discipline1 = "Dominação";
+									discipline2 = "Fortitude";
+									discipline3 = "Presença";
+									break;
+					default:		break;
+				}
+				currentchar.setDiscipline1(discipline1);
+				currentchar.setDiscipline2(discipline2);
+				currentchar.setDiscipline3(discipline3);
 			}
 			public void onNothingSelected(AdapterView<?> arg0) {
 			}
 		});
-		
-	    return(result);
+	}
+	private void initializeFields(Bundle savedInstanceState) {
+		et_name.setText(currentchar.getName());
+		et_nature.setText(currentchar.getNature());
+		et_demeanor.setText(currentchar.getDemeanor());
+		if (!currentchar.getClan().equals("")) sp_clan.setSelection(Clans.valueOf(currentchar.getClan()).ordinal());
+		else sp_clan.setSelection(0);
+		et_generation.setText(""+currentchar.getGeneration());
+		et_haven.setText(currentchar.getHaven());
+		et_concept.setText(currentchar.getConcept());
 	}
 }

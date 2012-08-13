@@ -1147,7 +1147,21 @@ containing a value of this type.
         public static final int et_nick=0x7f050089;
         public static final int et_pass=0x7f05008c;
         public static final int et_password=0x7f050057;
+        public static final int et_trait01=0x7f05019d;
+        public static final int et_trait02=0x7f0501a0;
+        public static final int et_trait03=0x7f0501a3;
+        public static final int et_trait04=0x7f0501a6;
+        public static final int et_trait05=0x7f0501a9;
         public static final int et_username=0x7f050055;
+        public static final int et_weapon01=0x7f0501bd;
+        public static final int et_weapon01dam=0x7f0501bf;
+        public static final int et_weapon01diff=0x7f0501be;
+        public static final int et_weapon02=0x7f0501c0;
+        public static final int et_weapon02dam=0x7f0501c2;
+        public static final int et_weapon02diff=0x7f0501c1;
+        public static final int et_weapon03=0x7f0501c3;
+        public static final int et_weapon03dam=0x7f0501c5;
+        public static final int et_weapon03diff=0x7f0501c4;
         public static final int fill=0x7f05000d;
         public static final int fill_horizontal=0x7f05000b;
         public static final int fill_vertical=0x7f050009;
@@ -1176,6 +1190,7 @@ containing a value of this type.
         public static final int lb_background=0x7f05014c;
         public static final int lb_backgroundleft=0x7f05015c;
         public static final int lb_birthdate=0x7f050085;
+        public static final int lb_bloodpool=0x7f0501b6;
         public static final int lb_brawl=0x7f0500af;
         public static final int lb_bureaucracy=0x7f050108;
         public static final int lb_campaign=0x7f050044;
@@ -1184,6 +1199,7 @@ containing a value of this type.
         public static final int lb_choosecriteria=0x7f05006a;
         public static final int lb_city=0x7f050087;
         public static final int lb_clan=0x7f050194;
+        public static final int lb_combat=0x7f0501b9;
         public static final int lb_community=0x7f05005e;
         public static final int lb_computer=0x7f05010d;
         public static final int lb_concept=0x7f05019a;
@@ -1192,8 +1208,10 @@ containing a value of this type.
         public static final int lb_contact=0x7f05008e;
         public static final int lb_courage=0x7f050166;
         public static final int lb_createchar=0x7f050068;
+        public static final int lb_damage=0x7f0501bc;
         public static final int lb_demeanor=0x7f050192;
         public static final int lb_dexterity=0x7f05016f;
+        public static final int lb_diff=0x7f0501bb;
         public static final int lb_disciplineleft=0x7f05014a;
         public static final int lb_disciplines=0x7f05013a;
         public static final int lb_dodge=0x7f0500b4;
@@ -1206,6 +1224,7 @@ containing a value of this type.
         public static final int lb_firearms=0x7f0500e3;
         public static final int lb_generation=0x7f050196;
         public static final int lb_haven=0x7f050198;
+        public static final int lb_humanity=0x7f0501ae;
         public static final int lb_intelligence=0x7f050188;
         public static final int lb_intimidation=0x7f0500be;
         public static final int lb_investigation=0x7f050117;
@@ -1255,8 +1274,12 @@ containing a value of this type.
         public static final int lb_systems=0x7f050078;
         public static final int lb_talent=0x7f05009e;
         public static final int lb_talentleft=0x7f0500d0;
+        public static final int lb_traitleft=0x7f0501ac;
+        public static final int lb_traits=0x7f05019c;
         public static final int lb_virtueleft=0x7f050169;
         public static final int lb_virtues=0x7f05015e;
+        public static final int lb_weapon=0x7f0501ba;
+        public static final int lb_willpower=0x7f0501b1;
         public static final int lb_wits=0x7f05018b;
         public static final int left=0x7f050006;
         public static final int listMode=0x7f050014;
@@ -1266,7 +1289,7 @@ containing a value of this type.
         public static final int lv_scenarios=0x7f050049;
         public static final int message=0x7f050069;
         public static final int normal=0x7f050013;
-        public static final int pager=0x7f05019c;
+        public static final int pager=0x7f0501c6;
         public static final int progressBar1=0x7f050051;
         public static final int rb_evaluation=0x7f05007f;
         public static final int right=0x7f050007;
@@ -1280,6 +1303,7 @@ containing a value of this type.
         public static final int sb_background03=0x7f050154;
         public static final int sb_background04=0x7f050157;
         public static final int sb_background05=0x7f05015a;
+        public static final int sb_bloodpool=0x7f0501b7;
         public static final int sb_brawl=0x7f0500b0;
         public static final int sb_bureaucracy=0x7f050109;
         public static final int sb_charisma=0x7f05017a;
@@ -1298,6 +1322,7 @@ containing a value of this type.
         public static final int sb_etiquette=0x7f0500df;
         public static final int sb_finance=0x7f050113;
         public static final int sb_firearms=0x7f0500e4;
+        public static final int sb_humanity=0x7f0501af;
         public static final int sb_intelligence=0x7f050189;
         public static final int sb_intimidation=0x7f0500bf;
         public static final int sb_investigation=0x7f050118;
@@ -1321,6 +1346,13 @@ containing a value of this type.
         public static final int sb_strength=0x7f05016d;
         public static final int sb_subterfuge=0x7f0500ce;
         public static final int sb_survival=0x7f050102;
+        public static final int sb_trait01=0x7f05019e;
+        public static final int sb_trait02=0x7f0501a1;
+        public static final int sb_trait03=0x7f0501a4;
+        public static final int sb_trait04=0x7f0501a7;
+        public static final int sb_trait05=0x7f0501aa;
+        public static final int sb_willpower=0x7f0501b2;
+        public static final int sb_willpowercur=0x7f0501b4;
         public static final int sb_wits=0x7f05018c;
         public static final int scrollView1=0x7f05004d;
         public static final int showCustom=0x7f05001a;
@@ -1359,6 +1391,7 @@ containing a value of this type.
         public static final int tv_background04=0x7f050158;
         public static final int tv_background05=0x7f05015b;
         public static final int tv_backgroundleft=0x7f05015d;
+        public static final int tv_bloodpool=0x7f0501b8;
         public static final int tv_brawl=0x7f0500b1;
         public static final int tv_bureaucracy=0x7f05010a;
         public static final int tv_campaign=0x7f050046;
@@ -1383,6 +1416,7 @@ containing a value of this type.
         public static final int tv_etiquette=0x7f0500e0;
         public static final int tv_finance=0x7f050114;
         public static final int tv_firearms=0x7f0500e5;
+        public static final int tv_humanity=0x7f0501b0;
         public static final int tv_intelligence=0x7f05018a;
         public static final int tv_intimidation=0x7f0500c0;
         public static final int tv_investigation=0x7f050119;
@@ -1420,8 +1454,16 @@ containing a value of this type.
         public static final int tv_survival=0x7f050103;
         public static final int tv_system=0x7f05009d;
         public static final int tv_talentleft=0x7f0500d1;
+        public static final int tv_trait01=0x7f05019f;
+        public static final int tv_trait02=0x7f0501a2;
+        public static final int tv_trait03=0x7f0501a5;
+        public static final int tv_trait04=0x7f0501a8;
+        public static final int tv_trait05=0x7f0501ab;
+        public static final int tv_traitleft=0x7f0501ad;
         public static final int tv_username=0x7f050054;
         public static final int tv_virtueleft=0x7f05016a;
+        public static final int tv_willpower=0x7f0501b3;
+        public static final int tv_willpowercur=0x7f0501b5;
         public static final int tv_wits=0x7f05018d;
         public static final int tv_xperience=0x7f05007d;
         public static final int useLogo=0x7f050016;
@@ -1478,7 +1520,8 @@ containing a value of this type.
         public static final int vampire_advantages=0x7f03002b;
         public static final int vampire_attributes=0x7f03002c;
         public static final int vampire_basic=0x7f03002d;
-        public static final int vampire_view=0x7f03002e;
+        public static final int vampire_other=0x7f03002e;
+        public static final int vampire_view=0x7f03002f;
     }
     public static final class raw {
         public static final int sql=0x7f040000;
@@ -1524,6 +1567,7 @@ containing a value of this type.
         public static final int athletics=0x7f0a004b;
         public static final int backgrounds=0x7f0a0068;
         public static final int birthdate=0x7f0a0020;
+        public static final int bloodpool=0x7f0a0070;
         public static final int brawl=0x7f0a004c;
         public static final int bureaucracy=0x7f0a005d;
         public static final int campaign=0x7f0a000b;
@@ -1535,6 +1579,7 @@ containing a value of this type.
         public static final int choosepicture=0x7f0a002e;
         public static final int city=0x7f0a001f;
         public static final int clan=0x7f0a0036;
+        public static final int combat=0x7f0a0071;
         public static final int community=0x7f0a000d;
         public static final int computer=0x7f0a005e;
         public static final int concept=0x7f0a0034;
@@ -1544,8 +1589,10 @@ containing a value of this type.
         public static final int contact=0x7f0a0022;
         public static final int courage=0x7f0a006c;
         public static final int createchar=0x7f0a002f;
+        public static final int damage=0x7f0a0074;
         public static final int demeanor=0x7f0a0033;
         public static final int dexterity=0x7f0a003c;
+        public static final int difficulty=0x7f0a0073;
         public static final int disciplines=0x7f0a0067;
         public static final int dodge=0x7f0a004d;
         public static final int drive=0x7f0a0054;
@@ -1557,6 +1604,7 @@ containing a value of this type.
         public static final int firearms=0x7f0a0056;
         public static final int generation=0x7f0a0037;
         public static final int haven=0x7f0a0038;
+        public static final int humanity=0x7f0a006e;
         public static final int intelligence=0x7f0a0044;
         public static final int intimidation=0x7f0a004f;
         public static final int investigation=0x7f0a0060;
@@ -1609,9 +1657,12 @@ containing a value of this type.
         public static final int system=0x7f0a001e;
         public static final int systems=0x7f0a0014;
         public static final int talents=0x7f0a0047;
+        public static final int traits=0x7f0a006d;
         public static final int vampire=0x7f0a0035;
         public static final int virtues=0x7f0a0069;
         public static final int wait=0x7f0a0028;
+        public static final int weapon=0x7f0a0072;
+        public static final int willpower=0x7f0a006f;
         public static final int wits=0x7f0a0045;
     }
     public static final class style {
