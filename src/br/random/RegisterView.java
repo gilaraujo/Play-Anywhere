@@ -28,6 +28,7 @@ import android.text.InputType;
 import android.view.View;
 import android.view.View.*;
 import android.widget.*;
+import android.widget.TableLayout.LayoutParams;
 
 public class RegisterView extends SherlockActivity {
 	

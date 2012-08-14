@@ -108,12 +108,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/generation" />
-
+
                     <EditText
                         android:id="@+id/et_generation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ems="2" />
+                        android:ems="2"
+                        android:inputType="number" />
 
                 </TableRow>
 

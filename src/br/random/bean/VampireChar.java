@@ -1,5 +1,10 @@
 package br.random.bean;
 
+import br.random.dao.DatabaseHelper;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
 public class VampireChar extends Char {
 	private String nature;
 	private String demeanor;
@@ -328,4 +333,116 @@ public class VampireChar extends Char {
 	public void setDisciplineLeft(int DisciplineLeft) { this.DISCIPLINE_LEFT = DisciplineLeft; }
 	public void setBackgroundLeft(int BackgroundLeft) { this.BACKGROUND_LEFT = BackgroundLeft; }
 	public void setVirtueLeft(int VirtueLeft) { this.VIRTUE_LEFT = VirtueLeft; }
+	
+	public boolean isValid() {
+		if (PHYSIC_LEFT == 0 && SOCIAL_LEFT == 0 && MENTAL_LEFT == 0 &&
+			TALENT_LEFT == 0 && SKILL_LEFT == 0 && KNOWLEDGE_LEFT == 0 &&
+			DISCIPLINE_LEFT == 0 && BACKGROUND_LEFT == 0 && VIRTUE_LEFT == 0) {
+				return true;
+		}
+		return false;
+	}
+	public int save(Context context, int user) {
+		SQLiteDatabase db = (new DatabaseHelper(context)).getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put("iduser", user);
+		cv.put("charname",name);
+		cv.put("nature",nature);
+		cv.put("demeanor",demeanor);
+		cv.put("clan",clan);
+		cv.put("generation",generation);
+		cv.put("haven",haven);
+		cv.put("concept",concept);
+		cv.put("strength",strength);
+		cv.put("dexterity",dexterity);
+		cv.put("stamina",stamina);
+		cv.put("charisma",charisma);
+		cv.put("manipulation",manipulation);
+		cv.put("appearance",appearance);
+		cv.put("perception",perception);
+		cv.put("intelligence",intelligence);
+		cv.put("wits",wits);
+		cv.put("acting",acting);
+		cv.put("alertness",alertness);
+		cv.put("athletics",athletics);
+		cv.put("brawl",brawl);
+		cv.put("dodge",dodge);
+		cv.put("empathy",empathy);
+		cv.put("intimidation",intimidation);
+		cv.put("leadership",leadership);
+		cv.put("streetwise",streetwise);
+		cv.put("subterfuge",subterfuge);
+		cv.put("animalken",animalken);
+		cv.put("drive",drive);
+		cv.put("etiquette",etiquette);
+		cv.put("firearms",firearms);
+		cv.put("melee",melee);
+		cv.put("music",music);
+		cv.put("repair",repair);
+		cv.put("security",security);
+		cv.put("stealth",stealth);
+		cv.put("survival",survival);
+		cv.put("bureaucracy",bureaucracy);
+		cv.put("computer",computer);
+		cv.put("finance",finance);
+		cv.put("investigation",investigation);
+		cv.put("law",law);
+		cv.put("linguistics",linguistics);
+		cv.put("medicine",medicine);
+		cv.put("occult",occult);
+		cv.put("politics",politics);
+		cv.put("science",science);
+		cv.put("discipline1",discipline1);
+		cv.put("discipline1val",discipline1val);
+		cv.put("discipline2",discipline2);
+		cv.put("discipline2val",discipline2val);
+		cv.put("discipline3",discipline3);
+		cv.put("discipline3val",discipline3val);
+		cv.put("discipline4",discipline4);
+		cv.put("discipline4val",discipline4val);
+		cv.put("discipline5",discipline5);
+		cv.put("discipline5val",discipline5val);
+		cv.put("background1",background1);
+		cv.put("background1val",background1val);
+		cv.put("background2",background2);
+		cv.put("background2val",background2val);
+		cv.put("background3",background3);
+		cv.put("background3val",background3val);
+		cv.put("background4",background4);
+		cv.put("background4val",background4val);
+		cv.put("background5",background5);
+		cv.put("background5val",background5val);
+		cv.put("conscience",conscience);
+		cv.put("selfcontrol",selfcontrol);
+		cv.put("courage",courage);
+		cv.put("trait1",trait1);
+		cv.put("trait1val",trait1val);
+		cv.put("trait2",trait2);
+		cv.put("trait2val",trait2val);
+		cv.put("trait3",trait3);
+		cv.put("trait3val",trait3val);
+		cv.put("trait4",trait4);
+		cv.put("trait4val",trait4val);
+		cv.put("trait5",trait5);
+		cv.put("trait5val",trait5val);
+		cv.put("weapon1",weapon1);
+		cv.put("weapon1diff",weapon1diff);
+		cv.put("weapon1dam",weapon1dam);
+		cv.put("weapon2",weapon2);
+		cv.put("weapon2diff",weapon2diff);
+		cv.put("weapon2dam",weapon2dam);
+		cv.put("weapon3",weapon3);
+		cv.put("weapon3diff",weapon3diff);
+		cv.put("weapon3dam",weapon3dam);
+		cv.put("humanity",humanity);
+		cv.put("willpower",willpower);
+		cv.put("willpowercur",willpowercur);
+		cv.put("bloodpool",bloodpool);
+		cv.put("health",health);
+		cv.put("experience",experience);
+		cv.put("experiencecur",experiencecur);
+        long ret = db.insert("tbchar_vampire","idchar",cv);
+        db.close();
+        return (int)(ret != -1 ? ret : 0);
+	}
 }

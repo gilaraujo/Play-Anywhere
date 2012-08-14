@@ -459,6 +459,11 @@ public class VampireAttributes extends SherlockFragment {
 		tv_mentalleft = (TextView)result.findViewById(R.id.tv_mentalleft);
 	}
 	@Override
+	public void onPause() {
+		super.onPause();
+		onSaveInstanceState(new Bundle());
+	}
+	@Override
 	public void onSaveInstanceState(Bundle icicle) {
 			try {
 			currentchar.setStrength(sb_strength.getProgress());

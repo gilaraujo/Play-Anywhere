@@ -495,6 +495,11 @@ public class VampireOther extends SherlockFragment {
 		tv_traitleft = (TextView)result.findViewById(R.id.tv_traitleft);
 	}
 	@Override
+	public void onPause() {
+		super.onPause();
+		onSaveInstanceState(new Bundle());
+	}
+	@Override
 	public void onSaveInstanceState(Bundle icicle) {
 		try {
 			currentchar.setTrait1val(sb_trait01.getProgress());

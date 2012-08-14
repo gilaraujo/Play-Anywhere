@@ -9,6 +9,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 import br.random.R;
 import br.random.bean.VampireChar;
 import br.random.util.Clans;
@@ -119,10 +120,29 @@ public class VampireBasic extends SherlockFragment {
 		et_name.setText(currentchar.getName());
 		et_nature.setText(currentchar.getNature());
 		et_demeanor.setText(currentchar.getDemeanor());
-		if (!currentchar.getClan().equals("")) sp_clan.setSelection(Clans.valueOf(currentchar.getClan()).ordinal());
+		if (!currentchar.getClan().equals("") && !currentchar.getClan().equals("Selecione")) sp_clan.setSelection(Clans.valueOf(currentchar.getClan()).ordinal());
 		else sp_clan.setSelection(0);
 		et_generation.setText(""+currentchar.getGeneration());
 		et_haven.setText(currentchar.getHaven());
 		et_concept.setText(currentchar.getConcept());
+	}
+	@Override
+	public void onPause() {
+		super.onPause();
+		onSaveInstanceState(new Bundle());
+	}
+	@Override
+	public void onSaveInstanceState(Bundle icicle) {
+		try {
+			currentchar.setName(et_name.getText().toString());
+			currentchar.setNature(et_nature.getText().toString());
+			currentchar.setDemeanor(et_demeanor.getText().toString());
+			currentchar.setClan(sp_clan.getSelectedItem().toString());
+			currentchar.setGeneration(Integer.parseInt(et_generation.getText().toString()));
+			currentchar.setHaven(et_haven.getText().toString());
+			currentchar.setConcept(et_concept.getText().toString());
+		} catch (Exception e) {
+			
+		}
 	}
 }

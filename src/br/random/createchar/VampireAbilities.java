@@ -1338,6 +1338,11 @@ public class VampireAbilities extends SherlockFragment {
 		});
 	}
 	@Override
+	public void onPause() {
+		super.onPause();
+		onSaveInstanceState(new Bundle());
+	}
+	@Override
 	public void onSaveInstanceState(Bundle icicle) {
 		try {
 			currentchar.setActing(sb_acting.getProgress());

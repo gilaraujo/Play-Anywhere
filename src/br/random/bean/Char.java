@@ -1,9 +1,9 @@
 package br.random.bean;
 
 public class Char {
-	private int charid;
-	private int userid;
-	private String name;
+	protected int charid;
+	protected int userid;
+	protected String name;
 	
 	public void setCharid(int charid) { this.charid = charid; }
 	public void setUserid(int userid) { this.userid = userid; }

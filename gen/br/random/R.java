@@ -1287,6 +1287,7 @@ containing a value of this type.
         public static final int lv_acts=0x7f05004b;
         public static final int lv_campaign=0x7f05007b;
         public static final int lv_scenarios=0x7f050049;
+        public static final int menu_save=0x7f0501c7;
         public static final int message=0x7f050069;
         public static final int normal=0x7f050013;
         public static final int pager=0x7f0501c6;
@@ -1523,6 +1524,9 @@ containing a value of this type.
         public static final int vampire_other=0x7f03002e;
         public static final int vampire_view=0x7f03002f;
     }
+    public static final class menu {
+        public static final int createchar_vampire=0x7f0d0000;
+    }
     public static final class raw {
         public static final int sql=0x7f040000;
     }
@@ -1601,6 +1605,7 @@ containing a value of this type.
         public static final int evaluation=0x7f0a0017;
         public static final int experience=0x7f0a0016;
         public static final int finance=0x7f0a005f;
+        public static final int finish=0x7f0a0075;
         public static final int firearms=0x7f0a0056;
         public static final int generation=0x7f0a0037;
         public static final int haven=0x7f0a0038;
@@ -1709,6 +1714,7 @@ containing a value of this type.
         public static final int Theme_Sherlock_Light_ForceOverflow=0x7f0b0054;
         public static final int Theme_Sherlock_Light_NoActionBar=0x7f0b0052;
         public static final int Theme_Sherlock_NoActionBar=0x7f0b0051;
+        public static final int VampireActionBar=0x7f0b0058;
         public static final int Widget=0x7f0b0000;
         public static final int Widget_Sherlock_ActionBar=0x7f0b0002;
         public static final int Widget_Sherlock_ActionBar_Solid=0x7f0b0003;

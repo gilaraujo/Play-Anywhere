@@ -133,7 +133,7 @@
                         android:inputType="textPassword" />
                 </TableRow>
             </TableLayout>
-
+
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,12 +155,13 @@
                     android:id="@+id/tableRow7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
-
+
                     <TableLayout
                         android:id="@+id/tl_contacts"
-                        android:stretchColumns="1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
+                        android:layout_height="wrap_content"
+                        android:shrinkColumns="1"
+                        android:stretchColumns="1" >
 
                     </TableLayout>
                 </TableRow>
@@ -196,12 +197,13 @@
                     android:id="@+id/tableRow10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
-
+
                     <TableLayout
                         android:id="@+id/tl_systems"
-                        android:stretchColumns="0"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
+                        android:layout_height="wrap_content"
+                        android:stretchColumns="0" >
+
                     </TableLayout>
                 </TableRow>
 

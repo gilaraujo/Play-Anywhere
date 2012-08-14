@@ -1,6 +1,7 @@
 package br.random;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
 
 import android.content.*;
 import android.os.Bundle;
@@ -53,4 +54,14 @@ public class NewGameView extends SherlockActivity {
 			}
 		});
     }
+	@Override
+	  public boolean onOptionsItemSelected(MenuItem item) {
+	      switch (item.getItemId()) {
+	          case android.R.id.home:
+	              startActivity(new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+	              return true;
+		      default:
+	              return super.onOptionsItemSelected(item);
+	      }
+	  }
 }

@@ -108,4 +108,5 @@
     <string name="weapon">Arma</string>
     <string name="difficulty">Dificuldade</string>
     <string name="damage">Dano</string>
+    <string name="finish">Concluído</string>
 </resources>

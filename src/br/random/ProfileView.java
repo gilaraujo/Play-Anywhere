@@ -8,6 +8,7 @@ import br.random.dao.*;
 import java.util.*;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
 
 import android.app.AlertDialog;
 import android.content.*;
@@ -173,4 +174,14 @@ public class ProfileView extends SherlockActivity {
 	           }
         });
     }
+	@Override
+	  public boolean onOptionsItemSelected(MenuItem item) {
+	      switch (item.getItemId()) {
+	          case android.R.id.home:
+	              startActivity(new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+	              return true;
+		      default:
+	              return super.onOptionsItemSelected(item);
+	      }
+	  }
 }

@@ -4,6 +4,7 @@ import br.random.bean.Profile;
 import br.random.util.Singleton;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
 
 import android.content.*;
 import android.os.Bundle;
@@ -34,4 +35,14 @@ public class QuestView extends SherlockActivity {
         	tv_campaign.setText("Você não tem permissão para visualizar este conteúdo");
         }
     }
+	@Override
+	  public boolean onOptionsItemSelected(MenuItem item) {
+	      switch (item.getItemId()) {
+	          case android.R.id.home:
+	              startActivity(new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+	              return true;
+		      default:
+	              return super.onOptionsItemSelected(item);
+	      }
+	  }
 }
