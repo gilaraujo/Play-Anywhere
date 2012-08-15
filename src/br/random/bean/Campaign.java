@@ -113,4 +113,15 @@ public class Campaign {
         db.close();
 		return ret;
 	}
+	public static boolean requestParticipation(Context context, int campaignid, int userid, int charid, String charname) {
+		SQLiteDatabase db = (new DatabaseHelper(context)).getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put("iduser",""+userid);
+		cv.put("idcampaign",""+campaignid);
+		cv.put("idchar",""+charid);
+		cv.put("charname", charname);
+		cv.put("pending", "1");
+        long ret = db.insert("tbprofile_campaign",null,cv);
+        return (ret != -1);
+	}
 }

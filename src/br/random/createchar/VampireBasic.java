@@ -51,11 +51,26 @@ public class VampireBasic extends SherlockFragment {
 		Singleton singleton = Singleton.getInstance(getActivity().getApplicationContext());
 		currentchar = (VampireChar)singleton.getChar();
 		
+		Bundle b = getActivity().getIntent().getExtras();
+		
 		findViews(result);
-		setEvents();
+		if (b.getBoolean("editable")) {
+			setEvents();
+		} else {
+			setFreeze();
+		}
 		initializeFields(savedInstanceState);
 		
 	    return(result);
+	}
+	private void setFreeze() {
+		et_name.setEnabled(false);
+		et_nature.setEnabled(false);
+		et_demeanor.setEnabled(false);
+		sp_clan.setEnabled(false);
+		et_generation.setEnabled(false);
+		et_haven.setEnabled(false);
+		et_concept.setEnabled(false);		
 	}
 	private void findViews(View result) {
 		et_name = (EditText)result.findViewById(R.id.et_name);

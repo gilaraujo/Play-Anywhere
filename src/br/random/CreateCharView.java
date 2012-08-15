@@ -32,7 +32,9 @@ public class CreateCharView extends SherlockActivity {
         	image.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					try {
-						startActivity(new Intent(getApplicationContext(), Class.forName("br.random.createchar."+system+"View")));
+						Bundle b = new Bundle();
+						b.putBoolean("editable",true);
+						startActivity(new Intent(getApplicationContext(), Class.forName("br.random.createchar."+system+"View")).putExtras(b));
 					} catch (ClassNotFoundException e) {
 						Toast.makeText(getApplicationContext(), "Sistema de jogo não disponível: "+system, Toast.LENGTH_SHORT).show();
 					}

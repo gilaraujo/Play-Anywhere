@@ -96,11 +96,42 @@ public class VampireOther extends SherlockFragment {
 		currentchar = (VampireChar)singleton.getChar();
 		TRAIT_LEFT = 20;
 		
+		Bundle b = getActivity().getIntent().getExtras();
+		
 		findViews(result);
-		setEvents();
+		if (b.getBoolean("editable")) {
+			setEvents();
+		} else {
+			setFreeze();
+		}
 		initializeFields(savedInstanceState);
 		
 		return(result);
+	}
+	private void setFreeze() {
+		sb_trait01.setEnabled(false);
+		sb_trait02.setEnabled(false);
+		sb_trait03.setEnabled(false);
+		sb_trait04.setEnabled(false);
+		sb_trait05.setEnabled(false);
+		sb_humanity.setEnabled(false);
+		sb_willpower.setEnabled(false);
+		sb_willpowercur.setEnabled(false);
+		sb_bloodpool.setEnabled(false);
+		et_trait01.setEnabled(false);
+		et_trait02.setEnabled(false);
+		et_trait03.setEnabled(false);
+		et_trait04.setEnabled(false);
+		et_trait05.setEnabled(false);
+		et_weapon01.setEnabled(false);
+		et_weapon01diff.setEnabled(false);
+		et_weapon01dam.setEnabled(false);
+		et_weapon02.setEnabled(false);
+		et_weapon02diff.setEnabled(false);
+		et_weapon02dam.setEnabled(false);
+		et_weapon03.setEnabled(false);
+		et_weapon03diff.setEnabled(false);
+		et_weapon03dam.setEnabled(false);
 	}
 	private void initializeTextFields() {
 		tv_trait01.setText(""+currentchar.getTrait1val());

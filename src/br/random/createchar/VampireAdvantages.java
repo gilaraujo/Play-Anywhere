@@ -115,11 +115,42 @@ public class VampireAdvantages extends SherlockFragment {
 		BACKGROUND_LEFT = currentchar.getBackgroundLeft();
 		VIRTUE_LEFT = currentchar.getVirtueLeft();
 		
+		Bundle b = getActivity().getIntent().getExtras();
+		
 		findViews(result);
-		setEvents();
+		if (b.getBoolean("editable")) {
+			setEvents();
+		} else {
+			setFreeze();
+		}
 		initializeFields(savedInstanceState);
 		
 		return(result);
+	}
+	private void setFreeze() {
+		sb_discipline01.setEnabled(false);
+		sb_discipline02.setEnabled(false);
+		sb_discipline03.setEnabled(false);
+		sb_discipline04.setEnabled(false);
+		sb_discipline05.setEnabled(false);
+		sb_background01.setEnabled(false);
+		sb_background02.setEnabled(false);
+		sb_background03.setEnabled(false);
+		sb_background04.setEnabled(false);
+		sb_background05.setEnabled(false);
+		sb_conscience.setEnabled(false);
+		sb_selfcontrol.setEnabled(false);
+		sb_courage.setEnabled(false);
+		et_discipline01.setEnabled(false);
+		et_discipline02.setEnabled(false);
+		et_discipline03.setEnabled(false);
+		et_discipline04.setEnabled(false);
+		et_discipline05.setEnabled(false);
+		et_background01.setEnabled(false);
+		et_background02.setEnabled(false);
+		et_background03.setEnabled(false);
+		et_background04.setEnabled(false);
+		et_background05.setEnabled(false);
 	}
 	private void initializeTextFields() {
 		tv_discipline01.setText(""+currentchar.getDiscipline1val());

@@ -72,5 +72,9 @@
             android:name=".createchar.VampireView"
             android:label="@string/vampire" >
         </activity>
+        <activity
+            android:name=".ChooseCharView"
+            android:label="@string/choosechar" >
+        </activity>
         </application>
 </manifest>

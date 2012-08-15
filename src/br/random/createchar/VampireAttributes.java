@@ -91,8 +91,14 @@ public class VampireAttributes extends SherlockFragment {
 		SOCIAL_LEFT = currentchar.getSocialLeft();
 		MENTAL_LEFT = currentchar.getMentalLeft();
 		
+		Bundle b = getActivity().getIntent().getExtras();
+		
 		findViews(result);
-		setEvents();
+		if (b.getBoolean("editable")) {
+			setEvents();
+		} else {
+			setFreeze();
+		}
 		initializeFields(savedInstanceState);
 
 	    return(result);
@@ -434,6 +440,17 @@ public class VampireAttributes extends SherlockFragment {
 				}
 			}
 		});
+	}
+	private void setFreeze() {
+		sb_strength.setEnabled(false);
+		sb_dexterity.setEnabled(false);
+		sb_stamina.setEnabled(false);
+		sb_charisma.setEnabled(false);
+		sb_manipulation.setEnabled(false);
+		sb_appearance.setEnabled(false);
+		sb_perception.setEnabled(false);
+		sb_intelligence.setEnabled(false);
+		sb_wits.setEnabled(false);
 	}
 	private void findViews(View result) {
 		sb_strength = (SeekBar)result.findViewById(R.id.sb_strength);

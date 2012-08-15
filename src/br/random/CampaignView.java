@@ -1,11 +1,13 @@
 package br.random;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import br.random.bean.Campaign;
+import br.random.bean.Char;
 import br.random.bean.Profile;
 import br.random.bean.Quest;
 import br.random.bean.Scenario;
@@ -49,26 +51,59 @@ public class CampaignView extends SherlockActivity {
         setListViewScrollable(lv_scenarios);
         
         Bundle b = getIntent().getExtras();  
-        Campaign c = Campaign.getById(getApplicationContext(), Integer.parseInt(b.getString("campaignId")));
+        final Campaign c = Campaign.getById(getApplicationContext(), Integer.parseInt(b.getString("campaignId")));
         tv_master.setText(c.getMasterName());
         tv_campaign.setText(c.getName());
         
         final Profile user = Singleton.getInstance(getApplicationContext()).getUser();
         if (user.isInCampaign(b.getString("campaignId"))) {
         	iv_campaignstatus.setImageResource(R.drawable.btn_participating);
+        	iv_campaignstatus.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					Char ch = Char.getByUserAndCampaign(getApplicationContext(), user.getUserId(), c.getCampaignId());
+					if (ch != null) {
+						try {
+							Class cl = Class.forName("br.random.bean."+c.getSystem()+"Char");
+							Method m = cl.getDeclaredMethod("getByCharId", Context.class, int.class);
+							Char campaignchar = (Char)m.invoke(null,getApplicationContext(),ch.getCharid());
+							if (campaignchar != null) {
+								Singleton.getInstance(getApplicationContext()).setChar(campaignchar);
+								Bundle b = new Bundle();
+								b.putBoolean("editable",false);
+								startActivity(new Intent(getApplicationContext(), Class.forName("br.random.createchar."+c.getSystem()+"View")).putExtras(b));
+							} else throw new Exception();
+						} catch (Exception e) {
+							Toast.makeText(getApplicationContext(), "Não foi possível carregar a página de exibição de personagem.", Toast.LENGTH_SHORT).show();
+						}
+					} else {
+						Toast.makeText(getApplicationContext(), "Não foi possível carregar o personagem desta campanha.", Toast.LENGTH_SHORT).show();
+					}
+				}
+			});
         } else {
         	if (user.isPendingInCampaign(b.getString("campaignId"))) {
         		iv_campaignstatus.setImageResource(R.drawable.btn_pending);
+        		iv_campaignstatus.setOnClickListener(new OnClickListener() {
+					public void onClick(View v) {
+						Toast.makeText(getApplicationContext(), "Sua participação está aguardando aprovação do mestre da campanha.", Toast.LENGTH_SHORT).show();
+					}
+				});
         	} else {
         		if (!c.isOpen()) {
         			iv_campaignstatus.setImageResource(R.drawable.btn_closed);
+        			iv_campaignstatus.setOnClickListener(new OnClickListener() {
+						public void onClick(View v) {
+							Toast.makeText(getApplicationContext(), "Esta campanha está fechada para novos membros.", Toast.LENGTH_SHORT).show();
+						}
+					});
         		}
         		else {
         			iv_campaignstatus.setOnClickListener(new OnClickListener() {
 						public void onClick(View v) {
-							// Criar ou escolher char
-							// Campaign.participate(user.getUserId());
-							// user.getPendings().add(Integer.parseInt(b.getString("campaignId")));
+							Bundle bundle = new Bundle();
+							bundle.putString("system", c.getSystem());
+							bundle.putInt("campaignid", c.getCampaignId());
+							startActivity(new Intent(getApplicationContext(), ChooseCharView.class).putExtras(bundle));
 						}
         			});
         		}

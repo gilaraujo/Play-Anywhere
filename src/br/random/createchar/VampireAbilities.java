@@ -172,11 +172,49 @@ public class VampireAbilities extends SherlockFragment {
 		SKILL_LEFT = currentchar.getSkillLeft();
 		KNOWLEDGE_LEFT = currentchar.getKnowledgeLeft();
 		
+		Bundle b = getActivity().getIntent().getExtras();
+		
 		findViews(result);
-		setEvents();
+		if (b.getBoolean("editable")) {
+			setEvents();
+		} else {
+			setFreeze();
+		}
 		initializeFields(savedInstanceState);
 		
 	    return(result);
+	}
+	private void setFreeze() {
+		sb_acting.setEnabled(false);
+		sb_alertness.setEnabled(false);
+		sb_athletics.setEnabled(false);
+		sb_brawl.setEnabled(false);
+		sb_dodge.setEnabled(false);
+		sb_empathy.setEnabled(false);
+		sb_intimidation.setEnabled(false);
+		sb_leadership.setEnabled(false);
+		sb_streetwise.setEnabled(false);
+		sb_subterfuge.setEnabled(false);
+		sb_animalken.setEnabled(false);
+		sb_drive.setEnabled(false);
+		sb_etiquette.setEnabled(false);
+		sb_firearms.setEnabled(false);
+		sb_melee.setEnabled(false);
+		sb_music.setEnabled(false);
+		sb_repair.setEnabled(false);
+		sb_security.setEnabled(false);
+		sb_stealth.setEnabled(false);
+		sb_survival.setEnabled(false);
+		sb_bureaucracy.setEnabled(false);
+		sb_computer.setEnabled(false);
+		sb_finance.setEnabled(false);
+		sb_investigation.setEnabled(false);
+		sb_law.setEnabled(false);
+		sb_linguistics.setEnabled(false);
+		sb_medicine.setEnabled(false);
+		sb_occult.setEnabled(false);
+		sb_politics.setEnabled(false);
+		sb_science.setEnabled(false);
 	}
 	private void initializeTextFields() {
 		tv_acting.setText(""+currentchar.getActing());

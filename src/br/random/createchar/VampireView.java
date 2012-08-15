@@ -36,11 +36,11 @@ public class VampireView extends
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     pager=(ViewPager)findViewById(R.id.pager);
-    if (Singleton.getInstance(getApplicationContext()).getChar() == null)
+
+    if (getIntent().getExtras().getBoolean("editable")) {
     	Singleton.getInstance(getApplicationContext()).setChar(new VampireChar());
-    currentchar = (VampireChar)Singleton.getInstance(getApplicationContext()).getChar(); 
-    
-    
+    }
+    currentchar = (VampireChar)Singleton.getInstance(getApplicationContext()).getChar();
     
     getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     pager.setAdapter(buildAdapter());
@@ -51,14 +51,19 @@ public class VampireView extends
   }
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-      MenuInflater inflater = getSupportMenuInflater();
-      inflater.inflate(R.menu.createchar_vampire, menu);
+	  Bundle b = getIntent().getExtras();
+	  if (b.getBoolean("editable")) {
+		  MenuInflater inflater = getSupportMenuInflater();
+		  inflater.inflate(R.menu.createchar_vampire, menu);
+	  }
       return true;
   }
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
           case android.R.id.home:
+        	  Singleton.getInstance(getApplicationContext()).setChar(null);
+        	  currentchar = null;
               startActivity(new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
               return true;
           case R.id.menu_save:
@@ -68,7 +73,7 @@ public class VampireView extends
         			  Singleton.getInstance(getApplicationContext()).setChar(null);
         			  currentchar = null;
         			  Toast.makeText(getApplicationContext(), "Personagem criado com sucesso!", Toast.LENGTH_LONG).show();
-        			  startActivity(new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        			  finish();
         		  } else {
         			  Toast.makeText(getApplicationContext(), "Erro ao inserir valores no banco de dados!", Toast.LENGTH_SHORT).show();
         		  }
